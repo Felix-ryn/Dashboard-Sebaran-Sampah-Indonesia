@@ -1,0 +1,331 @@
+tahun,periode,provinsi,kab_kota,sisa_makanan,kayu_ranting,kertas_karton,plastik,logam,kain,karet_kulit,kaca,lainnya,provinsi_key,kab_kota_key,total_pct,flag_total_tidak_100,jenis_dominan
+2025,2,Aceh,Kab. Aceh Selatan,30.08,12.29,13.1,16.33,6.4,5.42,3.43,5.35,7.6,ACEH,KABUPATEN ACEH SELATAN,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Aceh Tenggara,47.0,5.0,9.0,25.0,4.0,3.0,3.0,4.0,,ACEH,KABUPATEN ACEH TENGGARA,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Aceh Timur,25.0,27.0,9.0,15.0,7.0,5.0,5.0,7.0,,ACEH,KABUPATEN ACEH TIMUR,100.0,False,kayu_ranting
+2025,2,Aceh,Kab. Aceh Tengah,22.0,18.0,7.0,26.0,3.0,11.0,5.0,5.0,3.0,ACEH,KABUPATEN ACEH TENGAH,100.0,False,plastik
+2025,2,Aceh,Kab. Aceh Barat,46.05,16.97,8.25,18.94,0.6,3.63,1.17,1.13,3.26,ACEH,KABUPATEN ACEH BARAT,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Aceh Besar,25.5,25.5,9.5,21.6,5.1,3.3,3.3,3.7,2.5,ACEH,KABUPATEN ACEH BESAR,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Pidie,8.5,7.5,19.3,35.7,4.0,1.0,3.0,2.0,19.0,ACEH,KABUPATEN PIDIE,100.0,False,plastik
+2025,2,Aceh,Kab. Aceh Utara,40.0,10.0,15.0,25.0,5.0,2.0,1.0,1.0,1.0,ACEH,KABUPATEN ACEH UTARA,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Simeulue,24.8,20.3,10.1,25.7,10.2,2.6,1.8,1.5,3.0,ACEH,KABUPATEN SIMEULUE,100.0,False,plastik
+2025,2,Aceh,Kab. Aceh Singkil,30.0,10.0,15.0,22.0,2.0,5.0,3.0,2.0,11.0,ACEH,KABUPATEN ACEH SINGKIL,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Aceh Barat Daya,15.0,7.0,25.0,25.0,10.0,5.0,5.0,5.0,3.0,ACEH,KABUPATEN ACEH BARAT DAYA,100.0,False,kertas_karton
+2025,2,Aceh,Kab. Gayo Lues,15.0,7.0,4.0,65.0,1.0,2.0,1.0,1.0,4.0,ACEH,KABUPATEN GAYO LUES,100.0,False,plastik
+2025,2,Aceh,Kab. Aceh Jaya,48.0,14.0,10.0,14.0,9.0,2.0,1.0,1.0,1.0,ACEH,KABUPATEN ACEH JAYA,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Nagan Raya,47.0,5.0,2.0,35.0,1.0,2.0,3.0,1.0,4.0,ACEH,KABUPATEN NAGAN RAYA,100.0,False,sisa_makanan
+2025,2,Aceh,Kab. Bener Meriah,22.0,24.0,19.0,23.0,5.0,1.0,1.0,4.0,1.0,ACEH,KABUPATEN BENER MERIAH,100.0,False,kayu_ranting
+2025,2,Aceh,Kab. Pidie Jaya,20.0,30.0,12.0,26.0,1.0,3.0,3.0,3.0,2.0,ACEH,KABUPATEN PIDIE JAYA,100.0,False,kayu_ranting
+2025,2,Aceh,Kota Banda Aceh,29.48,23.59,6.34,25.75,0.49,1.87,0.19,1.47,10.82,ACEH,KOTA BANDA ACEH,100.0,False,sisa_makanan
+2025,2,Aceh,Kota Sabang,20.0,10.0,5.0,20.0,10.0,5.0,5.0,15.0,10.0,ACEH,KOTA SABANG,100.0,False,sisa_makanan
+2025,2,Aceh,Kota Lhokseumawe,54.4,2.28,15.04,15.03,2.12,0.16,0.82,1.01,9.14,ACEH,KOTA LHOKSEUMAWE,100.0,False,sisa_makanan
+2025,2,Aceh,Kota Langsa,36.2,15.5,10.5,14.3,3.5,4.3,2.0,3.2,10.5,ACEH,KOTA LANGSA,100.0,False,sisa_makanan
+2025,2,Aceh,Kota Subulussalam,20.0,15.0,20.0,20.0,2.0,5.0,5.0,3.0,10.0,ACEH,KOTA SUBULUSSALAM,100.0,False,sisa_makanan
+2025,2,Sumatera Utara,Kab. Nias,39.69,12.9,12.08,17.89,3.26,2.49,1.75,2.36,7.58,SUMATERA UTARA,KABUPATEN NIAS,100.0,False,sisa_makanan
+2025,2,Sumatera Utara,Kab. Simalungun,5.5,1.93,15.44,20.46,0.37,7.7,4.5,8.6,35.5,SUMATERA UTARA,KABUPATEN SIMALUNGUN,100.0,False,lainnya
+2025,2,Sumatera Utara,Kab. Toba,19.15,11.47,2.13,12.18,1.25,9.56,15.23,9.45,19.58,SUMATERA UTARA,KABUPATEN TOBA,99.99999999999999,False,lainnya
+2025,2,Sumatera Utara,Kab. Mandailing Natal,47.0,6.0,15.0,14.0,1.0,3.0,1.0,4.0,9.0,SUMATERA UTARA,KABUPATEN MANDAILING NATAL,100.0,False,sisa_makanan
+2025,2,Sumatera Utara,Kab. Humbang Hasundutan,19.0,48.0,10.0,13.0,3.0,1.0,0.2,0.8,5.0,SUMATERA UTARA,KABUPATEN HUMBANG HASUNDUTAN,100.0,False,kayu_ranting
+2025,2,Sumatera Utara,Kota Medan,,,,,,,,,,SUMATERA UTARA,KOTA MEDAN,,False,
+2025,2,Sumatera Utara,Kota Sibolga,41.3,18.78,5.1,22.43,1.22,3.78,1.31,2.57,3.51,SUMATERA UTARA,KOTA SIBOLGA,100.0,False,sisa_makanan
+2025,2,Sumatera Utara,Kota Tanjung Balai,64.02,1.94,9.5,13.98,0.6,0.9,0.28,0.53,8.25,SUMATERA UTARA,KOTA TANJUNG BALAI,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kab. Pesisir Selatan,20.4,19.6,23.0,19.0,16.0,0.42,1.58,,,SUMATERA BARAT,KABUPATEN PESISIR SELATAN,100.0,False,kertas_karton
+2025,2,Sumatera Barat,Kab. Solok,35.5,15.0,13.5,23.0,3.0,2.5,2.0,2.0,3.5,SUMATERA BARAT,KABUPATEN SOLOK,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kab. Sijunjung,26.4,32.3,15.1,17.0,6.3,0.25,0.5,0.95,1.2,SUMATERA BARAT,KABUPATEN SIJUNJUNG,100.0,False,kayu_ranting
+2025,2,Sumatera Barat,Kab. Tanah Datar,69.34,,8.63,6.0,2.24,1.57,,3.33,8.89,SUMATERA BARAT,KABUPATEN TANAH DATAR,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kab. Padang Pariaman,,,,,,,,,,SUMATERA BARAT,KABUPATEN PADANG PARIAMAN,,False,
+2025,2,Sumatera Barat,Kab. Agam,,,,,,,,,,SUMATERA BARAT,KABUPATEN AGAM,,False,
+2025,2,Sumatera Barat,Kab. Pasaman,62.0,2.0,12.0,16.0,5.0,0.1,0.4,1.0,1.5,SUMATERA BARAT,KABUPATEN PASAMAN,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kab. Solok Selatan,34.35,0.78,16.35,25.69,0.13,0.59,0.55,2.31,19.25,SUMATERA BARAT,KABUPATEN SOLOK SELATAN,100.00000000000001,False,sisa_makanan
+2025,2,Sumatera Barat,Kota Padang,43.95,16.1,8.85,19.84,1.3,1.8,1.09,1.8,5.27,SUMATERA BARAT,KOTA PADANG,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kota Sawahlunto,46.0,10.0,11.0,14.0,3.0,5.0,4.0,5.0,2.0,SUMATERA BARAT,KOTA SAWAHLUNTO,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kota Padang Panjang,,,,,,,,,,SUMATERA BARAT,KOTA PADANG PANJANG,,False,
+2025,2,Sumatera Barat,Kota Bukittinggi,49.71,6.27,5.51,21.96,1.75,2.3,0.34,1.35,10.81,SUMATERA BARAT,KOTA BUKITTINGGI,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kota Payakumbuh,48.25,9.81,15.45,17.47,2.01,1.17,0.45,0.89,4.5,SUMATERA BARAT,KOTA PAYAKUMBUH,100.0,False,sisa_makanan
+2025,2,Sumatera Barat,Kota Pariaman,,,,,,,,,,SUMATERA BARAT,KOTA PARIAMAN,,False,
+2025,2,Riau,Kab. Siak,39.0,15.0,10.0,26.0,1.0,2.0,2.0,3.0,2.0,RIAU,KABUPATEN SIAK,100.0,False,sisa_makanan
+2025,2,Riau,Kota Pekanbaru,32.58,11.89,6.45,37.57,7.62,0.03,,0.05,3.81,RIAU,KOTA PEKANBARU,100.00000000000001,False,plastik
+2025,2,Riau,Kota Dumai,48.97,7.5,5.3,8.95,2.27,3.72,2.5,2.79,18.0,RIAU,KOTA DUMAI,100.0,False,sisa_makanan
+2025,2,Jambi,Kab. Merangin,40.84,12.04,11.28,19.0,3.02,2.59,2.19,2.49,6.55,JAMBI,KABUPATEN MERANGIN,99.99999999999999,False,sisa_makanan
+2025,2,Jambi,Kab. Batanghari,,,,,,,,,,JAMBI,KABUPATEN BATANGHARI,,False,
+2025,2,Jambi,Kab. Tebo,,,,,,,,,,JAMBI,KABUPATEN TEBO,,False,
+2025,2,Jambi,Kota Sungai Penuh,41.59,12.24,18.19,17.3,0.41,0.36,0.44,0.2,9.27,JAMBI,KOTA SUNGAI PENUH,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kab. Ogan Komering Ulu,35.0,25.0,10.0,15.0,7.0,3.0,2.0,3.0,,SUMATERA SELATAN,KABUPATEN OGAN KOMERING ULU,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kab. Ogan Komering Ilir,,,,,,,,,,SUMATERA SELATAN,KABUPATEN OGAN KOMERING ILIR,,False,
+2025,2,Sumatera Selatan,Kab. Muara Enim,61.02,8.07,7.38,17.18,1.14,1.33,0.36,0.31,3.21,SUMATERA SELATAN,KABUPATEN MUARA ENIM,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kab. Lahat,60.0,10.1,2.0,14.0,1.74,5.5,0.26,0.9,5.5,SUMATERA SELATAN,KABUPATEN LAHAT,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kab. Musi Rawas,32.92,27.35,4.06,24.24,0.44,6.36,0.12,0.42,4.09,SUMATERA SELATAN,KABUPATEN MUSI RAWAS,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kab. Musi Banyuasin,10.0,40.0,10.0,10.0,10.0,5.0,5.0,5.0,5.0,SUMATERA SELATAN,KABUPATEN MUSI BANYUASIN,100.0,False,kayu_ranting
+2025,2,Sumatera Selatan,Kab. Banyuasin,,,,,,,,,,SUMATERA SELATAN,KABUPATEN BANYUASIN,,False,
+2025,2,Sumatera Selatan,Kab. Ogan Komering Ulu Timur,12.0,9.0,22.0,27.0,3.0,5.0,3.0,2.0,17.0,SUMATERA SELATAN,KABUPATEN OGAN KOMERING ULU TIMUR,100.0,False,plastik
+2025,2,Sumatera Selatan,Kab. Ogan Komering Ulu Selatan,48.0,16.0,16.0,11.0,3.0,2.0,1.0,1.0,2.0,SUMATERA SELATAN,KABUPATEN OGAN KOMERING ULU SELATAN,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kab. Penukal Abab Lematang Ilir,54.33,1.26,10.86,21.7,0.37,2.12,0.53,1.68,7.15,SUMATERA SELATAN,KABUPATEN PENUKAL ABAB LEMATANG ILIR,100.00000000000001,False,sisa_makanan
+2025,2,Sumatera Selatan,Kota Pagar Alam,34.2,12.3,7.2,32.4,2.3,2.7,2.7,1.2,5.0,SUMATERA SELATAN,KOTA PAGAR ALAM,100.0,False,sisa_makanan
+2025,2,Sumatera Selatan,Kota Prabumulih,42.88,1.44,9.02,39.72,4.0,0.04,0.09,2.8,0.01,SUMATERA SELATAN,KOTA PRABUMULIH,100.00000000000001,False,sisa_makanan
+2025,2,Bengkulu,Kab. Seluma,80.0,8.5,5.0,2.0,0.5,1.0,,,3.0,BENGKULU,KABUPATEN SELUMA,100.0,False,sisa_makanan
+2025,2,Bengkulu,Kab. Lebong,64.45,8.58,8.56,12.84,0.2,0.89,1.6,0.73,2.1,BENGKULU,KABUPATEN LEBONG,99.95,False,sisa_makanan
+2025,2,Bengkulu,Kab. Bengkulu Tengah,,,,,,,,,,BENGKULU,KABUPATEN BENGKULU TENGAH,,False,
+2025,2,Bengkulu,Kota Bengkulu,65.0,3.0,13.0,11.0,1.0,1.0,1.0,1.0,4.0,BENGKULU,KOTA BENGKULU,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Lampung Selatan,65.0,1.0,11.0,14.0,3.5,1.0,1.0,2.5,1.0,LAMPUNG,KABUPATEN LAMPUNG SELATAN,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Lampung Tengah,41.0,,2.0,24.0,1.0,19.0,8.0,3.0,2.0,LAMPUNG,KABUPATEN LAMPUNG TENGAH,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Lampung Utara,,,,,,,,,,LAMPUNG,KABUPATEN LAMPUNG UTARA,,False,
+2025,2,Lampung,Kab. Lampung Barat,,,,,,,,,,LAMPUNG,KABUPATEN LAMPUNG BARAT,,False,
+2025,2,Lampung,Kab. Tulang Bawang,70.0,13.0,5.0,6.0,,,,,6.0,LAMPUNG,KABUPATEN TULANG BAWANG,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Tanggamus,31.0,25.0,13.0,21.0,1.0,1.0,1.0,2.0,5.0,LAMPUNG,KABUPATEN TANGGAMUS,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Way Kanan,,,,,,,,,,LAMPUNG,KABUPATEN WAY KANAN,,False,
+2025,2,Lampung,Kab. Pesawaran,23.0,20.0,10.0,15.0,15.0,3.0,,10.0,4.0,LAMPUNG,KABUPATEN PESAWARAN,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Mesuji,20.0,40.0,10.0,20.0,,3.0,,7.0,,LAMPUNG,KABUPATEN MESUJI,100.0,False,kayu_ranting
+2025,2,Lampung,Kab. Tulang Bawang Barat,74.51,4.55,,17.73,0.21,0.63,0.15,0.94,1.28,LAMPUNG,KABUPATEN TULANG BAWANG BARAT,100.0,False,sisa_makanan
+2025,2,Lampung,Kab. Pesisir Barat,42.5,19.2,9.5,21.1,0.6,2.0,0.9,1.2,3.0,LAMPUNG,KABUPATEN PESISIR BARAT,100.00000000000001,False,sisa_makanan
+2025,2,Lampung,Kota Bandar Lampung,15.8,20.1,3.0,2.6,1.7,1.7,2.7,1.7,50.7,LAMPUNG,KOTA BANDAR LAMPUNG,100.00000000000001,False,lainnya
+2025,2,Kepulauan Bangka Belitung,Kab. Bangka,33.72,15.21,12.87,17.48,5.32,2.3,2.12,3.16,7.82,KEPULAUAN BANGKA BELITUNG,KABUPATEN BANGKA,100.0,False,sisa_makanan
+2025,2,Kepulauan Bangka Belitung,Kab. Belitung,31.02,2.45,1.12,33.11,1.12,0.89,,,30.29,KEPULAUAN BANGKA BELITUNG,KABUPATEN BELITUNG,100.0,False,plastik
+2025,2,Kepulauan Bangka Belitung,Kab. Bangka Selatan,15.0,15.0,15.0,30.0,10.0,5.0,7.0,1.0,2.0,KEPULAUAN BANGKA BELITUNG,KABUPATEN BANGKA SELATAN,100.0,False,plastik
+2025,2,Kepulauan Bangka Belitung,Kab. Bangka Tengah,41.9,8.5,3.8,14.3,3.9,4.9,,5.5,17.2,KEPULAUAN BANGKA BELITUNG,KABUPATEN BANGKA TENGAH,100.0,False,sisa_makanan
+2025,2,Kepulauan Bangka Belitung,Kab. Bangka Barat,41.0,6.5,19.0,15.4,1.8,0.5,2.8,10.0,3.0,KEPULAUAN BANGKA BELITUNG,KABUPATEN BANGKA BARAT,100.0,False,sisa_makanan
+2025,2,Kepulauan Bangka Belitung,Kab. Belitung Timur,57.0,,5.0,17.0,2.0,2.0,2.0,1.0,14.0,KEPULAUAN BANGKA BELITUNG,KABUPATEN BELITUNG TIMUR,100.0,False,sisa_makanan
+2025,2,Kepulauan Riau,Kab. Bintan,40.32,5.6,10.41,27.35,0.97,1.94,0.36,1.31,11.74,KEPULAUAN RIAU,KABUPATEN BINTAN,100.0,False,sisa_makanan
+2025,2,Kepulauan Riau,Kab. Natuna,,,,,,,,,,KEPULAUAN RIAU,KABUPATEN NATUNA,,False,
+2025,2,Kepulauan Riau,Kab. Lingga,34.3,15.4,15.0,16.0,10.1,3.0,3.0,3.2,0.0,KEPULAUAN RIAU,KABUPATEN LINGGA,99.99999999999999,False,sisa_makanan
+2025,2,Kepulauan Riau,Kab. Kepulauan Anambas,,,,,,,,,,KEPULAUAN RIAU,KABUPATEN KEPULAUAN ANAMBAS,,False,
+2025,2,Kepulauan Riau,Kota Tanjung Pinang,59.05,0.22,9.72,28.11,0.32,0.1,1.05,1.43,,KEPULAUAN RIAU,KOTA TANJUNG PINANG,100.0,False,sisa_makanan
+2025,2,DKI Jakarta,Kab. Adm. Kep. Seribu,,,,,,,,,,DKI JAKARTA,KABUPATEN ADM KEP SERIBU,,False,
+2025,2,DKI Jakarta,Kota Adm. Jakarta Pusat,,,,,,,,,,DKI JAKARTA,KOTA JAKARTA PUSAT,,False,
+2025,2,DKI Jakarta,Kota Adm. Jakarta Utara,,,,,,,,,,DKI JAKARTA,KOTA JAKARTA UTARA,,False,
+2025,2,DKI Jakarta,Kota Adm. Jakarta Barat,,,,,,,,,,DKI JAKARTA,KOTA JAKARTA BARAT,,False,
+2025,2,DKI Jakarta,Kota Adm. Jakarta Selatan,49.87,3.18,17.24,22.95,1.08,0.9,0.7,1.48,2.6,DKI JAKARTA,KOTA JAKARTA SELATAN,99.99999999999999,False,sisa_makanan
+2025,2,DKI Jakarta,Kota Adm. Jakarta Timur,49.87,3.18,17.24,22.95,17.24,0.9,0.7,1.48,2.6,DKI JAKARTA,KOTA JAKARTA TIMUR,116.15999999999998,True,sisa_makanan
+2025,2,Jawa Barat,Kab. Ciamis,38.0,0.4,16.0,20.0,10.0,4.0,1.0,10.2,0.4,JAWA BARAT,KABUPATEN CIAMIS,100.00000000000001,False,sisa_makanan
+2025,2,Jawa Barat,Kab. Cirebon,,,,,,,,,,JAWA BARAT,KABUPATEN CIREBON,,False,
+2025,2,Jawa Barat,Kab. Sumedang,30.0,7.5,10.5,27.5,3.0,4.5,2.5,6.5,8.0,JAWA BARAT,KABUPATEN SUMEDANG,100.0,False,sisa_makanan
+2025,2,Jawa Barat,Kab. Indramayu,45.17,15.06,8.47,13.78,0.16,1.49,0.21,1.3,14.36,JAWA BARAT,KABUPATEN INDRAMAYU,100.0,False,sisa_makanan
+2025,2,Jawa Barat,Kab. Subang,55.0,5.0,10.0,14.0,5.0,4.0,3.0,2.0,2.0,JAWA BARAT,KABUPATEN SUBANG,100.0,False,sisa_makanan
+2025,2,Jawa Barat,Kab. Bandung Barat,,,,,,,,,,JAWA BARAT,KABUPATEN BANDUNG BARAT,,False,
+2025,2,Jawa Barat,Kota Bogor,45.27,6.21,9.51,21.99,0.59,2.14,0.42,1.2,12.67,JAWA BARAT,KOTA BOGOR,100.0,False,sisa_makanan
+2025,2,Jawa Barat,Kota Cirebon,49.22,11.76,5.56,19.01,0.71,1.76,0.58,1.43,9.97,JAWA BARAT,KOTA CIREBON,100.0,False,sisa_makanan
+2025,2,Jawa Barat,Kota Bekasi,65.2,7.2,4.2,15.6,0.2,6.3,0.5,0.5,0.3,JAWA BARAT,KOTA BEKASI,100.0,False,sisa_makanan
+2025,2,Jawa Barat,Kota Depok,,,,,,,,,,JAWA BARAT,KOTA DEPOK,,False,
+2025,2,Jawa Barat,Kota Tasikmalaya,25.3,14.96,12.19,31.53,0.87,3.4,,4.28,7.47,JAWA BARAT,KOTA TASIKMALAYA,100.0,False,plastik
+2025,2,Jawa Barat,Kota Banjar,,,,,,,,,,JAWA BARAT,KOTA BANJAR,,False,
+2025,2,Jawa Tengah,Kab. Cilacap,57.67,10.63,9.71,16.42,1.33,1.25,,1.17,1.82,JAWA TENGAH,KABUPATEN CILACAP,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Banyumas,45.0,13.0,8.0,20.0,2.0,3.0,2.0,2.0,5.0,JAWA TENGAH,KABUPATEN BANYUMAS,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Purbalingga,60.4,2.02,9.02,18.69,0.61,2.28,5.09,0.82,1.07,JAWA TENGAH,KABUPATEN PURBALINGGA,99.99999999999999,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Banjarnegara,41.99,11.29,10.54,18.0,3.38,3.11,1.76,2.68,7.25,JAWA TENGAH,KABUPATEN BANJARNEGARA,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Kebumen,35.1,13.02,10.77,12.57,0.36,0.46,0.29,0.41,27.02,JAWA TENGAH,KABUPATEN KEBUMEN,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Purworejo,21.53,25.17,6.95,18.18,0.44,3.09,2.86,0.8,20.98,JAWA TENGAH,KABUPATEN PURWOREJO,100.0,False,kayu_ranting
+2025,2,Jawa Tengah,Kab. Wonosobo,71.3,2.3,2.5,13.1,0.2,1.5,0.4,0.5,8.2,JAWA TENGAH,KABUPATEN WONOSOBO,99.99999999999999,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Magelang,45.41,6.71,4.43,24.87,0.61,2.15,0.68,1.32,13.82,JAWA TENGAH,KABUPATEN MAGELANG,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Boyolali,,,,,,,,,,JAWA TENGAH,KABUPATEN BOYOLALI,,False,
+2025,2,Jawa Tengah,Kab. Klaten,60.0,5.0,5.0,20.0,0.5,5.0,3.0,0.5,1.0,JAWA TENGAH,KABUPATEN KLATEN,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Sukoharjo,52.25,0.42,12.9,23.9,0.91,1.29,0.58,1.03,6.72,JAWA TENGAH,KABUPATEN SUKOHARJO,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Wonogiri,53.0,12.0,16.0,11.0,1.0,3.0,1.0,1.0,2.0,JAWA TENGAH,KABUPATEN WONOGIRI,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Karanganyar,,,,,,,,,,JAWA TENGAH,KABUPATEN KARANGANYAR,,False,
+2025,2,Jawa Tengah,Kab. Sragen,49.18,17.04,8.23,16.46,0.52,0.9,0.38,0.52,6.77,JAWA TENGAH,KABUPATEN SRAGEN,99.99999999999999,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Pati,41.09,12.93,8.76,17.82,2.4,2.08,0.98,3.51,10.43,JAWA TENGAH,KABUPATEN PATI,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Kudus,,,,,,,,,,JAWA TENGAH,KABUPATEN KUDUS,,False,
+2025,2,Jawa Tengah,Kab. Jepara,53.31,0.96,8.79,23.36,0.69,2.44,0.94,1.16,8.35,JAWA TENGAH,KABUPATEN JEPARA,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Demak,39.69,12.9,12.08,17.89,3.26,2.49,1.75,2.36,7.58,JAWA TENGAH,KABUPATEN DEMAK,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Semarang,71.56,1.58,4.25,18.52,0.27,0.18,,0.38,3.26,JAWA TENGAH,KABUPATEN SEMARANG,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Temanggung,31.22,15.43,8.05,19.41,7.63,1.84,2.05,2.24,12.13,JAWA TENGAH,KABUPATEN TEMANGGUNG,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Kendal,30.61,15.08,9.49,23.02,0.29,8.0,1.07,0.87,11.57,JAWA TENGAH,KABUPATEN KENDAL,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Batang,23.19,4.96,21.88,19.44,0.2,,0.15,0.36,,JAWA TENGAH,KABUPATEN BATANG,70.17999999999999,True,sisa_makanan
+2025,2,Jawa Tengah,Kab. Pekalongan,32.1,14.0,9.4,28.2,2.3,2.2,1.6,1.2,9.0,JAWA TENGAH,KABUPATEN PEKALONGAN,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Pemalang,,,,,,,,,,JAWA TENGAH,KABUPATEN PEMALANG,,False,
+2025,2,Jawa Tengah,Kab. Tegal,52.54,3.39,4.46,23.09,0.21,4.14,,0.93,11.24,JAWA TENGAH,KABUPATEN TEGAL,100.0,False,sisa_makanan
+2025,2,Jawa Tengah,Kab. Brebes,5.0,50.0,5.0,25.0,4.0,4.0,1.0,1.0,5.0,JAWA TENGAH,KABUPATEN BREBES,100.0,False,kayu_ranting
+2025,2,Jawa Tengah,Kota Magelang,46.47,3.46,8.8,28.76,0.98,5.73,,,5.8,JAWA TENGAH,KOTA MAGELANG,100.00000000000001,False,sisa_makanan
+2025,2,Jawa Tengah,Kota Surakarta,49.55,14.97,7.17,10.29,0.2,2.38,0.18,0.51,14.75,JAWA TENGAH,KOTA SURAKARTA,99.99999999999999,False,sisa_makanan
+2025,2,Jawa Tengah,Kota Salatiga,,,,,,,,,,JAWA TENGAH,KOTA SALATIGA,,False,
+2025,2,Jawa Tengah,Kota Semarang,61.0,2.0,10.0,18.0,1.2,4.0,1.0,1.5,1.3,JAWA TENGAH,KOTA SEMARANG,100.0,False,sisa_makanan
+2025,2,Daerah Istimewa Yogyakarta,Kab. Kulon Progo,25.0,27.35,9.66,17.68,2.63,2.75,2.0,1.72,11.21,DAERAH ISTIMEWA YOGYAKARTA,KABUPATEN KULON PROGO,100.0,False,kayu_ranting
+2025,2,Daerah Istimewa Yogyakarta,Kab. Bantul,43.74,14.54,9.19,30.31,0.19,0.31,0.01,0.3,1.41,DAERAH ISTIMEWA YOGYAKARTA,KABUPATEN BANTUL,100.0,False,sisa_makanan
+2025,2,Daerah Istimewa Yogyakarta,Kab. Gunungkidul,47.0,4.0,15.0,15.0,1.0,1.0,0.2,1.0,6.0,DAERAH ISTIMEWA YOGYAKARTA,KABUPATEN GUNUNGKIDUL,90.2,True,sisa_makanan
+2025,2,Daerah Istimewa Yogyakarta,Kab. Sleman,46.49,,17.08,32.77,0.99,0.16,0.03,0.57,1.91,DAERAH ISTIMEWA YOGYAKARTA,KABUPATEN SLEMAN,100.0,False,sisa_makanan
+2025,2,Daerah Istimewa Yogyakarta,Kota Yogyakarta,48.35,0.24,15.92,30.55,0.57,1.24,0.37,0.93,1.83,DAERAH ISTIMEWA YOGYAKARTA,KOTA YOGYAKARTA,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Pacitan,68.2,2.9,8.2,17.2,0.3,0.2,0.3,0.5,2.2,JAWA TIMUR,KABUPATEN PACITAN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Ponorogo,44.75,0.36,16.53,21.89,0.48,6.62,1.43,0.6,7.34,JAWA TIMUR,KABUPATEN PONOROGO,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Trenggalek,45.0,12.0,13.0,21.0,2.0,1.0,3.0,1.0,2.0,JAWA TIMUR,KABUPATEN TRENGGALEK,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Blitar,40.0,15.0,12.55,15.0,0.9,1.94,0.52,0.92,13.17,JAWA TIMUR,KABUPATEN BLITAR,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Kediri,41.04,8.41,9.61,16.72,1.29,0.77,0.66,1.66,19.84,JAWA TIMUR,KABUPATEN KEDIRI,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Malang,60.64,6.51,13.2,15.26,0.27,1.12,0.4,0.67,1.93,JAWA TIMUR,KABUPATEN MALANG,100.00000000000001,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Lumajang,43.3,16.25,9.3,15.3,1.17,2.25,2.3,1.3,8.83,JAWA TIMUR,KABUPATEN LUMAJANG,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Jember,,,,,,,,,,JAWA TIMUR,KABUPATEN JEMBER,,False,
+2025,2,Jawa Timur,Kab. Banyuwangi,60.59,10.36,5.77,14.75,0.53,0.43,0.06,1.19,6.32,JAWA TIMUR,KABUPATEN BANYUWANGI,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Situbondo,,,,,,,,,,JAWA TIMUR,KABUPATEN SITUBONDO,,False,
+2025,2,Jawa Timur,Kab. Sidoarjo,,,,,,,,,,JAWA TIMUR,KABUPATEN SIDOARJO,,False,
+2025,2,Jawa Timur,Kab. Mojokerto,,,,,,,,,,JAWA TIMUR,KABUPATEN MOJOKERTO,,False,
+2025,2,Jawa Timur,Kab. Jombang,50.0,12.8,10.0,18.0,1.0,2.0,0.6,1.6,4.0,JAWA TIMUR,KABUPATEN JOMBANG,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Nganjuk,61.5,2.0,13.1,12.3,6.0,1.0,1.0,1.0,2.1,JAWA TIMUR,KABUPATEN NGANJUK,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Madiun,57.7,1.32,11.4,25.7,1.33,0.65,0.02,0.92,0.96,JAWA TIMUR,KABUPATEN MADIUN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Magetan,36.28,25.01,8.22,14.25,0.31,1.35,2.81,3.22,8.55,JAWA TIMUR,KABUPATEN MAGETAN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Bojonegoro,66.7,5.3,8.3,16.2,0.8,0.8,0.5,0.6,0.8,JAWA TIMUR,KABUPATEN BOJONEGORO,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Tuban,58.52,15.32,5.78,11.02,0.17,1.62,0.1,1.33,6.14,JAWA TIMUR,KABUPATEN TUBAN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Lamongan,30.0,12.0,9.0,18.0,8.0,2.0,2.0,1.0,18.0,JAWA TIMUR,KABUPATEN LAMONGAN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Gresik,55.29,10.29,4.47,11.58,0.47,4.84,2.02,1.37,9.67,JAWA TIMUR,KABUPATEN GRESIK,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Bangkalan,52.32,15.32,9.72,14.97,0.43,1.02,0.29,2.93,3.0,JAWA TIMUR,KABUPATEN BANGKALAN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Sampang,43.0,10.0,5.0,13.0,1.0,2.0,1.0,5.0,20.0,JAWA TIMUR,KABUPATEN SAMPANG,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kab. Pamekasan,55.0,4.0,7.0,13.0,3.0,5.0,2.0,2.0,9.0,JAWA TIMUR,KABUPATEN PAMEKASAN,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kota Kediri,,,,,,,,,,JAWA TIMUR,KOTA KEDIRI,,False,
+2025,2,Jawa Timur,Kota Blitar,42.4,13.2,8.56,16.5,3.8,2.6,2.85,2.94,7.15,JAWA TIMUR,KOTA BLITAR,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kota Malang,,,,,,,,,,JAWA TIMUR,KOTA MALANG,,False,
+2025,2,Jawa Timur,Kota Pasuruan,,,,,,,,,,JAWA TIMUR,KOTA PASURUAN,,False,
+2025,2,Jawa Timur,Kota Mojokerto,36.08,11.43,9.88,38.78,1.44,0.12,,2.24,0.03,JAWA TIMUR,KOTA MOJOKERTO,100.0,False,plastik
+2025,2,Jawa Timur,Kota Madiun,,,,,,,,,,JAWA TIMUR,KOTA MADIUN,,False,
+2025,2,Jawa Timur,Kota Surabaya,34.48,20.61,5.89,16.51,0.4,3.46,1.54,1.01,16.1,JAWA TIMUR,KOTA SURABAYA,100.0,False,sisa_makanan
+2025,2,Jawa Timur,Kota Batu,,,,,,,,,,JAWA TIMUR,KOTA BATU,,False,
+2025,2,Banten,Kab. Pandeglang,62.33,2.61,6.46,10.52,1.93,1.35,0.59,1.89,12.32,BANTEN,KABUPATEN PANDEGLANG,100.0,False,sisa_makanan
+2025,2,Banten,Kab. Lebak,30.0,12.0,10.0,15.0,8.0,5.0,5.0,10.0,5.0,BANTEN,KABUPATEN LEBAK,100.0,False,sisa_makanan
+2025,2,Banten,Kab. Serang,,,,,,,,,,BANTEN,KABUPATEN SERANG,,False,
+2025,2,Banten,Kota Tangerang,57.65,0.44,13.18,19.66,1.07,2.32,0.8,0.37,4.51,BANTEN,KOTA TANGERANG,100.00000000000001,False,sisa_makanan
+2025,2,Banten,Kota Cilegon,49.19,2.16,15.01,20.56,1.42,2.0,1.81,1.96,5.89,BANTEN,KOTA CILEGON,99.99999999999999,False,sisa_makanan
+2025,2,Banten,Kota Serang,67.32,4.4,7.05,20.05,0.33,0.13,0.17,0.5,0.05,BANTEN,KOTA SERANG,99.99999999999999,False,sisa_makanan
+2025,2,Banten,Kota Tangerang Selatan,45.23,16.32,9.13,15.27,0.28,1.47,,0.15,12.15,BANTEN,KOTA TANGERANG SELATAN,100.0,False,sisa_makanan
+2025,2,Bali,Kab. Jembrana,27.37,47.94,0.84,19.04,0.71,0.03,3.13,0.61,0.33,BALI,KABUPATEN JEMBRANA,100.0,False,kayu_ranting
+2025,2,Bali,Kab. Badung,17.12,20.23,6.82,16.28,1.76,1.19,2.11,9.42,25.07,BALI,KABUPATEN BADUNG,100.0,False,lainnya
+2025,2,Bali,Kab. Gianyar,16.97,46.05,8.25,18.93,0.6,3.63,1.17,1.13,3.27,BALI,KABUPATEN GIANYAR,99.99999999999999,False,kayu_ranting
+2025,2,Bali,Kab. Klungkung,30.05,36.71,10.05,12.3,0.68,2.48,1.02,1.35,5.36,BALI,KABUPATEN KLUNGKUNG,100.00000000000001,False,kayu_ranting
+2025,2,Bali,Kab. Bangli,27.7,45.1,5.3,11.3,5.7,1.3,0.3,1.2,2.1,BALI,KABUPATEN BANGLI,100.0,False,kayu_ranting
+2025,2,Bali,Kab. Karangasem,10.0,50.0,11.0,20.0,2.0,0.02,0.04,2.0,4.94,BALI,KABUPATEN KARANGASEM,100.0,False,kayu_ranting
+2025,2,Bali,Kab. Buleleng,4.0,68.41,6.69,14.69,0.23,1.79,0.52,0.77,2.9,BALI,KABUPATEN BULELENG,100.0,False,kayu_ranting
+2025,2,Bali,Kota Denpasar,17.34,40.36,15.32,15.42,1.83,1.13,1.53,2.47,4.6,BALI,KOTA DENPASAR,99.99999999999999,False,kayu_ranting
+2025,2,Nusa Tenggara Barat,Kab. Lombok Barat,25.5,27.5,11.5,14.5,5.6,4.5,3.5,3.5,3.9,NUSA TENGGARA BARAT,KABUPATEN LOMBOK BARAT,100.0,False,kayu_ranting
+2025,2,Nusa Tenggara Barat,Kab. Sumbawa Barat,28.0,20.0,18.0,32.0,2.0,,,,,NUSA TENGGARA BARAT,KABUPATEN SUMBAWA BARAT,100.0,False,plastik
+2025,2,Nusa Tenggara Timur,Kab. Kupang,44.0,21.0,6.0,12.0,2.0,6.0,3.0,1.0,5.0,NUSA TENGGARA TIMUR,KABUPATEN KUPANG,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Timor Tengah Selatan,35.0,35.0,1.0,15.0,4.0,2.0,4.0,1.0,3.0,NUSA TENGGARA TIMUR,KABUPATEN TIMOR TENGAH SELATAN,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Timor Tengah Utara,41.0,13.0,12.2,17.0,4.4,3.7,1.9,3.2,3.6,NUSA TENGGARA TIMUR,KABUPATEN TIMOR TENGAH UTARA,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Belu,18.75,20.51,10.74,21.09,7.81,2.34,4.31,5.86,8.59,NUSA TENGGARA TIMUR,KABUPATEN BELU,100.0,False,plastik
+2025,2,Nusa Tenggara Timur,Kab. Alor,10.0,21.0,18.0,16.0,10.0,5.0,8.0,9.0,3.0,NUSA TENGGARA TIMUR,KABUPATEN ALOR,100.0,False,kayu_ranting
+2025,2,Nusa Tenggara Timur,Kab. Flores Timur,26.43,40.01,5.58,23.6,2.02,0.02,1.01,1.0,0.33,NUSA TENGGARA TIMUR,KABUPATEN FLORES TIMUR,100.0,False,kayu_ranting
+2025,2,Nusa Tenggara Timur,Kab. Sikka,40.0,17.0,5.0,20.0,6.0,3.0,2.0,3.0,4.0,NUSA TENGGARA TIMUR,KABUPATEN SIKKA,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Ende,33.75,20.0,12.5,13.75,0.5,5.0,0.5,0.5,13.5,NUSA TENGGARA TIMUR,KABUPATEN ENDE,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Ngada,25.0,20.0,10.0,10.0,10.0,10.0,5.0,5.0,5.0,NUSA TENGGARA TIMUR,KABUPATEN NGADA,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Manggarai,37.82,0.44,16.25,26.27,2.09,1.0,0.3,3.75,12.08,NUSA TENGGARA TIMUR,KABUPATEN MANGGARAI,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Sumba Timur,19.0,15.0,32.0,27.0,3.0,1.0,3.0,,,NUSA TENGGARA TIMUR,KABUPATEN SUMBA TIMUR,100.0,False,kertas_karton
+2025,2,Nusa Tenggara Timur,Kab. Sumba Barat,10.09,10.72,20.15,30.73,7.57,2.8,9.36,5.8,2.78,NUSA TENGGARA TIMUR,KABUPATEN SUMBA BARAT,100.0,False,plastik
+2025,2,Nusa Tenggara Timur,Kab. Lembata,38.0,15.0,10.0,21.0,8.0,5.0,1.0,1.0,1.0,NUSA TENGGARA TIMUR,KABUPATEN LEMBATA,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Rote Ndao,40.0,15.0,10.0,20.0,4.0,3.0,3.0,3.0,2.0,NUSA TENGGARA TIMUR,KABUPATEN ROTE NDAO,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Manggarai Barat,35.0,13.0,10.0,29.0,5.0,1.0,3.0,4.0,,NUSA TENGGARA TIMUR,KABUPATEN MANGGARAI BARAT,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Nagekeo,42.0,28.0,5.0,15.0,2.8,3.0,1.0,2.1,1.1,NUSA TENGGARA TIMUR,KABUPATEN NAGEKEO,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Sumba Tengah,35.0,17.0,17.0,20.0,2.0,2.0,1.0,1.0,5.0,NUSA TENGGARA TIMUR,KABUPATEN SUMBA TENGAH,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Sumba Barat Daya,25.0,20.0,5.0,20.0,5.0,7.0,5.0,5.0,8.0,NUSA TENGGARA TIMUR,KABUPATEN SUMBA BARAT DAYA,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Manggarai Timur,35.0,25.0,14.5,15.0,2.0,1.0,5.0,0.5,2.0,NUSA TENGGARA TIMUR,KABUPATEN MANGGARAI TIMUR,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kab. Sabu Raijua,14.0,24.0,22.0,25.0,9.0,1.0,1.0,3.0,1.0,NUSA TENGGARA TIMUR,KABUPATEN SABU RAIJUA,100.0,False,plastik
+2025,2,Nusa Tenggara Timur,Kab. Malaka,31.28,30.22,10.38,13.23,0.86,3.21,2.1,1.15,7.57,NUSA TENGGARA TIMUR,KABUPATEN MALAKA,100.0,False,sisa_makanan
+2025,2,Nusa Tenggara Timur,Kota Kupang,29.0,17.0,13.0,19.5,4.25,3.0,2.8,3.3,8.15,NUSA TENGGARA TIMUR,KOTA KUPANG,100.0,False,sisa_makanan
+2025,2,Kalimantan Barat,Kab. Sambas,40.0,5.6,14.2,25.0,0.3,1.0,0.9,2.0,11.0,KALIMANTAN BARAT,KABUPATEN SAMBAS,100.00000000000001,False,sisa_makanan
+2025,2,Kalimantan Barat,Kab. Mempawah,40.25,12.93,11.33,18.07,3.05,2.59,2.14,2.21,7.43,KALIMANTAN BARAT,KABUPATEN MEMPAWAH,100.0,False,sisa_makanan
+2025,2,Kalimantan Barat,Kab. Sanggau,,,,,,,,,,KALIMANTAN BARAT,KABUPATEN SANGGAU,,False,
+2025,2,Kalimantan Barat,Kab. Ketapang,,,,,,,,,,KALIMANTAN BARAT,KABUPATEN KETAPANG,,False,
+2025,2,Kalimantan Barat,Kab. Kapuas Hulu,44.77,1.32,12.8,28.62,2.2,1.51,2.56,2.29,3.93,KALIMANTAN BARAT,KABUPATEN KAPUAS HULU,100.00000000000001,False,sisa_makanan
+2025,2,Kalimantan Barat,Kab. Bengkayang,,,,,,,,,,KALIMANTAN BARAT,KABUPATEN BENGKAYANG,,False,
+2025,2,Kalimantan Barat,Kab. Landak,35.0,2.0,20.0,28.0,2.0,,,7.0,6.0,KALIMANTAN BARAT,KABUPATEN LANDAK,100.0,False,sisa_makanan
+2025,2,Kalimantan Barat,Kab. Kayong Utara,39.31,12.54,11.21,19.74,3.43,2.53,2.11,2.35,,KALIMANTAN BARAT,KABUPATEN KAYONG UTARA,93.22,True,sisa_makanan
+2025,2,Kalimantan Barat,Kab. Kubu Raya,,,,,,,,,,KALIMANTAN BARAT,KABUPATEN KUBU RAYA,,False,
+2025,2,Kalimantan Barat,Kota Pontianak,,,,,,,,,,KALIMANTAN BARAT,KOTA PONTIANAK,,False,
+2025,2,Kalimantan Barat,Kota Singkawang,76.0,,8.4,7.8,3.6,,,,4.2,KALIMANTAN BARAT,KOTA SINGKAWANG,100.0,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Kotawaringin Barat,51.0,8.0,13.0,10.0,2.0,2.0,2.0,1.0,11.0,KALIMANTAN TENGAH,KABUPATEN KOTAWARINGIN BARAT,100.0,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Kotawaringin Timur,35.0,8.0,15.0,30.0,3.0,2.0,2.0,1.0,4.0,KALIMANTAN TENGAH,KABUPATEN KOTAWARINGIN TIMUR,100.0,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Kapuas,40.1,1.7,10.9,33.5,1.6,1.2,,1.1,9.9,KALIMANTAN TENGAH,KABUPATEN KAPUAS,100.00000000000001,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Barito Selatan,49.0,5.0,8.0,30.0,3.0,1.0,2.0,1.0,1.0,KALIMANTAN TENGAH,KABUPATEN BARITO SELATAN,100.0,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Barito Utara,34.0,12.0,10.0,20.0,5.0,5.0,2.0,2.0,10.0,KALIMANTAN TENGAH,KABUPATEN BARITO UTARA,100.0,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Seruyan,30.0,15.0,10.5,25.0,2.0,1.5,5.0,2.5,8.5,KALIMANTAN TENGAH,KABUPATEN SERUYAN,100.0,False,sisa_makanan
+2025,2,Kalimantan Tengah,Kab. Sukamara,,,,,,,,,,KALIMANTAN TENGAH,KABUPATEN SUKAMARA,,False,
+2025,2,Kalimantan Tengah,Kab. Pulang Pisau,23.51,26.74,13.31,25.13,3.19,2.41,0.83,1.79,3.09,KALIMANTAN TENGAH,KABUPATEN PULANG PISAU,100.0,False,kayu_ranting
+2025,2,Kalimantan Tengah,Kab. Barito Timur,32.0,9.0,7.0,37.0,1.0,5.0,6.5,1.2,1.3,KALIMANTAN TENGAH,KABUPATEN BARITO TIMUR,100.0,False,plastik
+2025,2,Kalimantan Tengah,Kota Palangkaraya,41.8,4.33,8.66,19.74,2.31,2.36,2.18,2.04,16.58,KALIMANTAN TENGAH,KOTA PALANGKARAYA,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Tanah Laut,55.0,2.0,2.0,32.0,,,,,8.0,KALIMANTAN SELATAN,KABUPATEN TANAH LAUT,99.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Kotabaru,30.0,14.0,16.0,28.0,3.0,4.0,2.0,2.0,1.0,KALIMANTAN SELATAN,KABUPATEN KOTABARU,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Banjar,34.76,11.29,4.84,17.15,0.48,1.47,0.5,1.56,27.95,KALIMANTAN SELATAN,KABUPATEN BANJAR,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Barito Kuala,42.0,9.5,10.0,21.0,4.0,3.5,1.5,1.5,7.0,KALIMANTAN SELATAN,KABUPATEN BARITO KUALA,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Tapin,42.23,1.3,16.73,30.5,1.67,4.92,1.36,0.95,0.33,KALIMANTAN SELATAN,KABUPATEN TAPIN,99.99,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Hulu Sungai Selatan,55.18,1.48,13.13,25.35,2.9,0.46,0.9,0.4,0.2,KALIMANTAN SELATAN,KABUPATEN HULU SUNGAI SELATAN,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Hulu Sungai Tengah,72.78,0.52,2.39,18.2,0.67,2.95,0.73,1.31,0.45,KALIMANTAN SELATAN,KABUPATEN HULU SUNGAI TENGAH,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Hulu Sungai Utara,49.1,9.2,8.41,13.8,0.92,0.2,0.97,7.1,10.3,KALIMANTAN SELATAN,KABUPATEN HULU SUNGAI UTARA,99.99999999999999,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Tanah Bumbu,64.04,4.23,3.2,12.3,2.1,2.2,1.24,2.23,8.46,KALIMANTAN SELATAN,KABUPATEN TANAH BUMBU,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kab. Balangan,60.62,7.36,10.43,15.84,2.01,1.53,0.98,0.2,1.03,KALIMANTAN SELATAN,KABUPATEN BALANGAN,100.0,False,sisa_makanan
+2025,2,Kalimantan Selatan,Kota Banjarmasin,40.0,15.0,9.0,15.0,1.0,2.0,1.0,3.0,14.0,KALIMANTAN SELATAN,KOTA BANJARMASIN,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Paser,45.9,9.01,8.28,17.02,0.84,1.41,0.86,2.3,14.38,KALIMANTAN TIMUR,KABUPATEN PASER,99.99999999999999,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Kutai Kartanegara,34.58,24.72,13.89,16.81,0.96,1.26,0.25,0.86,6.67,KALIMANTAN TIMUR,KABUPATEN KUTAI KARTANEGARA,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Berau,55.39,1.28,3.74,26.47,9.63,0.2,0.2,0.99,2.1,KALIMANTAN TIMUR,KABUPATEN BERAU,99.99999999999999,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Kutai Barat,39.26,12.8,11.14,19.69,3.41,2.55,2.08,2.39,6.68,KALIMANTAN TIMUR,KABUPATEN KUTAI BARAT,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Kutai Timur,41.05,19.71,11.15,21.06,2.97,1.02,1.0,1.04,1.0,KALIMANTAN TIMUR,KABUPATEN KUTAI TIMUR,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Penajam Paser Utara,46.13,1.09,20.87,29.83,0.22,0.02,0.67,0.83,0.34,KALIMANTAN TIMUR,KABUPATEN PENAJAM PASER UTARA,100.00000000000001,False,sisa_makanan
+2025,2,Kalimantan Timur,Kab. Mahakam Ulu,51.0,8.0,10.0,20.0,3.0,5.0,1.0,2.0,,KALIMANTAN TIMUR,KABUPATEN MAHAKAM ULU,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kota Balikpapan,40.44,3.4,17.63,24.53,1.71,0.92,0.94,2.16,8.27,KALIMANTAN TIMUR,KOTA BALIKPAPAN,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kota Samarinda,52.88,8.55,11.41,12.94,0.35,0.9,0.33,0.71,11.93,KALIMANTAN TIMUR,KOTA SAMARINDA,100.0,False,sisa_makanan
+2025,2,Kalimantan Timur,Kota Bontang,44.12,6.0,27.5,18.0,2.1,0.03,0.25,1.05,0.95,KALIMANTAN TIMUR,KOTA BONTANG,100.00000000000001,False,sisa_makanan
+2025,2,Kalimantan Utara,Kab. Bulungan,,,,,,,,,,KALIMANTAN UTARA,KABUPATEN BULUNGAN,,False,
+2025,2,Kalimantan Utara,Kab. Malinau,27.0,16.0,18.0,20.0,2.0,3.0,3.0,2.0,7.0,KALIMANTAN UTARA,KABUPATEN MALINAU,98.0,False,sisa_makanan
+2025,2,Kalimantan Utara,Kab. Nunukan,52.38,1.77,11.81,12.57,13.0,4.23,1.08,1.68,1.48,KALIMANTAN UTARA,KABUPATEN NUNUKAN,100.00000000000001,False,sisa_makanan
+2025,2,Kalimantan Utara,Kab. Tana Tidung,,,,,,,,,,KALIMANTAN UTARA,KABUPATEN TANA TIDUNG,,False,
+2025,2,Kalimantan Utara,Kota Tarakan,37.6,28.77,9.0,19.0,3.18,1.0,0.6,0.11,0.74,KALIMANTAN UTARA,KOTA TARAKAN,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Bolaang Mongondow,4.9,12.4,9.45,15.6,3.5,2.8,2.02,2.98,2.25,SULAWESI UTARA,KABUPATEN BOLAANG MONGONDOW,55.89999999999999,True,plastik
+2025,2,Sulawesi Utara,Kab. Minahasa,,,,,,,,,,SULAWESI UTARA,KABUPATEN MINAHASA,,False,
+2025,2,Sulawesi Utara,Kab. Kepulauan Sangihe,43.61,18.94,5.76,21.63,2.46,0.5,3.3,1.6,2.2,SULAWESI UTARA,KABUPATEN KEPULAUAN SANGIHE,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Kepulauan Talaud,,,,,,,,,,SULAWESI UTARA,KABUPATEN KEPULAUAN TALAUD,,False,
+2025,2,Sulawesi Utara,Kab. Minahasa Selatan,20.0,12.0,12.0,36.0,4.0,4.0,5.0,2.0,5.0,SULAWESI UTARA,KABUPATEN MINAHASA SELATAN,100.0,False,plastik
+2025,2,Sulawesi Utara,Kab. Minahasa Utara,35.9,23.03,7.88,18.77,3.85,2.15,3.99,2.1,2.33,SULAWESI UTARA,KABUPATEN MINAHASA UTARA,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Minahasa Tenggara,36.68,10.02,12.59,9.08,4.1,4.32,3.59,5.47,14.15,SULAWESI UTARA,KABUPATEN MINAHASA TENGGARA,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Bolaang Mongondow Utara,30.0,10.0,15.0,20.0,2.0,1.0,1.0,1.0,20.0,SULAWESI UTARA,KABUPATEN BOLAANG MONGONDOW UTARA,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Kep. Siau Tagulandang Biaro,50.0,5.0,5.0,30.0,3.0,2.0,2.0,2.0,1.0,SULAWESI UTARA,KABUPATEN KEP SIAU TAGULANDANG BIARO,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Bolaang Mongondow Timur,49.5,14.9,8.1,14.2,3.1,1.8,1.9,1.05,2.3,SULAWESI UTARA,KABUPATEN BOLAANG MONGONDOW TIMUR,96.85,False,sisa_makanan
+2025,2,Sulawesi Utara,Kab. Bolaang Mongondow Selatan,20.0,7.0,16.0,18.0,8.0,7.0,9.0,6.0,9.0,SULAWESI UTARA,KABUPATEN BOLAANG MONGONDOW SELATAN,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kota Manado,51.0,2.0,13.0,16.0,1.0,1.0,1.0,2.0,13.0,SULAWESI UTARA,KOTA MANADO,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kota Bitung,50.2,2.05,16.03,15.07,0.36,1.48,1.37,1.83,11.61,SULAWESI UTARA,KOTA BITUNG,100.0,False,sisa_makanan
+2025,2,Sulawesi Utara,Kota Tomohon,,,,,,,,,,SULAWESI UTARA,KOTA TOMOHON,,False,
+2025,2,Sulawesi Utara,Kota Kotamobagu,53.5,5.0,11.8,8.5,5.7,3.6,2.6,2.8,6.5,SULAWESI UTARA,KOTA KOTAMOBAGU,100.0,False,sisa_makanan
+2025,2,Sulawesi Tengah,Kab. Poso,,,,,,,,,,SULAWESI TENGAH,KABUPATEN POSO,,False,
+2025,2,Sulawesi Tengah,Kab. Donggala,41.27,13.12,11.13,18.32,3.19,2.69,1.74,1.92,6.62,SULAWESI TENGAH,KABUPATEN DONGGALA,100.0,False,sisa_makanan
+2025,2,Sulawesi Tengah,Kab. Morowali,17.3,21.01,9.5,37.99,7.1,1.5,2.0,0.6,3.0,SULAWESI TENGAH,KABUPATEN MOROWALI,100.00000000000001,False,plastik
+2025,2,Sulawesi Tengah,Kab. Sigi,49.0,8.0,9.0,17.0,3.0,1.0,2.0,1.0,10.0,SULAWESI TENGAH,KABUPATEN SIGI,100.0,False,sisa_makanan
+2025,2,Sulawesi Tengah,Kota Palu,,,,,,,,,,SULAWESI TENGAH,KOTA PALU,,False,
+2025,2,Sulawesi Selatan,Kab. Kepulauan Selayar,,,,,,,,,,SULAWESI SELATAN,KABUPATEN KEPULAUAN SELAYAR,,False,
+2025,2,Sulawesi Selatan,Kab. Bulukumba,28.5,25.8,9.25,15.18,4.7,5.8,3.2,1.9,5.67,SULAWESI SELATAN,KABUPATEN BULUKUMBA,99.99999999999999,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Bantaeng,,,,,,,,,,SULAWESI SELATAN,KABUPATEN BANTAENG,,False,
+2025,2,Sulawesi Selatan,Kab. Gowa,56.55,1.21,9.09,12.68,2.39,0.94,0.47,1.51,15.16,SULAWESI SELATAN,KABUPATEN GOWA,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Bone,39.5,12.8,11.7,19.1,3.5,2.2,1.9,2.1,7.2,SULAWESI SELATAN,KABUPATEN BONE,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Maros,,,,,,,,,,SULAWESI SELATAN,KABUPATEN MAROS,,False,
+2025,2,Sulawesi Selatan,Kab. Pangkajene dan Kepulauan,63.13,10.83,8.99,7.29,6.5,0.72,0.19,1.55,0.8,SULAWESI SELATAN,KABUPATEN PANGKAJENE DAN KEPULAUAN,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Barru,61.95,8.1,6.1,15.75,1.7,0.7,0.9,1.1,3.7,SULAWESI SELATAN,KABUPATEN BARRU,100.00000000000001,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Soppeng,53.0,7.0,14.0,20.0,2.2,0.7,2.0,0.3,0.8,SULAWESI SELATAN,KABUPATEN SOPPENG,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Wajo,39.31,12.34,11.21,19.74,3.43,2.53,2.11,2.3,6.78,SULAWESI SELATAN,KABUPATEN WAJO,99.75000000000001,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Sidenreng Rappang,41.5,13.2,10.99,18.51,3.5,1.75,2.0,2.1,6.45,SULAWESI SELATAN,KABUPATEN SIDENRENG RAPPANG,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Pinrang,5.0,5.0,30.0,50.0,7.0,2.0,,1.0,,SULAWESI SELATAN,KABUPATEN PINRANG,100.0,False,plastik
+2025,2,Sulawesi Selatan,Kab. Enrekang,,,,,,,,,,SULAWESI SELATAN,KABUPATEN ENREKANG,,False,
+2025,2,Sulawesi Selatan,Kab. Luwu,40.0,10.0,25.0,15.0,3.0,1.0,2.0,2.0,2.0,SULAWESI SELATAN,KABUPATEN LUWU,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Tana Toraja,42.0,3.0,11.0,30.0,4.0,3.0,2.0,1.5,3.5,SULAWESI SELATAN,KABUPATEN TANA TORAJA,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Luwu Utara,55.0,5.0,10.0,10.0,0.1,2.0,2.5,0.5,14.9,SULAWESI SELATAN,KABUPATEN LUWU UTARA,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Luwu Timur,40.0,10.0,25.0,15.0,3.0,1.5,2.0,2.0,1.5,SULAWESI SELATAN,KABUPATEN LUWU TIMUR,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kab. Toraja Utara,,,,,,,,,,SULAWESI SELATAN,KABUPATEN TORAJA UTARA,,False,
+2025,2,Sulawesi Selatan,Kota Makassar,65.0,,7.0,16.0,2.0,,1.0,4.0,5.0,SULAWESI SELATAN,KOTA MAKASSAR,100.0,False,sisa_makanan
+2025,2,Sulawesi Selatan,Kota Palopo,45.0,8.0,13.0,23.0,2.5,2.0,2.0,1.5,3.0,SULAWESI SELATAN,KOTA PALOPO,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kab. Kolaka,65.0,5.0,10.0,10.0,5.0,1.0,1.0,2.0,1.0,SULAWESI TENGGARA,KABUPATEN KOLAKA,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kab. Konawe,44.31,2.81,13.32,25.82,1.52,4.4,2.16,0.52,5.14,SULAWESI TENGGARA,KABUPATEN KONAWE,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kab. Konawe Selatan,57.0,5.0,4.0,25.0,5.0,2.0,,,2.0,SULAWESI TENGGARA,KABUPATEN KONAWE SELATAN,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kab. Wakatobi,45.0,15.0,5.0,25.0,1.0,1.0,1.0,1.0,6.0,SULAWESI TENGGARA,KABUPATEN WAKATOBI,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kab. Konawe Utara,41.0,11.0,11.0,17.0,2.0,2.0,2.0,2.0,12.0,SULAWESI TENGGARA,KABUPATEN KONAWE UTARA,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kab. Kolaka Timur,40.0,10.0,6.0,20.0,8.0,5.0,8.0,3.0,,SULAWESI TENGGARA,KABUPATEN KOLAKA TIMUR,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kota Kendari,57.2,15.37,5.32,10.57,0.51,1.3,0.6,0.86,8.27,SULAWESI TENGGARA,KOTA KENDARI,100.0,False,sisa_makanan
+2025,2,Sulawesi Tenggara,Kota Bau Bau,40.58,3.3,12.7,37.93,4.27,0.61,0.37,0.12,0.12,SULAWESI TENGGARA,KOTA BAU BAU,100.0,False,sisa_makanan
+2025,2,Gorontalo,Kota Gorontalo,,,,,,,,,,GORONTALO,KOTA GORONTALO,,False,
+2025,2,Sulawesi Barat,Kab. Pasangkayu,57.2,10.0,7.5,16.3,1.8,1.7,0.8,3.0,1.7,SULAWESI BARAT,KABUPATEN PASANGKAYU,100.0,False,sisa_makanan
+2025,2,Sulawesi Barat,Kab. Mamuju,,,,,,,,,,SULAWESI BARAT,KABUPATEN MAMUJU,,False,
+2025,2,Sulawesi Barat,Kab. Mamasa,18.0,26.8,8.0,25.1,2.0,3.0,5.2,1.9,10.0,SULAWESI BARAT,KABUPATEN MAMASA,100.0,False,kayu_ranting
+2025,2,Sulawesi Barat,Kab. Majene,45.0,15.0,10.0,15.0,3.0,3.0,2.0,2.0,5.0,SULAWESI BARAT,KABUPATEN MAJENE,100.0,False,sisa_makanan
+2025,2,Sulawesi Barat,Kab. Mamuju Tengah,,,,,,,,,,SULAWESI BARAT,KABUPATEN MAMUJU TENGAH,,False,
+2025,2,Maluku,Kab. Maluku Barat Daya,15.26,25.18,15.15,18.25,3.97,4.23,4.35,4.36,9.25,MALUKU,KABUPATEN MALUKU BARAT DAYA,100.0,False,kayu_ranting
+2025,2,Maluku,Kota Tual,,,,,,,,,,MALUKU,KOTA TUAL,,False,
+2025,2,Maluku Utara,Kab. Halmahera Utara,46.62,16.63,16.11,14.43,0.69,1.39,1.29,2.0,0.84,MALUKU UTARA,KABUPATEN HALMAHERA UTARA,100.0,False,sisa_makanan
+2025,2,Maluku Utara,Kab. Halmahera Selatan,,,,,,,,,,MALUKU UTARA,KABUPATEN HALMAHERA SELATAN,,False,
+2025,2,Maluku Utara,Kab. Halmahera Timur,43.57,20.53,7.57,13.03,3.01,2.74,2.11,2.13,5.31,MALUKU UTARA,KABUPATEN HALMAHERA TIMUR,99.99999999999999,False,sisa_makanan
+2025,2,Maluku Utara,Kab. Pulau Morotai,37.0,33.0,6.0,10.0,1.0,2.0,,2.0,,MALUKU UTARA,KABUPATEN PULAU MOROTAI,91.0,True,sisa_makanan
+2025,2,Papua,Kab. Keerom,20.0,0.0,15.0,40.0,5.0,5.0,10.0,0.0,5.0,PAPUA,KABUPATEN KEEROM,100.0,False,plastik
+2025,2,Papua,Kota Jayapura,54.0,9.5,5.8,15.79,2.3,3.07,2.05,1.49,6.0,PAPUA,KOTA JAYAPURA,100.0,False,sisa_makanan
+2025,2,Papua Barat,Kab. Manokwari,44.0,2.0,11.0,26.0,,,,,17.0,PAPUA BARAT,KABUPATEN MANOKWARI,100.0,False,sisa_makanan
+2025,2,Papua Barat,Kab. Fak Fak,50.62,1.66,11.03,14.85,0.68,4.62,1.48,1.55,0.2,PAPUA BARAT,KABUPATEN FAK FAK,86.69,True,sisa_makanan
+2025,2,Papua Barat,Kab. Teluk Bintuni,52.7,,2.6,44.3,0.4,,,,,PAPUA BARAT,KABUPATEN TELUK BINTUNI,100.0,False,sisa_makanan
+2025,2,Papua Barat,Kab. Teluk Wondama,16.0,,16.0,27.0,,,,,41.0,PAPUA BARAT,KABUPATEN TELUK WONDAMA,100.0,False,lainnya
+2025,2,Papua Selatan,Kab. Asmat,23.0,10.0,15.0,30.0,7.0,5.0,3.0,3.0,4.0,PAPUA SELATAN,KABUPATEN ASMAT,100.0,False,plastik
+2025,2,Papua Tengah,Kab. Mimika,,,,,,,,,,PAPUA TENGAH,KABUPATEN MIMIKA,,False,
+2025,2,Papua Barat Daya,Kab. Sorong,51.3,1.23,16.06,16.37,4.15,0.72,1.48,1.69,7.0,PAPUA BARAT DAYA,KABUPATEN SORONG,100.0,False,sisa_makanan
+2025,2,Papua Barat Daya,Kab. Raja Ampat,15.0,3.0,12.0,35.0,20.0,5.0,2.0,3.0,5.0,PAPUA BARAT DAYA,KABUPATEN RAJA AMPAT,100.0,False,plastik
+2025,2,Papua Barat Daya,Kab. Tambrauw,13.0,14.0,11.0,41.0,2.0,3.0,5.0,7.0,4.0,PAPUA BARAT DAYA,KABUPATEN TAMBRAUW,100.0,False,plastik

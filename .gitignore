@@ -1,0 +1,15 @@
+# File terlalu besar untuk GitHub (batas 100 MB). Simpan lokal / bagikan lewat Drive.
+Data/Dataset Project Data Story Telling/Data Tambahan agar analisis lebih valid/Jumlah Penduduk Berdasarkan Kabupaten_Kota/jumlah_penduduk_kabkot_fixed.csv
+Data/Dataset Project Data Story Telling/Data Tambahan agar analisis lebih valid/Batas wilayah untuk peta/seamless_bad123_rev130723_1.csv
+
+# Python / Jupyter
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
