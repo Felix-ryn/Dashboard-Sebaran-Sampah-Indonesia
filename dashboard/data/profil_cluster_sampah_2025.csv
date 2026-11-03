@@ -1,0 +1,5 @@
+cluster,label,jumlah_wilayah,median_penduduk,median_per_kapita,median_pengurangan,median_penanganan,median_tidak_terkelola
+0,Belum terkelola,176,287989.0,0.45,0.01,2.87,96.72
+1,Timbulan per kapita tinggi,36,679371.5,0.73,0.04,17.89,80.11
+2,Pengurangan menonjol,38,491090.5,0.42,12.02,22.8,63.71
+3,Penanganan tinggi,77,334578.0,0.41,0.05,64.9,33.57
