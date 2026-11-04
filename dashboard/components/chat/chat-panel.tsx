@@ -179,7 +179,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
           onClick={onClose}
           aria-label="Tutup chat"
           title="Tutup (Esc)"
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F3F0EA] text-slate-600 transition hover:scale-105 hover:bg-[#16181D] hover:text-[#F6C21B] active:scale-95"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-slate-600 transition hover:scale-105 hover:bg-[#16181D] hover:text-[#F6C21B] active:scale-95"
         >
           <X className="h-4 w-4" strokeWidth={2.25} />
         </button>
@@ -188,7 +188,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
       <div ref={list} className="mt-3 min-h-0 flex-1 space-y-3 overflow-y-auto pr-1">
         {messages.length === 0 ? (
           <div className="space-y-3">
-            <div className="rounded-2xl bg-[#F8F6F2] p-3.5 text-[13px] leading-5 text-slate-700">
+            <div className="rounded-2xl bg-[#F7F8FA] p-3.5 text-[13px] leading-5 text-slate-700">
               Halo! Tanyakan apa saja tentang data pengelolaan sampah 327 kabupaten/kota.
               Jawaban dihitung dari data asli, dan saya akan bilang terus terang bila datanya tidak ada.
             </div>
@@ -202,7 +202,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
                   type="button"
                   disabled={loading}
                   onClick={() => sendQuick(chip.id, chip.label)}
-                  className="rounded-2xl border border-slate-200 px-3.5 py-2.5 text-left text-[13px] leading-5 text-slate-700 transition hover:-translate-y-0.5 hover:border-[#16181D] hover:bg-[#F8F6F2] active:scale-[0.99] disabled:opacity-50"
+                  className="rounded-2xl border border-slate-200 px-3.5 py-2.5 text-left text-[13px] leading-5 text-slate-700 transition hover:-translate-y-0.5 hover:border-[#16181D] hover:bg-[#F7F8FA] active:scale-[0.99] disabled:opacity-50"
                 >
                   {chip.label}
                 </button>
@@ -220,7 +220,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
             </div>
           ) : (
             <div key={message.id} className="tip-pop flex flex-col items-start gap-2">
-              <div className="max-w-[92%] rounded-2xl rounded-bl-md bg-[#F3F0EA] px-3.5 py-2.5 text-[13px] leading-5 text-slate-800">
+              <div className="max-w-[92%] rounded-2xl rounded-bl-md bg-[#F1F3F6] px-3.5 py-2.5 text-[13px] leading-5 text-slate-800">
                 <RichText text={message.content} />
               </div>
               {message.actions && message.actions.length > 0 ? (
@@ -268,7 +268,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
               type="button"
               disabled={loading}
               onClick={() => sendQuick(chip.id, chip.label)}
-              className="shrink-0 whitespace-nowrap rounded-full bg-[#F3F0EA] px-3 py-1.5 text-[11px] font-medium text-slate-600 transition hover:bg-[#E9E4DB] disabled:opacity-50"
+              className="shrink-0 whitespace-nowrap rounded-full bg-[#F1F3F6] px-3 py-1.5 text-[11px] font-medium text-slate-600 transition hover:bg-[#E5E8ED] disabled:opacity-50"
             >
               {chip.label.length > 34 ? `${chip.label.slice(0, 32)}…` : chip.label}
             </button>
@@ -288,7 +288,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
           maxLength={500}
           placeholder="Tanya tentang data sampah..."
           autoComplete="off"
-          className="h-11 min-w-0 flex-1 rounded-full bg-[#F3F0EA] px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:ring-2 focus:ring-[#F6C21B]/70"
+          className="h-11 min-w-0 flex-1 rounded-full bg-[#F1F3F6] px-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:ring-2 focus:ring-[#F6C21B]/70"
         />
         <button
           type="submit"

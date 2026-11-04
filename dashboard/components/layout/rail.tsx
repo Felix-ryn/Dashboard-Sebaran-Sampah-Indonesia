@@ -63,7 +63,7 @@ function RailButton({
           "absolute inset-0 rounded-full transition-all duration-300",
           active
             ? "scale-100 bg-[#16181D]"
-            : "scale-90 bg-transparent group-hover:scale-100 group-hover:bg-[#F1EEE8]",
+            : "scale-90 bg-transparent group-hover:scale-100 group-hover:bg-[#EEF0F4]",
         )}
       />
       <Icon
@@ -212,7 +212,7 @@ export function Rail({
 
       <nav
         aria-label="Navigasi utama"
-        className="enter-rail flex min-h-0 w-full flex-1 flex-col rounded-[28px] bg-white p-2"
+        className="enter-rail flex min-h-0 w-full flex-1 flex-col rounded-[28px] bg-white p-2 ring-1 ring-black/[0.05]"
       >
         <div className="flex min-h-0 flex-col gap-1">
           {NAV_ITEMS.map((item, index) => (
@@ -234,7 +234,7 @@ export function Rail({
 
         <div className="mt-auto flex flex-col gap-2 pt-3">
           {open ? (
-            <div className="tip-pop flex items-center gap-3 rounded-2xl bg-[#F8F6F2] p-3">
+            <div className="tip-pop flex items-center gap-3 rounded-2xl bg-[#F7F8FA] p-3">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F6C21B] text-[#16181D]">
                 <Database className="h-4 w-4" strokeWidth={2.25} />
               </span>

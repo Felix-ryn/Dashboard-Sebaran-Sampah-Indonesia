@@ -145,7 +145,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
       aria-hidden="true"
       className="pointer-events-auto fixed inset-0 z-[100] flex flex-col items-center justify-center gap-6"
     >
-      <div className="intro-bg absolute inset-0 bg-[#F3F1EC]" />
+      <div className="intro-bg absolute inset-0 bg-[#F4F5F7]" />
       <div ref={logoWrap} className="relative h-44 w-36">
         <LogoMark className="intro-start h-full w-full" />
       </div>

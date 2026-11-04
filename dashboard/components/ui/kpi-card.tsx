@@ -2,10 +2,10 @@ import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const TONES = {
-  blue: "bg-[#F3F0EA] text-[#16181D]",
-  navy: "bg-[#F3F0EA] text-[#16181D]",
-  sky: "bg-[#F3F0EA] text-[#16181D]",
-  teal: "bg-[#F3F0EA] text-[#16181D]",
+  blue: "bg-[#F1F3F6] text-[#16181D]",
+  navy: "bg-[#F1F3F6] text-[#16181D]",
+  sky: "bg-[#F1F3F6] text-[#16181D]",
+  teal: "bg-[#F1F3F6] text-[#16181D]",
   amber: "bg-[#FBEFD0] text-[#8A5A00]",
   rose: "bg-[#FBE6D8] text-[#B04A00]",
 } as const;

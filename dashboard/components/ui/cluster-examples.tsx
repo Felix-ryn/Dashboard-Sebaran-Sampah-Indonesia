@@ -22,7 +22,7 @@ export function ClusterExamples() {
         return (
           <div
             key={meta.id}
-            className="rounded-2xl bg-[#F8F6F2] p-3"
+            className="rounded-2xl bg-[#F7F8FA] p-3"
           >
             <div className="flex items-center justify-between gap-2">
               <ClusterBadge cluster={meta.id} compact />

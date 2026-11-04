@@ -46,7 +46,7 @@ export function TabCard({
       )}
     >
       <header className="flex shrink-0 items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3F0EA] text-[#16181D]">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-[#16181D]">
           <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
         </span>
         <div className="min-w-0 flex-1">
@@ -79,7 +79,7 @@ export function TabCard({
               "rounded-full px-3.5 py-1.5 text-xs font-semibold transition",
               item.key === tab.key
                 ? "bg-[#16181D] text-white"
-                : "bg-[#F3F0EA] text-slate-600 hover:bg-[#E9E4DB]",
+                : "bg-[#F1F3F6] text-slate-600 hover:bg-[#E5E8ED]",
             )}
           >
             {item.label}

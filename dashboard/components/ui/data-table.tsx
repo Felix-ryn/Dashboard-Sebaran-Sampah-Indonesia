@@ -169,9 +169,9 @@ export function DataTable() {
         </button>
       </div>
 
-      <div className="min-h-0 flex-1 overflow-auto rounded-2xl bg-[#F8F6F2]">
+      <div className="min-h-0 flex-1 overflow-auto rounded-2xl bg-[#F7F8FA]">
         <table className="w-full min-w-[720px] border-collapse text-left">
-          <thead className="sticky top-0 z-10 bg-[#F3F0EA]">
+          <thead className="sticky top-0 z-10 bg-[#F1F3F6]">
             <tr>
               {COLUMNS.map((column) => (
                 <th
@@ -254,7 +254,7 @@ export function DataTable() {
               setPageSize(Number(event.target.value));
               setPage(1);
             }}
-            className="rounded-full bg-[#F3F0EA] px-3 py-1.5 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-[#F6C21B]/60"
+            className="rounded-full bg-[#F1F3F6] px-3 py-1.5 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-[#F6C21B]/60"
           >
             {[10, 25, 50, 100].map((size) => (
               <option key={size} value={size}>
@@ -272,7 +272,7 @@ export function DataTable() {
             type="button"
             onClick={() => setPage((current) => Math.max(1, current - 1))}
             disabled={safePage <= 1}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F3F0EA] text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F1F3F6] text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
             aria-label="Halaman sebelumnya"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -286,7 +286,7 @@ export function DataTable() {
               setPage((current) => Math.min(totalPages, current + 1))
             }
             disabled={safePage >= totalPages}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F3F0EA] text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F1F3F6] text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
             aria-label="Halaman berikutnya"
           >
             <ChevronRight className="h-4 w-4" />

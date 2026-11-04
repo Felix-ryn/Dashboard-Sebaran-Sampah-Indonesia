@@ -214,7 +214,7 @@ export function GapRanking() {
           className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
             metric === "tidakTerkelolaTon"
               ? "bg-[#16181D] text-white"
-              : "bg-[#F3F0EA] text-slate-600 hover:bg-[#E9E4DB]"
+              : "bg-[#F1F3F6] text-slate-600 hover:bg-[#E5E8ED]"
           }`}
         >
           Volume (ton)
@@ -225,7 +225,7 @@ export function GapRanking() {
           className={`rounded-full px-3.5 py-1.5 text-xs font-semibold transition ${
             metric === "pctTidakTerkelola"
               ? "bg-[#16181D] text-white"
-              : "bg-[#F3F0EA] text-slate-600 hover:bg-[#E9E4DB]"
+              : "bg-[#F1F3F6] text-slate-600 hover:bg-[#E5E8ED]"
           }`}
         >
           Persentase (%)

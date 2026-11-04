@@ -117,7 +117,7 @@ export function AppShell({
       const travel = page.offsetWidth * 1.04 * dir;
       const rimW = 56;
       gsap.set([page, ghost, rim], { willChange: "transform" });
-      gsap.set(page, { autoAlpha: 1, x: travel, backgroundColor: "#F6F3EE" });
+      gsap.set(page, { autoAlpha: 1, x: travel, backgroundColor: "#EAECF0" });
       gsap.set(rim, {
         display: "block",
         autoAlpha: 1,
@@ -152,7 +152,7 @@ export function AppShell({
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <Topbar />
             {/* Permukaan utuh: kartu duduk di dalam satu panel, bukan melayang di atas kanvas */}
-            <div className="relative min-h-0 flex-1 overflow-hidden rounded-[32px] bg-[#F6F3EE] ring-1 ring-black/[0.05]">
+            <div className="relative min-h-0 flex-1 overflow-hidden rounded-[32px] bg-[#EAECF0] ring-1 ring-black/[0.05]">
               <div className="absolute inset-2.5">
                 <main
                   ref={stage}

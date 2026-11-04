@@ -163,7 +163,7 @@ export function ExpandButton({
       onClick={onClick}
       aria-label={expanded ? "Perkecil grafik" : "Perbesar grafik"}
       title={expanded ? "Perkecil (Esc)" : "Perbesar"}
-      className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F3F0EA] text-slate-600 transition hover:scale-105 hover:bg-[#16181D] hover:text-[#F6C21B] active:scale-95 lg:flex"
+      className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-slate-600 transition hover:scale-105 hover:bg-[#16181D] hover:text-[#F6C21B] active:scale-95 lg:flex"
     >
       <Icon className="h-3.5 w-3.5" strokeWidth={2.25} />
     </button>

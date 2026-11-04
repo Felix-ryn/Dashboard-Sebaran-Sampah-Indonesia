@@ -2,8 +2,8 @@
 
 @theme inline {
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --color-surface: #e9e6e0;
-  --color-canvas: #e9e6e0;
+  --color-surface: #F4F5F7;
+  --color-canvas: #F4F5F7;
   --color-ink: #16181d;
   --color-accent: #f6c21b;
   --color-navy: #0b1b33;
@@ -30,7 +30,7 @@
 }
 
 :root {
-  --background: #e9e6e0;
+  --background: #F4F5F7;
   --foreground: #0f172a;
 }
 

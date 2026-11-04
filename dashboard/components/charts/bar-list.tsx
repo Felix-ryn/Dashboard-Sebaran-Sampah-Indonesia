@@ -174,7 +174,7 @@ export function ChartKey<Id extends string | number = string>({
             onBlur={() => onFocus?.(null)}
             onClick={() => onPick?.(id)}
             className={cn(
-              "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 transition hover:bg-[#F3F0EA]",
+              "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 transition hover:bg-[#F1F3F6]",
               dim && "opacity-40",
             )}
           >

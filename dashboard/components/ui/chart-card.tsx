@@ -48,7 +48,7 @@ export function ChartCard({
     >
       <header className="flex shrink-0 items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3F0EA] text-[#16181D]">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F1F3F6] text-[#16181D]">
             <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
           </span>
           <div className="min-w-0">

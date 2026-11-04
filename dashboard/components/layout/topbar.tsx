@@ -16,7 +16,7 @@ import { useDashboard } from "@/components/providers/dashboard-provider";
 import { NAV_ICONS } from "@/components/layout/rail";
 
 const pill =
-  "h-11 appearance-none rounded-full bg-white text-sm text-slate-700 outline-none transition focus:ring-2 focus:ring-[#F6C21B]/60";
+  "h-11 appearance-none rounded-full bg-white text-sm text-slate-700 outline-none ring-1 ring-black/[0.05] transition focus:ring-2 focus:ring-[#F6C21B]/60";
 
 export function Topbar() {
   const pathname = usePathname();

@@ -8,7 +8,7 @@ export function EmptyState({
   description?: string;
 }) {
   return (
-    <div className="flex h-full min-h-[140px] flex-col items-center justify-center rounded-3xl bg-[#F3F0EA] px-6 text-center">
+    <div className="flex h-full min-h-[140px] flex-col items-center justify-center rounded-3xl bg-[#F1F3F6] px-6 text-center">
       <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-slate-400">
         <SearchX className="h-5 w-5" />
       </span>
