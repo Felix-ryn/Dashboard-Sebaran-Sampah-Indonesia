@@ -41,6 +41,7 @@ export function AppShell({
 
   const stage = useRef<HTMLElement>(null);
   const panel = useRef<HTMLDivElement>(null);
+  const edge = useRef<HTMLDivElement>(null);
 
   const ready = useRef(false);
   const busy = useRef(false);
@@ -71,8 +72,9 @@ export function AppShell({
       if (busy.current || href === currentPath.current) return;
       const page = stage.current;
       const ghost = panel.current;
+      const rim = edge.current;
       const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      if (!page || !ghost || reduce) {
+      if (!page || !ghost || !rim || reduce) {
         router.push(href);
         return;
       }
@@ -110,35 +112,30 @@ export function AppShell({
       await nextFrame();
 
       // 2. Halaman baru meluncur menimpa, halaman lama mundur ke belakang
-      const cards = page.querySelectorAll('[data-anim="card"]');
-      gsap.set([page, ghost], { willChange: "transform, opacity" });
-      gsap.set(cards, { autoAlpha: 0, y: 16 });
-      gsap.set(page, {
+      // Lapisan meluncur utuh (semua kartu sudah terlihat, tidak ada fade per kartu).
+      // Tepinya diberi bayangan tipis yang ikut bergerak agar batas lapisan terlihat.
+      const travel = page.offsetWidth * 1.04 * dir;
+      const rimW = 56;
+      gsap.set([page, ghost, rim], { willChange: "transform" });
+      gsap.set(page, { autoAlpha: 1, x: travel, backgroundColor: "#F6F3EE" });
+      gsap.set(rim, {
+        display: "block",
         autoAlpha: 1,
-        xPercent: 104 * dir,
-        backgroundColor: "#F6F3EE",
+        left: dir === 1 ? -rimW : "100%",
+        background:
+          dir === 1
+            ? "linear-gradient(to right, rgba(22,24,29,0), rgba(22,24,29,0.12))"
+            : "linear-gradient(to left, rgba(22,24,29,0), rgba(22,24,29,0.12))",
       });
+      const ease = "power3.inOut";
       const tl = gsap.timeline();
-      tl.to(page, { xPercent: 0, duration: 0.75, ease: "power3.inOut" }, 0)
-        .to(
-          ghost,
-          { scale: 0.97, xPercent: -5 * dir, duration: 0.75, ease: "power3.inOut" },
-          0,
-        )
-        .to(
-          cards,
-          {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.45,
-            ease: "power2.out",
-            stagger: 0.03,
-            clearProps: "transform,opacity,visibility",
-          },
-          0.12,
-        );
+      tl.fromTo(rim, { x: travel }, { x: 0, duration: 0.75, ease }, 0)
+        .to(page, { x: 0, duration: 0.75, ease }, 0)
+        .to(ghost, { scale: 0.97, xPercent: -5 * dir, duration: 0.75, ease }, 0)
+        .to(rim, { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 0.5);
       await finished(tl);
 
+      gsap.set(rim, { display: "none", clearProps: "willChange,left,background" });
       gsap.set(page, { clearProps: "transform,backgroundColor,willChange" });
       gsap.set(ghost, { display: "none", clearProps: "willChange" });
       ghost.replaceChildren();
@@ -168,6 +165,11 @@ export function AppShell({
                   ref={panel}
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden will-change-transform"
+                />
+                <div
+                  ref={edge}
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-y-0 z-[15] hidden w-14"
                 />
               </div>
 
