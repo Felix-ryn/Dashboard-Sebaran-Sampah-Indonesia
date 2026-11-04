@@ -19,7 +19,7 @@ export function PageHeader({
     <div
       data-anim="card"
       className={cn(
-        "flex min-w-0 flex-col justify-center overflow-hidden rounded-[28px] bg-white p-4",
+        "flex min-w-0 flex-col justify-center overflow-hidden rounded-[28px] border border-black/[0.05] bg-white p-4",
         className,
       )}
     >

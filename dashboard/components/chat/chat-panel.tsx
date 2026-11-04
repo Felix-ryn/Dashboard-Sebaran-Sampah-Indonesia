@@ -162,7 +162,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
       aria-hidden={!open}
       inert={!open}
       style={{ visibility: "hidden" }}
-      className="absolute inset-y-0 right-0 z-30 flex w-full flex-col rounded-[28px] bg-white p-4 shadow-[0_0_48px_rgba(22,24,29,0.16)] sm:w-[400px]"
+      className="absolute inset-y-2.5 right-2.5 z-30 flex w-[calc(100%-1.25rem)] flex-col rounded-[28px] bg-white p-4 shadow-[0_0_48px_rgba(22,24,29,0.16)] sm:w-[400px]"
     >
       <header className="flex shrink-0 items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">

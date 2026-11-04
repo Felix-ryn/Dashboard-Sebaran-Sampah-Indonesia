@@ -40,7 +40,7 @@ export function ChatLauncher({ open, onOpen }: { open: boolean; onOpen: () => vo
   return (
     <div
       className={cn(
-        "pointer-events-none absolute bottom-4 right-4 z-[25] hidden flex-col items-end gap-3 transition-all duration-300 ease-out md:flex",
+        "pointer-events-none absolute bottom-6 right-6 z-[25] hidden flex-col items-end gap-3 transition-all duration-300 ease-out md:flex",
         visible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0",
       )}
     >

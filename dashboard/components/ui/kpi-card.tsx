@@ -36,7 +36,7 @@ export function KpiCard({
       data-anim="card"
       className={cn(
         "flex min-w-0 flex-col justify-between rounded-[28px] p-4 transition-transform duration-300 hover:-translate-y-0.5",
-        dark ? "bg-[#16181D] text-white" : "bg-white text-[#16181D]",
+        dark ? "bg-[#16181D] text-white" : "border border-black/[0.05] bg-white text-[#16181D]",
         className,
       )}
     >

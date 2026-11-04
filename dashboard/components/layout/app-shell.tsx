@@ -116,7 +116,7 @@ export function AppShell({
       gsap.set(page, {
         autoAlpha: 1,
         xPercent: 104 * dir,
-        backgroundColor: "#E9E6E0",
+        backgroundColor: "#F6F3EE",
       });
       const tl = gsap.timeline();
       tl.to(page, { xPercent: 0, duration: 0.75, ease: "power3.inOut" }, 0)
@@ -153,23 +153,26 @@ export function AppShell({
         <div className="flex h-dvh gap-3 overflow-hidden bg-canvas bg-grid p-3">
           <Rail chatOpen={chatOpen} onChat={() => setChatOpen((value) => !value)} />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            <Topbar chatOpen={chatOpen} onChat={() => setChatOpen((value) => !value)} />
-            <div className="relative min-h-0 flex-1 overflow-hidden rounded-[28px]">
-              <main
-                ref={stage}
-                className="relative z-20 h-full overflow-y-auto overflow-x-hidden lg:overflow-hidden"
-              >
-                {children}
-              </main>
+            <Topbar />
+            {/* Permukaan utuh: kartu duduk di dalam satu panel, bukan melayang di atas kanvas */}
+            <div className="relative min-h-0 flex-1 overflow-hidden rounded-[32px] bg-[#F6F3EE] ring-1 ring-black/[0.05]">
+              <div className="absolute inset-2.5">
+                <main
+                  ref={stage}
+                  className="relative z-20 h-full overflow-y-auto overflow-x-hidden lg:overflow-hidden"
+                >
+                  {children}
+                </main>
+
+                <div
+                  ref={panel}
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden will-change-transform"
+                />
+              </div>
 
               <ChatLauncher open={chatOpen} onOpen={() => setChatOpen(true)} />
               <ChatPanel open={chatOpen} onClose={closeChat} />
-
-              <div
-                ref={panel}
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 z-10 hidden overflow-hidden will-change-transform"
-              />
             </div>
           </div>
         </div>
