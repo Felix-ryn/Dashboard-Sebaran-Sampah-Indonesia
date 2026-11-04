@@ -27,7 +27,15 @@ export default function RootLayout({
   const data = getDashboardData();
 
   return (
-    <html lang="id" className={`${jakarta.variable} h-full`}>
+    <html lang="id" className={`${jakarta.variable} h-full`} suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.getItem('theme')==='dark')document.documentElement.classList.add('dark')}catch(e){}",
+          }}
+        />
+      </head>
       <body className="h-full bg-canvas font-sans text-ink antialiased">
         <AppShell data={data}>{children}</AppShell>
       </body>

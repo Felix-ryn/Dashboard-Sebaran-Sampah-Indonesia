@@ -1,7 +1,7 @@
 "use client";
 
 import { useDashboard } from "@/components/providers/dashboard-provider";
-import { CLUSTER_BY_ID } from "@/lib/constants";
+import { CLUSTER_BY_ID, softBg, softText } from "@/lib/constants";
 import { formatNumber, formatPct } from "@/lib/format";
 import { cn } from "@/lib/cn";
 
@@ -29,11 +29,11 @@ export function ClusterSummaryCards() {
               active ? "ring-2 ring-[#16181D]" : "hover:brightness-95",
               dimmed && "opacity-50",
             )}
-            style={{ backgroundColor: meta.soft }}
+            style={{ backgroundColor: softBg(meta.color) }}
           >
             <span
               className="flex items-center gap-1.5 text-[11px] font-semibold leading-4"
-              style={{ color: meta.color }}
+              style={{ color: softText(meta.color) }}
             >
               <span
                 className="h-2 w-2 shrink-0 rounded-full"

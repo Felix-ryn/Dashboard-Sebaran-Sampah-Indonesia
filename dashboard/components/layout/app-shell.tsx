@@ -116,16 +116,17 @@ export function AppShell({
       // Tepinya diberi bayangan tipis yang ikut bergerak agar batas lapisan terlihat.
       const travel = page.offsetWidth * 1.04 * dir;
       const rimW = 56;
+      const rimAlpha = document.documentElement.classList.contains("dark") ? 0.5 : 0.12;
       gsap.set([page, ghost, rim], { willChange: "transform" });
-      gsap.set(page, { autoAlpha: 1, x: travel, backgroundColor: "#EAECF0" });
+      gsap.set(page, { autoAlpha: 1, x: travel, backgroundColor: "var(--sheet-bg)" });
       gsap.set(rim, {
         display: "block",
         autoAlpha: 1,
         left: dir === 1 ? -rimW : "100%",
         background:
           dir === 1
-            ? "linear-gradient(to right, rgba(22,24,29,0), rgba(22,24,29,0.12))"
-            : "linear-gradient(to left, rgba(22,24,29,0), rgba(22,24,29,0.12))",
+            ? `linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,${rimAlpha}))`
+            : `linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,${rimAlpha}))`,
       });
       const ease = "power3.inOut";
       const tl = gsap.timeline();

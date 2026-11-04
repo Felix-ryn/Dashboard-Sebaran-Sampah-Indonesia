@@ -6,6 +6,12 @@ import type {
 
 export const YEAR = 2025;
 
+/** Latar pastel dan teks klaster yang ikut menyesuaikan tema terang/gelap (lihat --card-bg di globals.css). */
+export const softBg = (color: string) =>
+  `color-mix(in srgb, ${color} 14%, var(--card-bg))`;
+export const softText = (color: string) =>
+  `color-mix(in srgb, ${color} 70%, var(--ink-text))`;
+
 export const APP_NAME = "Jejak Sampah";
 export const APP_SUBTITLE = "Dashboard Pengelolaan Sampah Indonesia";
 

@@ -1,7 +1,7 @@
 "use client";
 
 import type { TooltipContentProps } from "recharts";
-import { CLUSTER_BY_ID } from "@/lib/constants";
+import { CLUSTER_BY_ID, softBg, softText } from "@/lib/constants";
 import {
   formatCompactTon,
   formatNumber,
@@ -27,7 +27,7 @@ export function RegionTooltip({
       {showCluster ? (
         <span
           className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
-          style={{ backgroundColor: cluster.soft, color: cluster.color }}
+          style={{ backgroundColor: softBg(cluster.color), color: softText(cluster.color) }}
         >
           <span
             className="h-1.5 w-1.5 rounded-full"
