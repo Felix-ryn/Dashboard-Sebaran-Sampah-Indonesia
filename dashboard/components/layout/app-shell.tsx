@@ -80,9 +80,17 @@ export function AppShell({
 
       // 1. Snapshot halaman lama jadi lapisan belakang; halaman asli disembunyikan
       //    selama rute berganti (tampilan tetap sama, tanpa kedipan)
-      ghost.replaceChildren(page.cloneNode(true));
+      const clone = page.cloneNode(true) as HTMLElement;
+      clone.style.transformOrigin = "center";
+      clone.style.transition = "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)";
+      ghost.replaceChildren(clone);
       gsap.set(ghost, { display: "block", x: 0, scale: 1, autoAlpha: 1 });
       gsap.set(page, { autoAlpha: 0 });
+
+      // Umpan balik instan lewat CSS transition (dijalankan compositor, tidak ikut
+      // membeku saat thread utama sibuk memasang halaman baru)
+      void clone.offsetWidth;
+      clone.style.transform = `scale(0.97) translateX(${-3 * dir}%)`;
 
       const arrived = new Promise<void>((resolve) => {
         waiter.current = { href, resolve };
@@ -93,7 +101,7 @@ export function AppShell({
       // Beri waktu grafik (Recharts) menghitung ukuran saat masih tersembunyi,
       // supaya layout berat tidak terjadi di tengah animasi
       await nextFrame();
-      await new Promise<void>((resolve) => window.setTimeout(resolve, 90));
+      await new Promise<void>((resolve) => window.setTimeout(resolve, 40));
       await nextFrame();
 
       // 2. Halaman baru meluncur menimpa, halaman lama mundur ke belakang
@@ -106,10 +114,10 @@ export function AppShell({
         backgroundColor: "#E9E6E0",
       });
       const tl = gsap.timeline();
-      tl.to(page, { xPercent: 0, duration: 0.7, ease: "power4.out" }, 0)
+      tl.to(page, { xPercent: 0, duration: 0.75, ease: "power3.inOut" }, 0)
         .to(
           ghost,
-          { scale: 0.95, xPercent: -8 * dir, duration: 0.7, ease: "power3.out" },
+          { scale: 0.97, xPercent: -5 * dir, duration: 0.75, ease: "power3.inOut" },
           0,
         )
         .to(

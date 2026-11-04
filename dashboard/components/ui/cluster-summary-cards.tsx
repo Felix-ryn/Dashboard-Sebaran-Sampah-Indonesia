@@ -11,7 +11,7 @@ export function ClusterSummaryCards() {
   const total = clusterSummary.reduce((sum, item) => sum + item.count, 0);
 
   return (
-    <div className="grid h-full grid-cols-2 gap-2">
+    <div className="grid h-full grid-cols-2 grid-rows-2 gap-2">
       {clusterSummary.map((item) => {
         const meta = CLUSTER_BY_ID[item.cluster];
         const active = filters.cluster === item.cluster;
@@ -25,7 +25,7 @@ export function ClusterSummaryCards() {
             disabled={item.count === 0}
             onClick={() => setCluster(active ? "all" : item.cluster)}
             className={cn(
-              "flex min-h-0 flex-col justify-between rounded-2xl p-3 text-left transition disabled:opacity-50",
+              "flex min-h-0 min-w-0 flex-col justify-between overflow-hidden rounded-2xl p-3 text-left transition disabled:opacity-50",
               active ? "ring-2 ring-[#16181D]" : "hover:brightness-95",
               dimmed && "opacity-50",
             )}
@@ -41,14 +41,11 @@ export function ClusterSummaryCards() {
               />
               <span className="truncate">{meta.short}</span>
             </span>
-            <span className="mt-1 text-2xl font-semibold leading-7 text-[#16181D]">
+            <span className="flex items-baseline gap-1.5 whitespace-nowrap text-2xl font-semibold leading-7 text-[#16181D]">
               {formatNumber(item.count)}
-              <span className="ml-1 text-xs font-normal text-slate-600">
-                wilayah
+              <span className="text-[11px] font-normal text-slate-600">
+                wilayah · {formatPct(share, 0)}
               </span>
-            </span>
-            <span className="text-[11px] text-slate-600">
-              {formatPct(share, 0)} dari total
             </span>
           </button>
         );

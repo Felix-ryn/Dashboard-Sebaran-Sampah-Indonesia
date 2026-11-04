@@ -145,9 +145,9 @@ export function Rail() {
 
       <nav
         aria-label="Navigasi utama"
-        className="enter-rail flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-[28px] bg-white p-2"
+        className="enter-rail flex min-h-0 w-full flex-1 flex-col rounded-[28px] bg-white p-2"
       >
-        <div className="flex min-h-0 flex-col gap-1 overflow-y-auto [scrollbar-width:none]">
+        <div className="flex min-h-0 flex-col gap-1">
           {NAV_ITEMS.map((item, index) => (
             <div key={item.href} className="contents">
               {index === 0 ? <GroupTitle open={open}>Overview</GroupTitle> : null}

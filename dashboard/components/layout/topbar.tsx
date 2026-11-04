@@ -40,10 +40,10 @@ export function Topbar() {
   const showFilters = true;
 
   return (
-    <header className="enter-top flex h-11 shrink-0 items-center gap-2.5">
+    <header className="enter-top @container flex h-11 min-w-0 shrink-0 items-center gap-2.5">
       <div
         className={cn(
-          "relative w-[260px] shrink-0 transition-opacity",
+          "relative w-[260px] min-w-0 shrink transition-opacity",
           !showFilters && "pointer-events-none opacity-40",
         )}
       >
@@ -63,7 +63,7 @@ export function Topbar() {
 
       {showFilters ? (
         <>
-          <div className="relative hidden xl:block">
+          <div className="relative hidden @[1000px]:block">
             <MapPin className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <label htmlFor="filter-provinsi" className="sr-only">
               Filter provinsi
@@ -84,7 +84,7 @@ export function Topbar() {
             <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           </div>
 
-          <div className="relative hidden xl:block">
+          <div className="relative hidden @[1000px]:block">
             <Boxes className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
             <label htmlFor="filter-cluster" className="sr-only">
               Filter klaster
@@ -120,7 +120,7 @@ export function Topbar() {
             )}
           >
             <RotateCcw className="h-4 w-4" />
-            <span className="hidden 2xl:inline">Reset</span>
+            <span className="hidden @[1250px]:inline">Reset</span>
             {activeFilterCount > 0 ? (
               <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#16181D] px-1.5 text-[11px] font-semibold text-white">
                 {activeFilterCount}
@@ -128,7 +128,7 @@ export function Topbar() {
             ) : null}
           </button>
 
-          <span className="hidden whitespace-nowrap rounded-full bg-white/60 px-4 py-3 text-sm text-slate-600 lg:inline">
+          <span className="hidden whitespace-nowrap rounded-full bg-white/60 px-4 py-3 text-sm text-slate-600 @[760px]:inline">
             <span className="font-semibold text-slate-900">
               {filteredRegions.length}
             </span>{" "}
@@ -137,12 +137,12 @@ export function Topbar() {
         </>
       ) : null}
 
-      <div className="ml-auto flex items-center gap-2.5">
-        <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 2xl:inline-flex">
+      <div className="ml-auto flex shrink-0 items-center gap-2.5">
+        <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 @[1500px]:inline-flex">
           <CalendarDays className="h-4 w-4 text-slate-400" />
           Data {YEAR}
         </span>
-        <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 2xl:inline-flex">
+        <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 @[1500px]:inline-flex">
           <Database className="h-4 w-4 text-slate-400" />
           SIPSN KLHK
         </span>
