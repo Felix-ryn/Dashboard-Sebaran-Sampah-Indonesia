@@ -115,26 +115,44 @@ export function PcaScatter() {
 }
 
 export function ClusterProfileBar() {
-  const { profiles, setCluster, filters } = useDashboard();
-  const data = profiles
-    .filter((profile) => profile.jumlahWilayah > 0)
-    .map((profile) => ({
-      ...profile,
-      name: CLUSTER_BY_ID[profile.cluster].short,
-      color: CLUSTER_BY_ID[profile.cluster].color,
-    }));
+  const { filteredRegions, setCluster, filters } = useDashboard();
+  const data = CLUSTER_META.map((meta) => {
+    const group = filteredRegions.filter((region) => region.cluster === meta.id);
+    const pengurangan = group.reduce(
+      (sum, region) => sum + region.penguranganTon,
+      0,
+    );
+    const penanganan = group.reduce(
+      (sum, region) => sum + region.penangananTon,
+      0,
+    );
+    const tidakTerkelola = group.reduce(
+      (sum, region) => sum + region.tidakTerkelolaTon,
+      0,
+    );
+    const total = pengurangan + penanganan + tidakTerkelola;
+
+    return {
+      cluster: meta.id,
+      name: meta.short,
+      jumlahWilayah: group.length,
+      pengurangan: total > 0 ? (pengurangan / total) * 100 : 0,
+      penanganan: total > 0 ? (penanganan / total) * 100 : 0,
+      tidakTerkelola: total > 0 ? (tidakTerkelola / total) * 100 : 0,
+    };
+  }).filter((profile) => profile.jumlahWilayah > 0);
 
   if (data.length === 0) {
     return <EmptyState />;
   }
 
   return (
-    <div className="h-[320px] w-full">
+    <div className="h-[340px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           margin={{ top: 8, right: 12, left: 0, bottom: 4 }}
-          barCategoryGap={22}
+          barCategoryGap={24}
         >
           <CartesianGrid vertical={false} {...cartesianGrid} />
           <XAxis
@@ -170,11 +188,11 @@ export function ClusterProfileBar() {
             )}
           />
           <Bar
-            dataKey="medianPengurangan"
-            name="Median pengurangan"
+            dataKey="pengurangan"
+            name="Pengurangan"
             fill={CHART_COLORS.teal}
-            radius={[5, 5, 0, 0]}
-            barSize={18}
+            stackId="management"
+            barSize={28}
             onClick={(entry) => {
               const payload = (
                 entry as { payload?: { cluster?: ClusterId } }
@@ -190,11 +208,32 @@ export function ClusterProfileBar() {
             className="cursor-pointer"
           />
           <Bar
-            dataKey="medianPenanganan"
-            name="Median penanganan"
+            dataKey="penanganan"
+            name="Penanganan"
             fill={CHART_COLORS.primary}
+            stackId="management"
+            barSize={28}
+            onClick={(entry) => {
+              const payload = (
+                entry as { payload?: { cluster?: ClusterId } }
+              ).payload;
+              if (payload?.cluster !== undefined) {
+                setCluster(
+                  filters.cluster === payload.cluster
+                    ? "all"
+                    : payload.cluster,
+                );
+              }
+            }}
+            className="cursor-pointer"
+          />
+          <Bar
+            dataKey="tidakTerkelola"
+            name="Tidak terkelola"
+            fill="#CBD5E1"
+            stackId="management"
+            barSize={28}
             radius={[5, 5, 0, 0]}
-            barSize={18}
             onClick={(entry) => {
               const payload = (
                 entry as { payload?: { cluster?: ClusterId } }
@@ -216,7 +255,7 @@ export function ClusterProfileBar() {
 }
 
 export function ClusterPerKapitaBar() {
-  const { profiles, setCluster, filters } = useDashboard();
+  const { profiles, setCluster, filters, national } = useDashboard();
   const data = profiles
     .filter((profile) => profile.jumlahWilayah > 0)
     .map((profile) => ({
@@ -230,7 +269,7 @@ export function ClusterPerKapitaBar() {
   }
 
   return (
-    <div className="h-[280px] w-full">
+    <div className="h-[300px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -245,6 +284,17 @@ export function ClusterPerKapitaBar() {
             tick={axisTick}
             tickLine={false}
             axisLine={false}
+          />
+          <ReferenceLine
+            x={national.perKapita}
+            stroke="#64748B"
+            strokeDasharray="5 4"
+            label={{
+              value: "Rata-rata terfilter",
+              position: "insideTopRight",
+              fill: "#64748B",
+              fontSize: 12,
+            }}
           />
           <YAxis
             type="category"
@@ -355,7 +405,7 @@ export function ClusterDonut() {
           <span className="text-2xl font-semibold text-slate-950">
             {formatNumber(total)}
           </span>
-          <span className="text-[10px] uppercase tracking-wide text-slate-500">
+          <span className="text-xs uppercase tracking-wide text-slate-500">
             Wilayah
           </span>
         </div>
@@ -377,14 +427,14 @@ export function ClusterDonut() {
                 : "border-slate-100 bg-slate-50/60 hover:bg-slate-100"
             }`}
           >
-            <span className="flex items-center gap-2 text-[11px] font-medium text-slate-600">
+            <span className="flex items-center gap-2 text-sm font-medium text-slate-600">
               <span
                 className="h-2 w-2 rounded-full"
                 style={{ backgroundColor: entry.color }}
               />
               {CLUSTER_BY_ID[entry.cluster].short}
             </span>
-            <span className="text-xs font-semibold text-slate-900">
+            <span className="text-sm font-semibold text-slate-900">
               {formatNumber(entry.count)}
             </span>
           </button>
@@ -417,6 +467,10 @@ export function ClusterRadar() {
       key: "medianPerKapita" as const,
       label: "Per kapita",
     },
+    {
+      key: "medianTidakTerkelola" as const,
+      label: "Tidak terkelola",
+    },
   ];
 
   const maxima = Object.fromEntries(
@@ -436,13 +490,13 @@ export function ClusterRadar() {
   });
 
   return (
-    <div className="h-[320px] w-full">
+    <div className="h-[360px] w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart data={radarData} outerRadius="70%">
+        <RadarChart data={radarData} outerRadius="64%">
           <PolarGrid stroke="#E2E8F0" />
           <PolarAngleAxis
             dataKey="metric"
-            tick={{ fill: "#64748B", fontSize: 11 }}
+            tick={{ fill: "#64748B", fontSize: 12 }}
           />
           <PolarRadiusAxis
             angle={90}
@@ -455,7 +509,7 @@ export function ClusterRadar() {
             return (
               <Radar
                 key={profile.cluster}
-                name={meta.label}
+                name={meta.short}
                 dataKey={`c${profile.cluster}`}
                 stroke={meta.color}
                 fill={meta.color}
@@ -477,7 +531,7 @@ export function ClusterRadar() {
             iconType="circle"
             wrapperStyle={legendStyle}
             formatter={(value) => (
-              <span className="text-[11px] text-slate-600">{value}</span>
+              <span className="text-xs text-slate-600">{value}</span>
             )}
           />
         </RadarChart>

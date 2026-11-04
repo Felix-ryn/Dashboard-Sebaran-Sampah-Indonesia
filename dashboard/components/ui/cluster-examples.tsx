@@ -22,11 +22,11 @@ export function ClusterExamples() {
         return (
           <div
             key={meta.id}
-            className="rounded-xl border border-slate-200/80 bg-white p-3"
+            className="rounded-xl border border-slate-200/80 bg-white p-4"
           >
             <div className="flex items-center justify-between gap-2">
               <ClusterBadge cluster={meta.id} compact />
-              <span className="text-[10px] font-medium text-slate-400">
+              <span className="text-xs font-medium text-slate-400">
                 {formatNumber(
                   filteredRegions.filter(
                     (region) => region.cluster === meta.id,
@@ -48,11 +48,11 @@ export function ClusterExamples() {
                 >
                   <span className="flex min-w-0 items-center gap-1.5">
                     <MapPin className="h-3 w-3 shrink-0 text-slate-400" />
-                    <span className="truncate text-[11px] font-medium text-slate-700">
+                    <span className="truncate text-sm font-medium text-slate-700">
                       {region.kabKota}
                     </span>
                   </span>
-                  <span className="shrink-0 text-[10px] text-slate-500">
+                  <span className="shrink-0 text-xs text-slate-500">
                     {formatCompactTon(region.timbulanTahunan)}
                   </span>
                 </button>

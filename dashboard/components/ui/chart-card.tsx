@@ -28,15 +28,17 @@ export function ChartCard({
         className,
       )}
     >
-      <div className="flex items-start justify-between gap-3 border-b border-slate-100 px-5 py-4">
+      <div className="flex items-start justify-between gap-3 border-b border-slate-100 px-5 py-5 sm:px-6">
         <div className="flex items-start gap-3">
-          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-            <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+            <Icon className="h-5 w-5" strokeWidth={2} />
           </span>
           <div>
-            <h2 className="text-sm font-semibold text-slate-900">{title}</h2>
+            <h2 className="text-lg font-semibold leading-6 text-slate-900">
+              {title}
+            </h2>
             {description ? (
-              <p className="mt-1 text-xs leading-5 text-slate-500">
+              <p className="mt-1 text-sm leading-6 text-slate-500">
                 {description}
               </p>
             ) : null}
@@ -44,11 +46,11 @@ export function ChartCard({
         </div>
         {action ? <div className="shrink-0">{action}</div> : null}
       </div>
-      <div className={cn("flex-1 px-4 py-4 sm:px-5", bodyClassName)}>
+      <div className={cn("flex-1 px-4 py-5 sm:px-6", bodyClassName)}>
         {children}
       </div>
       {footer ? (
-        <div className="border-t border-slate-100 px-5 py-3 text-xs leading-5 text-slate-500">
+        <div className="border-t border-slate-100 px-5 py-4 text-sm leading-6 text-slate-500 sm:px-6">
           {footer}
         </div>
       ) : null}

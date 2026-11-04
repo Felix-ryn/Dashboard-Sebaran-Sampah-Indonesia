@@ -41,8 +41,8 @@ export function CompositionDonut() {
   const top = [...data].sort((a, b) => b.value - a.value)[0];
 
   return (
-    <div className="grid items-center gap-4 sm:grid-cols-[minmax(0,1fr)_220px]">
-      <div className="relative h-[270px]">
+    <div className="grid items-center gap-5 sm:grid-cols-[minmax(0,1fr)_230px]">
+      <div className="relative h-[300px]">
         <ResponsiveContainer width="100%" height="100%">
           <PieChart>
             <Pie
@@ -70,19 +70,19 @@ export function CompositionDonut() {
           </PieChart>
         </ResponsiveContainer>
         <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-          <span className="max-w-[90px] text-center text-[10px] font-medium uppercase leading-4 tracking-wide text-slate-500">
+          <span className="max-w-[110px] text-center text-xs font-semibold uppercase leading-5 tracking-wide text-slate-500">
             {top.label}
           </span>
-          <span className="mt-1 text-2xl font-semibold text-slate-950">
+          <span className="mt-1 text-3xl font-semibold text-slate-950">
             {formatPct(top.value)}
           </span>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-1.5">
+      <div className="grid grid-cols-1 gap-2 xl:grid-cols-2">
         {data.map((entry) => (
           <div
             key={entry.key}
-            className="flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[11px] text-slate-600 odd:bg-slate-50"
+            className="flex items-center justify-between gap-2 rounded-lg px-2.5 py-2 text-sm text-slate-600 odd:bg-slate-50"
           >
             <span className="flex min-w-0 items-center gap-2">
               <span
@@ -109,7 +109,7 @@ export function CompositionStackedBar() {
   }
 
   return (
-    <div className="h-[420px] w-full">
+    <div className="h-[460px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={compositionProvinces}
@@ -129,7 +129,7 @@ export function CompositionStackedBar() {
           <YAxis
             type="category"
             dataKey="provinsi"
-            width={150}
+            width={178}
             tick={axisTick}
             tickLine={false}
             axisLine={false}
@@ -148,7 +148,7 @@ export function CompositionStackedBar() {
             iconType="circle"
             wrapperStyle={legendStyle}
             formatter={(value) => (
-              <span className="text-[10px] text-slate-600">{value}</span>
+              <span className="text-xs text-slate-600">{value}</span>
             )}
           />
           {COMPOSITION_KEYS.map((key) => (

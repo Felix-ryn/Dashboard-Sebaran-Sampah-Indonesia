@@ -18,6 +18,7 @@ import {
   GapScatter,
   ProvinceGapBar,
 } from "@/components/charts/gap-charts";
+import { GapDistribution } from "@/components/charts/distribution-charts";
 import { useDashboard } from "@/components/providers/dashboard-provider";
 import {
   formatCompactTon,
@@ -36,7 +37,7 @@ export default function GapPage() {
   )[0];
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
         eyebrow="Kesenjangan pengelolaan"
         title="Sampah yang belum tercatat terkelola"
@@ -47,7 +48,7 @@ export default function GapPage() {
         <EmptyState description="Tidak ada wilayah yang cocok dengan filter. Reset filter untuk melihat kesenjangan nasional." />
       ) : (
         <>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <KpiCard
               icon={ArrowDownRight}
               label="Volume tidak terkelola"
@@ -80,7 +81,7 @@ export default function GapPage() {
             />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-3">
             <ChartCard
               icon={ScatterChart}
               title="Timbulan vs persentase terkelola"
@@ -100,7 +101,15 @@ export default function GapPage() {
             </ChartCard>
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-3">
+            <ChartCard
+              icon={Percent}
+              title="Sebaran proporsi tidak terkelola"
+              description="Jumlah wilayah berdasarkan tingkat kesenjangan relatif terhadap timbulan masing-masing."
+              footer="Semakin ke kanan, semakin besar proporsi timbulan yang belum tercatat terkelola."
+            >
+              <GapDistribution />
+            </ChartCard>
             <ChartCard
               icon={BarChart3}
               title="Peringkat 10 wilayah"
@@ -110,41 +119,42 @@ export default function GapPage() {
             >
               <GapRanking />
             </ChartCard>
-            <div className="space-y-4">
-              <InsightPanel title="Cara membaca">
-                Volume tidak terkelola yang besar dapat berasal dari wilayah
-                berpenduduk banyak. Persentase membantu melihat keparahan
-                relatif tanpa terpengaruh ukuran wilayah.
-              </InsightPanel>
-              <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-                  Ringkasan terfilter
-                </p>
-                <div className="mt-3 space-y-2.5 text-xs">
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-slate-500">Wilayah dianalisis</span>
-                    <span className="font-semibold text-slate-900">
-                      {formatNumber(filteredRegions.length)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-slate-500">Terkelola</span>
-                    <span className="font-semibold text-slate-900">
-                      {formatPct(national.pctTerkelola)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-slate-500">Tidak terkelola</span>
-                    <span className="font-semibold text-slate-900">
-                      {formatPct(national.pctTidakTerkelola)}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between gap-3">
-                    <span className="text-slate-500">Per kapita</span>
-                    <span className="font-semibold text-slate-900">
-                      {formatPerKapita(national.perKapita)}
-                    </span>
-                  </div>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            <InsightPanel title="Cara membaca" className="lg:col-span-2">
+              Volume tidak terkelola yang besar dapat berasal dari wilayah
+              berpenduduk banyak. Persentase membantu melihat keparahan
+              relatif tanpa terpengaruh ukuran wilayah.
+            </InsightPanel>
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+              <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">
+                Ringkasan terfilter
+              </p>
+              <div className="mt-4 space-y-3 text-sm">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-500">Wilayah dianalisis</span>
+                  <span className="font-semibold text-slate-900">
+                    {formatNumber(filteredRegions.length)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-500">Terkelola</span>
+                  <span className="font-semibold text-slate-900">
+                    {formatPct(national.pctTerkelola)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-500">Tidak terkelola</span>
+                  <span className="font-semibold text-slate-900">
+                    {formatPct(national.pctTidakTerkelola)}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between gap-3">
+                  <span className="text-slate-500">Per kapita</span>
+                  <span className="font-semibold text-slate-900">
+                    {formatPerKapita(national.perKapita)}
+                  </span>
                 </div>
               </div>
             </div>

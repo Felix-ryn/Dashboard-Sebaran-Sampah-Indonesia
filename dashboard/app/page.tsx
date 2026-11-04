@@ -16,10 +16,12 @@ import { ChartCard } from "@/components/ui/chart-card";
 import { InsightPanel } from "@/components/ui/insight-panel";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ClusterSummaryCards } from "@/components/ui/cluster-summary-cards";
+import { SectionHeading } from "@/components/ui/section-heading";
 import {
   ManagementDonut,
   ProvinceTimbulanBar,
 } from "@/components/charts/overview-charts";
+import { ManagementDistribution } from "@/components/charts/distribution-charts";
 import { useDashboard } from "@/components/providers/dashboard-provider";
 import {
   formatCompactTon,
@@ -46,7 +48,7 @@ export default function OverviewPage() {
   )[0];
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
         eyebrow="Ringkasan nasional"
         title="Gambaran pengelolaan sampah Indonesia"
@@ -61,7 +63,7 @@ export default function OverviewPage() {
         <EmptyState description="Tidak ada wilayah yang cocok dengan kombinasi filter saat ini. Reset filter untuk melihat ringkasan nasional." />
       ) : (
         <>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <KpiCard
               icon={Trash2}
               label="Total timbulan"
@@ -94,13 +96,13 @@ export default function OverviewPage() {
             />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-3">
             <ChartCard
               icon={BarChart3}
               title="10 provinsi dengan timbulan terbesar"
-              description="Klik salah satu batang untuk memfilter seluruh dashboard ke provinsi tersebut."
+              description="Batang dibagi menjadi volume terkelola dan tidak terkelola. Klik provinsi untuk memfilter dashboard."
               className="lg:col-span-2"
-              footer="Timbulan tahunan dihitung dari penjumlahan kabupaten/kota yang tersedia di dataset."
+              footer="Panjang total batang menunjukkan timbulan tahunan; warna biru menunjukkan bagian terkelola."
             >
               <ProvinceTimbulanBar />
             </ChartCard>
@@ -114,48 +116,37 @@ export default function OverviewPage() {
             </ChartCard>
           </div>
 
-          <section className="mt-5">
-            <div className="mb-3 flex items-center gap-2">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
-                <Boxes className="h-4 w-4" />
-              </span>
-              <div>
-                <h2 className="text-sm font-semibold text-slate-900">
-                  Sebaran klaster wilayah
-                </h2>
-                <p className="text-xs text-slate-500">
-                  Empat segmen hasil K-Means. Klik kartu untuk memfilter
-                  dashboard.
-                </p>
-              </div>
-            </div>
+          <section>
+            <SectionHeading
+              icon={Boxes}
+              title="Sebaran klaster wilayah"
+              description="Empat segmen hasil K-Means. Klik kartu untuk memfilter dashboard."
+            />
             <ClusterSummaryCards />
           </section>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
-            <InsightPanel title="Bacaan cepat" className="lg:col-span-2">
-              Dari {formatNumber(national.nWilayah)} wilayah,{" "}
-              <strong>{formatPct(national.pctTerkelola)}</strong> timbulan
-              tercatat terkelola. {topProvince?.provinsi} menyumbang timbulan
-              terbesar ({formatCompactTon(topProvince?.timbulan ?? 0)}),
-              sedangkan {worstProvince?.provinsi} memiliki proporsi tidak
-              terkelola tertinggi (
-              {formatPct(worstProvince?.pctTidakTerkelola ?? 0)}). Kelompok{" "}
-              <strong>{bestCluster?.label}</strong> memiliki median penanganan
-              tertinggi ({formatPct(bestCluster?.medianPenanganan ?? 0)}).
-            </InsightPanel>
-            <div className="rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
-              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
-                <Users className="h-4 w-4 text-blue-600" />
+          <div className="grid gap-5 lg:grid-cols-3">
+            <ChartCard
+              icon={Gauge}
+              title="Sebaran capaian pengelolaan"
+              description="Jumlah wilayah pada setiap rentang persentase sampah terkelola."
+              className="lg:col-span-2"
+              footer="Distribusi membantu melihat apakah capaian nasional ditopang banyak wilayah atau hanya beberapa wilayah dengan capaian tinggi."
+            >
+              <ManagementDistribution />
+            </ChartCard>
+            <div className="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-slate-500">
+                <Users className="h-5 w-5 text-blue-600" />
                 Konteks penduduk
               </div>
-              <p className="mt-3 text-2xl font-semibold text-slate-950">
+              <p className="mt-4 text-3xl font-semibold text-slate-950">
                 {formatNumber(national.penduduk)}
               </p>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-sm text-slate-500">
                 jiwa tercakup dalam wilayah terfilter
               </p>
-              <div className="mt-4 border-t border-slate-100 pt-3 text-xs leading-5 text-slate-500">
+              <div className="mt-5 border-t border-slate-100 pt-4 text-sm leading-6 text-slate-500">
                 Timbulan per kapita rata-rata{" "}
                 <span className="font-semibold text-slate-800">
                   {formatPerKapita(national.perKapita)}
@@ -165,6 +156,18 @@ export default function OverviewPage() {
               </div>
             </div>
           </div>
+
+          <InsightPanel title="Bacaan cepat">
+            Dari {formatNumber(national.nWilayah)} wilayah,{" "}
+            <strong>{formatPct(national.pctTerkelola)}</strong> timbulan
+            tercatat terkelola. {topProvince?.provinsi} menyumbang timbulan
+            terbesar ({formatCompactTon(topProvince?.timbulan ?? 0)}),
+            sedangkan {worstProvince?.provinsi} memiliki proporsi tidak
+            terkelola tertinggi (
+            {formatPct(worstProvince?.pctTidakTerkelola ?? 0)}). Kelompok{" "}
+            <strong>{bestCluster?.label}</strong> memiliki median penanganan
+            tertinggi ({formatPct(bestCluster?.medianPenanganan ?? 0)}).
+          </InsightPanel>
         </>
       )}
     </div>

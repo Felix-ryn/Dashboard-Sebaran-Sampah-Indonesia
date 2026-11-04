@@ -41,13 +41,13 @@ export function ClusterSummaryCards() {
                 <Boxes className="h-3.5 w-3.5" />
               </span>
             </div>
-            <p className="mt-3 text-xl font-semibold text-slate-950">
+            <p className="mt-4 text-2xl font-semibold text-slate-950">
               {formatNumber(item.count)}
-              <span className="ml-1 text-[11px] font-normal text-slate-500">
+              <span className="ml-1 text-sm font-normal text-slate-500">
                 wilayah
               </span>
             </p>
-            <p className="mt-0.5 text-[11px] text-slate-500">
+            <p className="mt-1 text-sm text-slate-500">
               {formatPct(share)} dari total
             </p>
             <ProgressBar

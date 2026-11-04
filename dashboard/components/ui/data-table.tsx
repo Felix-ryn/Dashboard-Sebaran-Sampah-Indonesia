@@ -152,7 +152,7 @@ export function DataTable() {
   return (
     <div>
       <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-xs text-slate-500">
+          <p className="text-sm text-slate-500">
           Menampilkan{" "}
           <span className="font-semibold text-slate-800">
             {sorted.length}
@@ -162,7 +162,7 @@ export function DataTable() {
         <button
           type="button"
           onClick={handleExport}
-          className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-100"
+          className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-100"
         >
           <Download className="h-3.5 w-3.5" />
           Ekspor CSV
@@ -177,7 +177,7 @@ export function DataTable() {
                 <th
                   key={column.key}
                   className={cn(
-                    "whitespace-nowrap border-b border-slate-200 px-3 py-2.5 text-[10px] font-semibold uppercase tracking-wide text-slate-500",
+                    "whitespace-nowrap border-b border-slate-200 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500",
                     column.align === "right" && "text-right",
                   )}
                 >
@@ -206,23 +206,23 @@ export function DataTable() {
                 className="border-b border-slate-100 last:border-0 hover:bg-blue-50/40"
               >
                 <td className="px-3 py-2.5">
-                  <p className="text-xs font-semibold text-slate-900">
+                  <p className="text-sm font-semibold text-slate-900">
                     {region.kabKota}
                   </p>
-                  <p className="mt-0.5 text-[10px] text-slate-500">
+                  <p className="mt-1 text-xs text-slate-500">
                     {region.provinsi}
                   </p>
                 </td>
                 <td className="px-3 py-2.5">
                   <ClusterBadge cluster={region.cluster} compact />
                 </td>
-                <td className="px-3 py-2.5 text-right text-xs text-slate-600">
+                <td className="px-4 py-3 text-right text-sm text-slate-600">
                   {formatNumber(region.penduduk)}
                 </td>
-                <td className="px-3 py-2.5 text-right text-xs font-medium text-slate-800">
+                <td className="px-4 py-3 text-right text-sm font-medium text-slate-800">
                   {formatCompactTon(region.timbulanTahunan)}
                 </td>
-                <td className="px-3 py-2.5">
+                <td className="px-4 py-3">
                   <div className="ml-auto w-[92px]">
                     <div className="mb-1 text-right text-xs font-semibold text-slate-800">
                       {formatPct(region.pctTerkelola)}
@@ -233,10 +233,10 @@ export function DataTable() {
                     />
                   </div>
                 </td>
-                <td className="px-3 py-2.5 text-right text-xs font-medium text-slate-700">
+                <td className="px-4 py-3 text-right text-sm font-medium text-slate-700">
                   {formatPct(region.pctTidakTerkelola)}
                 </td>
-                <td className="px-3 py-2.5 text-right text-xs text-slate-600">
+                <td className="px-4 py-3 text-right text-sm text-slate-600">
                   {formatDecimal(region.perKapita, 2)}
                 </td>
               </tr>
@@ -246,7 +246,7 @@ export function DataTable() {
       </div>
 
       <div className="mt-3 flex flex-col items-center justify-between gap-3 sm:flex-row">
-        <div className="flex items-center gap-2 text-xs text-slate-500">
+        <div className="flex items-center gap-2 text-sm text-slate-500">
           <span>Baris per halaman</span>
           <select
             value={pageSize}
@@ -254,7 +254,7 @@ export function DataTable() {
               setPageSize(Number(event.target.value));
               setPage(1);
             }}
-            className="rounded-lg border border-slate-200 bg-white px-2 py-1.5 text-xs text-slate-700 outline-none focus:border-blue-400"
+            className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-sm text-slate-700 outline-none focus:border-blue-400"
           >
             {[10, 25, 50, 100].map((size) => (
               <option key={size} value={size}>
@@ -277,7 +277,7 @@ export function DataTable() {
           >
             <ChevronLeft className="h-4 w-4" />
           </button>
-          <span className="px-2 text-xs font-medium text-slate-600">
+          <span className="px-2 text-sm font-medium text-slate-600">
             {safePage} / {totalPages}
           </span>
           <button

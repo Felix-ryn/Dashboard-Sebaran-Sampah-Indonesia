@@ -48,7 +48,7 @@ export function Sidebar({
       />
       <aside
         className={cn(
-          "fixed inset-y-0 left-0 z-50 flex w-[264px] flex-col text-slate-300 transition-transform duration-200 lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 flex w-[272px] flex-col text-slate-300 transition-transform duration-200 lg:translate-x-0",
           open ? "translate-x-0" : "-translate-x-full",
         )}
         style={{
@@ -58,14 +58,14 @@ export function Sidebar({
       >
         <div className="flex items-center justify-between px-5 pb-5 pt-6">
           <Link href="/" className="flex items-center gap-3" onClick={onClose}>
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-950/40">
+            <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-950/40">
               <Recycle className="h-5 w-5" strokeWidth={2.2} />
             </span>
             <span>
-              <span className="block text-sm font-semibold tracking-tight text-white">
+              <span className="block text-base font-semibold tracking-tight text-white">
                 {APP_NAME}
               </span>
-              <span className="mt-0.5 block text-[10px] uppercase tracking-[0.16em] text-slate-400">
+              <span className="mt-0.5 block text-xs uppercase tracking-[0.16em] text-slate-400">
                 {APP_SUBTITLE}
               </span>
             </span>
@@ -81,7 +81,7 @@ export function Sidebar({
         </div>
 
         <div className="px-3">
-          <p className="px-2 pb-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+          <p className="px-2 pb-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">
             Menu utama
           </p>
           <nav className="space-y-1">
@@ -98,7 +98,7 @@ export function Sidebar({
                   href={item.href}
                   onClick={onClose}
                   className={cn(
-                    "group flex items-center gap-3 rounded-xl border-l-2 px-3 py-2.5 text-sm transition",
+                    "group flex items-center gap-3 rounded-xl border-l-2 px-3 py-3 text-sm transition",
                     active
                       ? "border-blue-400 bg-white/10 font-semibold text-white shadow-sm"
                       : "border-transparent text-slate-400 hover:bg-white/5 hover:text-white",
@@ -106,7 +106,7 @@ export function Sidebar({
                 >
                   <Icon
                     className={cn(
-                      "h-[18px] w-[18px] shrink-0 transition",
+                      "h-5 w-5 shrink-0 transition",
                       active
                         ? "text-blue-300"
                         : "text-slate-500 group-hover:text-blue-300",
@@ -121,18 +121,18 @@ export function Sidebar({
         </div>
 
         <div className="mt-auto px-4 pb-5 pt-6">
-          <div className="rounded-xl border border-white/10 bg-white/[0.06] p-3.5">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+          <div className="rounded-xl border border-white/10 bg-white/[0.06] p-4">
+            <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
               Sumber data
             </p>
-            <p className="mt-1.5 text-xs font-semibold text-white">
+            <p className="mt-2 text-sm font-semibold text-white">
               SIPSN KLHK 2025
             </p>
-            <p className="mt-1 text-[11px] leading-5 text-slate-400">
+            <p className="mt-1 text-sm leading-6 text-slate-400">
               327 kabupaten/kota, 37 provinsi. Periode data satu tahun.
             </p>
           </div>
-          <p className="mt-4 px-1 text-[10px] leading-4 text-slate-500">
+          <p className="mt-4 px-1 text-xs leading-5 text-slate-500">
             Proyek Data Storytelling
             <br />
             Dashboard analitik pengelolaan sampah

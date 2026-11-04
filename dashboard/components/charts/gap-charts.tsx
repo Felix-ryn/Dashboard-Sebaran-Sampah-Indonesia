@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Cell,
   Legend,
+  LabelList,
   ReferenceLine,
   ResponsiveContainer,
   Scatter,
@@ -52,7 +53,7 @@ export function GapScatter() {
   })).filter((item) => item.data.length > 0);
 
   return (
-    <div className="h-[420px] w-full">
+    <div className="h-[460px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <ScatterChart margin={{ top: 8, right: 20, left: 4, bottom: 8 }}>
           <CartesianGrid {...cartesianGrid} />
@@ -75,7 +76,7 @@ export function GapScatter() {
             tick={axisTick}
             tickLine={false}
             axisLine={false}
-            width={46}
+            width={52}
           />
           <ZAxis
             type="number"
@@ -91,7 +92,7 @@ export function GapScatter() {
               value: "50% terkelola",
               position: "insideTopRight",
               fill: "#64748B",
-              fontSize: 10,
+              fontSize: 12,
             }}
           />
           <Tooltip
@@ -143,7 +144,7 @@ export function GapRanking() {
         <button
           type="button"
           onClick={() => setMetric("tidakTerkelolaTon")}
-          className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
+          className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
             metric === "tidakTerkelolaTon"
               ? "bg-blue-600 text-white"
               : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -154,7 +155,7 @@ export function GapRanking() {
         <button
           type="button"
           onClick={() => setMetric("pctTidakTerkelola")}
-          className={`rounded-lg px-3 py-1.5 text-xs font-semibold transition ${
+          className={`rounded-lg px-3 py-2 text-sm font-semibold transition ${
             metric === "pctTidakTerkelola"
               ? "bg-blue-600 text-white"
               : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -162,16 +163,16 @@ export function GapRanking() {
         >
           Persentase (%)
         </button>
-        <span className="ml-auto text-[11px] text-slate-500">
+        <span className="ml-auto text-sm text-slate-500">
           Klik batang untuk memfilter wilayah
         </span>
       </div>
-      <div className="h-[360px] w-full">
+      <div className="h-[400px] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
             data={data}
             layout="vertical"
-            margin={{ top: 4, right: 28, left: 4, bottom: 4 }}
+            margin={{ top: 4, right: 58, left: 4, bottom: 4 }}
             barCategoryGap={8}
           >
             <CartesianGrid horizontal={false} {...cartesianGrid} />
@@ -189,7 +190,7 @@ export function GapRanking() {
             <YAxis
               type="category"
               dataKey="kabKota"
-              width={150}
+              width={174}
               tick={axisTick}
               tickLine={false}
               axisLine={false}
@@ -220,6 +221,17 @@ export function GapRanking() {
                   fill={CLUSTER_BY_ID[region.cluster].color}
                 />
               ))}
+              <LabelList
+                dataKey={metric}
+                position="right"
+                fontSize={12}
+                fill="#475569"
+                formatter={(value) =>
+                  metric === "pctTidakTerkelola"
+                    ? `${formatNumber(Number(value), 0)}%`
+                    : formatCompactNumber(Number(value))
+                }
+              />
             </Bar>
           </BarChart>
         </ResponsiveContainer>
@@ -239,12 +251,12 @@ export function ProvinceGapBar() {
   }
 
   return (
-    <div className="h-[360px] w-full">
+    <div className="h-[400px] w-full">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           layout="vertical"
-          margin={{ top: 4, right: 30, left: 4, bottom: 4 }}
+          margin={{ top: 4, right: 58, left: 4, bottom: 4 }}
           barCategoryGap={10}
         >
           <CartesianGrid horizontal={false} {...cartesianGrid} />
@@ -258,7 +270,7 @@ export function ProvinceGapBar() {
           <YAxis
             type="category"
             dataKey="provinsi"
-            width={156}
+            width={178}
             tick={axisTick}
             tickLine={false}
             axisLine={false}
@@ -273,7 +285,7 @@ export function ProvinceGapBar() {
             ]}
             cursor={{ fill: "rgba(37, 99, 235, 0.06)" }}
           />
-          <Bar
+            <Bar
             dataKey="tidakTerkelola"
             radius={[0, 6, 6, 0]}
             barSize={16}
@@ -287,9 +299,9 @@ export function ProvinceGapBar() {
                 );
               }
             }}
-            className="cursor-pointer"
-          >
-            {data.map((entry) => (
+              className="cursor-pointer"
+            >
+              {data.map((entry) => (
               <Cell
                 key={entry.provinsi}
                 fill={
@@ -303,9 +315,16 @@ export function ProvinceGapBar() {
                     ? 1
                     : 0.55
                 }
+                />
+              ))}
+              <LabelList
+                dataKey="tidakTerkelola"
+                position="right"
+                fontSize={12}
+                fill="#475569"
+                formatter={(value) => formatCompactNumber(Number(value))}
               />
-            ))}
-          </Bar>
+            </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>

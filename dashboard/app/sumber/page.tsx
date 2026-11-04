@@ -14,7 +14,7 @@ import { KpiCard } from "@/components/ui/kpi-card";
 import { ChartCard } from "@/components/ui/chart-card";
 import { InsightPanel } from "@/components/ui/insight-panel";
 import { EmptyState } from "@/components/ui/empty-state";
-import { DominantList } from "@/components/ui/dominant-list";
+import { DominantBar } from "@/components/charts/dominant-bar";
 import {
   SourceDonut,
   SourceStackedBar,
@@ -36,7 +36,7 @@ export default function SourcePage() {
   const totalTon = sourceAvg.reduce((sum, item) => sum + item.ton, 0);
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
         eyebrow="Sumber sampah"
         title="Dari mana sampah berasal"
@@ -50,7 +50,7 @@ export default function SourcePage() {
         />
       ) : (
         <>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <KpiCard
               icon={Store}
               label="Sumber dominan"
@@ -85,7 +85,7 @@ export default function SourcePage() {
             />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <ChartCard
               icon={PieChart}
               title="Proporsi sumber terfilter"
@@ -100,14 +100,14 @@ export default function SourcePage() {
               description="Jumlah wilayah yang menjadikan setiap sumber sebagai kontributor terbesar."
               footer="Sumber dominan ditentukan dari nilai terbesar pada masing-masing baris."
             >
-              <DominantList
+              <DominantBar
                 items={dominantSources}
                 total={filteredSources.length}
               />
             </ChartCard>
           </div>
 
-          <div className="mt-5">
+          <div>
             <ChartCard
               icon={BarChart3}
               title="Proporsi sumber per provinsi"
@@ -118,7 +118,7 @@ export default function SourcePage() {
             </ChartCard>
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <InsightPanel title="Penyaringan anomali" tone="warning">
               Sebanyak <strong>{formatNumber(excludedSourceCount)} baris</strong>{" "}
               pada filter saat ini dikecualikan karena total sumber berada di

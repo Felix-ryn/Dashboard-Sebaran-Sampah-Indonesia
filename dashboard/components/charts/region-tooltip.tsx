@@ -21,12 +21,12 @@ export function RegionTooltip({
   const cluster = CLUSTER_BY_ID[region.cluster];
 
   return (
-    <div className="min-w-[210px] rounded-xl border border-slate-200 bg-white p-3 text-xs shadow-xl">
-      <p className="text-sm font-semibold text-slate-950">{region.kabKota}</p>
-      <p className="mt-0.5 text-[11px] text-slate-500">{region.provinsi}</p>
+    <div className="min-w-[240px] rounded-xl border border-slate-200 bg-white p-4 text-sm shadow-xl">
+      <p className="text-base font-semibold text-slate-950">{region.kabKota}</p>
+      <p className="mt-0.5 text-sm text-slate-500">{region.provinsi}</p>
       {showCluster ? (
         <span
-          className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2 py-0.5 text-[10px] font-semibold"
+          className="mt-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold"
           style={{ backgroundColor: cluster.soft, color: cluster.color }}
         >
           <span
@@ -36,7 +36,7 @@ export function RegionTooltip({
           {cluster.label}
         </span>
       ) : null}
-      <div className="mt-3 space-y-1.5 border-t border-slate-100 pt-2.5 text-[11px] text-slate-600">
+      <div className="mt-3 space-y-2 border-t border-slate-100 pt-3 text-sm text-slate-600">
         <div className="flex items-center justify-between gap-4">
           <span>Timbulan tahunan</span>
           <span className="font-semibold text-slate-900">

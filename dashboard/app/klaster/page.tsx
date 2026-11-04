@@ -36,7 +36,7 @@ export default function ClusterPage() {
   )[0];
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
         eyebrow="Klaster wilayah"
         title="Empat segmen capaian pengelolaan sampah"
@@ -47,7 +47,7 @@ export default function ClusterPage() {
         <EmptyState description="Tidak ada wilayah yang cocok dengan filter. Reset filter untuk melihat seluruh klaster." />
       ) : (
         <>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <KpiCard
               icon={Boxes}
               label="Wilayah dianalisis"
@@ -80,7 +80,7 @@ export default function ClusterPage() {
             />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-3">
             <ChartCard
               icon={Network}
               title="Sebaran wilayah pada ruang PCA"
@@ -100,12 +100,12 @@ export default function ClusterPage() {
             </ChartCard>
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <ChartCard
               icon={BarChart3}
-              title="Median pengurangan dan penanganan"
-              description="Perbandingan capaian antar klaster dalam satuan persen."
-              footer="Klik batang untuk memfilter klaster."
+              title="Komposisi pengelolaan per klaster"
+              description="Pembagian total tonase menjadi pengurangan, penanganan, dan tidak terkelola."
+              footer="Angka dihitung dari agregasi tonase wilayah dalam setiap klaster. Klik batang untuk memfilter klaster."
             >
               <ClusterProfileBar />
             </ChartCard>
@@ -119,7 +119,7 @@ export default function ClusterPage() {
             </ChartCard>
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <ChartCard
               icon={Radar}
               title="Profil relatif klaster"

@@ -13,7 +13,7 @@ import { KpiCard } from "@/components/ui/kpi-card";
 import { ChartCard } from "@/components/ui/chart-card";
 import { InsightPanel } from "@/components/ui/insight-panel";
 import { EmptyState } from "@/components/ui/empty-state";
-import { DominantList } from "@/components/ui/dominant-list";
+import { DominantBar } from "@/components/charts/dominant-bar";
 import {
   CompositionDonut,
   CompositionStackedBar,
@@ -38,7 +38,7 @@ export default function CompositionPage() {
   const topDominant = dominantComps[0];
 
   return (
-    <div>
+    <div className="space-y-6">
       <PageHeader
         eyebrow="Komposisi sampah"
         title="Jenis material penyusun sampah"
@@ -52,7 +52,7 @@ export default function CompositionPage() {
         />
       ) : (
         <>
-          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <KpiCard
               icon={Utensils}
               label="Jenis dominan"
@@ -89,7 +89,7 @@ export default function CompositionPage() {
             />
           </div>
 
-          <div className="mt-5 grid gap-4 lg:grid-cols-2">
+          <div className="grid gap-5 lg:grid-cols-2">
             <ChartCard
               icon={PieChart}
               title="Komposisi rata-rata terfilter"
@@ -104,14 +104,14 @@ export default function CompositionPage() {
               description="Jumlah wilayah yang menjadikan setiap jenis sebagai komposisi terbesar."
               footer="Jenis dominan ditentukan dari persentase terbesar pada masing-masing baris."
             >
-              <DominantList
+              <DominantBar
                 items={dominantComps}
                 total={filteredCompositions.length}
               />
             </ChartCard>
           </div>
 
-          <div className="mt-5">
+          <div>
             <ChartCard
               icon={BarChart3}
               title="Komposisi per provinsi"
@@ -122,7 +122,7 @@ export default function CompositionPage() {
             </ChartCard>
           </div>
 
-          <div className="mt-5">
+          <div>
             <InsightPanel title="Catatan kualitas data" tone="warning">
               Dari 330 baris komposisi mentah,{" "}
               <strong>{formatNumber(data.compositions.length)} baris</strong>{" "}

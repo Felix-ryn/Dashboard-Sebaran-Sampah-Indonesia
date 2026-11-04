@@ -19,7 +19,7 @@ export function InsightPanel({
   return (
     <div
       className={cn(
-        "rounded-2xl border p-4",
+        "rounded-2xl border p-5",
         isWarning
           ? "border-amber-200 bg-amber-50/70"
           : "border-blue-200/70 bg-blue-50/60",
@@ -29,18 +29,18 @@ export function InsightPanel({
       <div className="flex items-start gap-3">
         <span
           className={cn(
-            "mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg",
+            "mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-xl",
             isWarning
               ? "bg-amber-100 text-amber-700"
               : "bg-blue-100 text-blue-700",
           )}
         >
-          <Icon className="h-4 w-4" strokeWidth={2} />
+          <Icon className="h-5 w-5" strokeWidth={2} />
         </span>
         <div>
           <p
             className={cn(
-              "text-xs font-semibold uppercase tracking-wide",
+              "text-sm font-semibold uppercase tracking-wide",
               isWarning ? "text-amber-800" : "text-blue-800",
             )}
           >
@@ -48,7 +48,7 @@ export function InsightPanel({
           </p>
           <div
             className={cn(
-              "mt-1 text-sm leading-6",
+              "mt-1.5 text-base leading-7",
               isWarning ? "text-amber-900" : "text-slate-700",
             )}
           >
