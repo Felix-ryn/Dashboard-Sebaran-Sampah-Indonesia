@@ -245,7 +245,7 @@ export function DataTable() {
         </table>
       </div>
 
-      <div className="mt-2 flex shrink-0 flex-col items-center justify-between gap-2 sm:flex-row">
+      <div className="mt-2 flex shrink-0 flex-col items-center justify-between gap-2 sm:flex-row md:pr-[4.5rem]">
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <span>Baris per halaman</span>
           <select

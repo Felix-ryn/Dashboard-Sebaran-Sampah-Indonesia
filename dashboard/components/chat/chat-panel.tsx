@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
-import { ArrowUpRight, SendHorizontal, Sparkles, X } from "lucide-react";
+import { ArrowUpRight, MessageCircle, SendHorizontal, X } from "lucide-react";
 import gsap from "gsap";
 import { cn } from "@/lib/cn";
 import { useDashboard } from "@/components/providers/dashboard-provider";
@@ -167,7 +167,7 @@ export function ChatPanel({ open, onClose }: { open: boolean; onClose: () => voi
       <header className="flex shrink-0 items-start justify-between gap-3">
         <div className="flex min-w-0 items-center gap-3">
           <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F6C21B] text-[#16181D]">
-            <Sparkles className="h-[18px] w-[18px]" strokeWidth={2.25} />
+            <MessageCircle className="h-[18px] w-[18px]" strokeWidth={2.25} />
           </span>
           <div className="min-w-0">
             <h2 className="truncate text-[15px] font-semibold leading-5 text-[#16181D]">Tanya Data</h2>

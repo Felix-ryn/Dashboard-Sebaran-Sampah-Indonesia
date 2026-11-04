@@ -9,7 +9,7 @@ import {
   RotateCcw,
   Search,
   Boxes,
-  Sparkles,
+  MessageCircle,
 } from "lucide-react";
 import { CLUSTER_META, NAV_ITEMS, YEAR } from "@/lib/constants";
 import { cn } from "@/lib/cn";
@@ -154,7 +154,7 @@ export function Topbar({
             chatOpen ? "bg-[#16181D] text-white" : "bg-[#F6C21B] hover:brightness-95",
           )}
         >
-          <Sparkles className={cn("h-4 w-4", chatOpen && "text-[#F6C21B]")} strokeWidth={2.25} />
+          <MessageCircle className={cn("h-4 w-4", chatOpen && "text-[#F6C21B]")} strokeWidth={2.25} />
           Tanya Data
         </button>
         <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 @[1500px]:inline-flex">

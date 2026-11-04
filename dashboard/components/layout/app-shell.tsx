@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
+import { ChatLauncher } from "@/components/chat/chat-launcher";
 import { ChatPanel } from "@/components/chat/chat-panel";
 import { DashboardProvider } from "@/components/providers/dashboard-provider";
 import { Intro } from "@/components/layout/intro";
@@ -150,7 +151,7 @@ export function AppShell({
     <DashboardProvider data={data}>
       <SectionNavContext.Provider value={{ go }}>
         <div className="flex h-dvh gap-3 overflow-hidden bg-canvas bg-grid p-3">
-          <Rail />
+          <Rail chatOpen={chatOpen} onChat={() => setChatOpen((value) => !value)} />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <Topbar chatOpen={chatOpen} onChat={() => setChatOpen((value) => !value)} />
             <div className="relative min-h-0 flex-1 overflow-hidden rounded-[28px]">
@@ -161,6 +162,7 @@ export function AppShell({
                 {children}
               </main>
 
+              <ChatLauncher open={chatOpen} onOpen={() => setChatOpen(true)} />
               <ChatPanel open={chatOpen} onClose={closeChat} />
 
               <div

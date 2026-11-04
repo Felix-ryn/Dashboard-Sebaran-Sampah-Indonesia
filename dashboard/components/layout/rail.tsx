@@ -9,6 +9,7 @@ import {
   Database,
   LayoutDashboard,
   ListOrdered,
+  MessageCircle,
   PieChart,
   Truck,
   TriangleAlert,
@@ -90,6 +91,66 @@ function RailButton({
   );
 }
 
+/** Tombol chatbot di sidebar: dibuat berbeda dari menu halaman (ikon kuning, label "Chatbot"). */
+function ChatRailButton({
+  open,
+  active,
+  onClick,
+}: {
+  open: boolean;
+  active: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label="Buka chatbot Tanya Data"
+      aria-pressed={active}
+      className={cn(
+        "group relative flex h-11 items-center gap-3 pl-[13px] text-left transition-[width] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        open ? "w-full pr-3" : "w-11",
+      )}
+    >
+      <span
+        className={cn(
+          "absolute inset-0 rounded-full transition-all duration-300",
+          active ? "scale-100 bg-[#16181D]" : "scale-100 bg-[#FDF3CF] group-hover:bg-[#F6C21B]",
+        )}
+      />
+      <MessageCircle
+        className={cn(
+          "relative h-[18px] w-[18px] shrink-0 transition-colors",
+          active ? "text-[#F6C21B]" : "text-[#16181D]",
+        )}
+        strokeWidth={2.25}
+      />
+      <span
+        className={cn(
+          "relative flex items-center gap-2 overflow-hidden whitespace-nowrap text-[13.5px] font-semibold transition-opacity duration-200",
+          open ? "opacity-100 delay-100" : "w-0 opacity-0",
+          active ? "text-white" : "text-[#16181D]",
+        )}
+      >
+        Tanya Data
+        <span
+          className={cn(
+            "rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider",
+            active ? "bg-[#F6C21B] text-[#16181D]" : "bg-[#16181D] text-[#F6C21B]",
+          )}
+        >
+          Chatbot
+        </span>
+      </span>
+      {!open ? (
+        <span className="pointer-events-none absolute left-full top-1/2 z-50 ml-3 -translate-y-1/2 whitespace-nowrap rounded-full bg-[#16181D] px-3 py-1.5 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100">
+          Chatbot: Tanya Data
+        </span>
+      ) : null}
+    </button>
+  );
+}
+
 function GroupTitle({ children, open }: { children: string; open: boolean }) {
   return open ? (
     <p className="px-[13px] pb-1.5 pt-4 text-[10px] font-semibold uppercase tracking-[0.16em] text-slate-400 first:pt-2">
@@ -100,7 +161,13 @@ function GroupTitle({ children, open }: { children: string; open: boolean }) {
   );
 }
 
-export function Rail() {
+export function Rail({
+  chatOpen,
+  onChat,
+}: {
+  chatOpen: boolean;
+  onChat: () => void;
+}) {
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -161,6 +228,8 @@ export function Rail() {
               />
             </div>
           ))}
+          <GroupTitle open={open}>Asisten</GroupTitle>
+          <ChatRailButton open={open} active={chatOpen} onClick={onChat} />
         </div>
 
         <div className="mt-auto flex flex-col gap-2 pt-3">
