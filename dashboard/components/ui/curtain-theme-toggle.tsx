@@ -243,7 +243,8 @@ export function ThemeToggle({
     background: t.btnBg,
     color: t.btnText,
     boxShadow: `0 0 0 1.5px ${t.btnRing}`,
-    zIndex: 9999,
+    // Varian ikon berada di dalam tata letak: harus tertutup tirai dan layar intro
+    zIndex: isIcon ? 0 : 9999,
     outline: "none",
     transition:
       "background 0.3s ease, color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease",
