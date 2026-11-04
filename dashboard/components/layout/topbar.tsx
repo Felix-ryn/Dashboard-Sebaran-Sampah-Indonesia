@@ -1,52 +1,155 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { CalendarDays, Database, Menu } from "lucide-react";
-import { NAV_ITEMS, YEAR } from "@/lib/constants";
+import {
+  CalendarDays,
+  ChevronDown,
+  Database,
+  MapPin,
+  RotateCcw,
+  Search,
+  Boxes,
+} from "lucide-react";
+import { CLUSTER_META, NAV_ITEMS, YEAR } from "@/lib/constants";
+import { cn } from "@/lib/cn";
+import { useDashboard } from "@/components/providers/dashboard-provider";
+import { NAV_ICONS } from "@/components/layout/rail";
 
-export function Topbar({ onMenu }: { onMenu: () => void }) {
+const pill =
+  "h-11 appearance-none rounded-full bg-white text-sm text-slate-700 outline-none transition focus:ring-2 focus:ring-[#F6C21B]/60";
+
+export function Topbar() {
   const pathname = usePathname();
+  const {
+    filters,
+    setProvinsi,
+    setCluster,
+    setSearch,
+    resetFilters,
+    activeFilterCount,
+    filteredRegions,
+    data,
+    provincesList,
+  } = useDashboard();
+
   const current =
     NAV_ITEMS.find((item) =>
       item.href === "/" ? pathname === "/" : pathname.startsWith(item.href),
     ) ?? NAV_ITEMS[0];
+  const CurrentIcon = NAV_ICONS[current.icon];
+  const showFilters = true;
 
   return (
-    <header className="sticky top-0 z-30 border-b border-slate-200/80 bg-white/90 backdrop-blur">
-      <div className="flex h-[72px] items-center gap-3 px-4 sm:px-6 lg:px-8">
-        <button
-          type="button"
-          onClick={onMenu}
-          className="rounded-lg border border-slate-200 p-2 text-slate-600 hover:bg-slate-50 lg:hidden"
-          aria-label="Buka menu"
-        >
-          <Menu className="h-5 w-5" />
-        </button>
+    <header className="enter-top flex h-11 shrink-0 items-center gap-2.5">
+      <div
+        className={cn(
+          "relative w-[260px] shrink-0 transition-opacity",
+          !showFilters && "pointer-events-none opacity-40",
+        )}
+      >
+        <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+        <label htmlFor="filter-search" className="sr-only">
+          Cari kabupaten atau kota
+        </label>
+        <input
+          id="filter-search"
+          type="search"
+          value={filters.search}
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Cari kabupaten/kota..."
+          className={cn(pill, "w-full pl-11 pr-4 placeholder:text-slate-400")}
+        />
+      </div>
 
-        <div className="min-w-0 flex-1">
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-blue-600">
-            Dashboard analitik
-          </p>
-          <div className="flex items-center gap-2">
-            <h1 className="truncate text-lg font-semibold text-slate-950">
-              {current.label}
-            </h1>
-            <span className="hidden truncate text-sm text-slate-500 md:block">
-              {current.description}
-            </span>
+      {showFilters ? (
+        <>
+          <div className="relative hidden xl:block">
+            <MapPin className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <label htmlFor="filter-provinsi" className="sr-only">
+              Filter provinsi
+            </label>
+            <select
+              id="filter-provinsi"
+              value={filters.provinsi}
+              onChange={(event) => setProvinsi(event.target.value)}
+              className={cn(pill, "w-[190px] pl-11 pr-9")}
+            >
+              <option value="all">Semua provinsi</option>
+              {provincesList.map((provinsi) => (
+                <option key={provinsi} value={provinsi}>
+                  {provinsi}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
           </div>
-        </div>
 
-        <div className="hidden items-center gap-2 sm:flex">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-600">
-            <CalendarDays className="h-4 w-4 text-blue-600" />
-            Data {YEAR}
+          <div className="relative hidden xl:block">
+            <Boxes className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <label htmlFor="filter-cluster" className="sr-only">
+              Filter klaster
+            </label>
+            <select
+              id="filter-cluster"
+              value={filters.cluster === "all" ? "all" : String(filters.cluster)}
+              onChange={(event) => {
+                const value = event.target.value;
+                setCluster(value === "all" ? "all" : (Number(value) as 0 | 1 | 2 | 3));
+              }}
+              className={cn(pill, "w-[190px] pl-11 pr-9")}
+            >
+              <option value="all">Semua klaster</option>
+              {CLUSTER_META.map((cluster) => (
+                <option key={cluster.id} value={cluster.id}>
+                  {cluster.label}
+                </option>
+              ))}
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+          </div>
+
+          <button
+            type="button"
+            onClick={resetFilters}
+            disabled={activeFilterCount === 0}
+            className={cn(
+              "inline-flex h-11 items-center gap-2 rounded-full px-4 text-sm font-semibold transition",
+              activeFilterCount > 0
+                ? "bg-[#F6C21B] text-[#16181D] hover:brightness-95"
+                : "pointer-events-none bg-white/60 text-slate-400",
+            )}
+          >
+            <RotateCcw className="h-4 w-4" />
+            <span className="hidden 2xl:inline">Reset</span>
+            {activeFilterCount > 0 ? (
+              <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-[#16181D] px-1.5 text-[11px] font-semibold text-white">
+                {activeFilterCount}
+              </span>
+            ) : null}
+          </button>
+
+          <span className="hidden whitespace-nowrap rounded-full bg-white/60 px-4 py-3 text-sm text-slate-600 lg:inline">
+            <span className="font-semibold text-slate-900">
+              {filteredRegions.length}
+            </span>{" "}
+            / {data.regions.length} wilayah
           </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-3 py-2 text-sm font-medium text-blue-700">
-            <Database className="h-4 w-4" />
-            SIPSN KLHK
-          </span>
-        </div>
+        </>
+      ) : null}
+
+      <div className="ml-auto flex items-center gap-2.5">
+        <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 2xl:inline-flex">
+          <CalendarDays className="h-4 w-4 text-slate-400" />
+          Data {YEAR}
+        </span>
+        <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 2xl:inline-flex">
+          <Database className="h-4 w-4 text-slate-400" />
+          SIPSN KLHK
+        </span>
+        <span className="inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full bg-[#16181D] px-5 text-sm font-semibold text-white">
+          <CurrentIcon className="h-4 w-4 text-[#F6C21B]" />
+          {current.label}
+        </span>
       </div>
     </header>
   );

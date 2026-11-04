@@ -1,7 +1,19 @@
+"use client";
+
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import {
+  ExpandButton,
+  ExpandedProvider,
+  expandedCardClass,
+  useExpandable,
+} from "@/components/ui/expandable";
 
+/**
+ * Kartu bento putih: ikon bulat + judul di kiri atas, isi mengisi sisa tinggi
+ * (min-h-0 agar chart ikut menyesuaikan dan halaman tidak perlu di-scroll).
+ */
 export function ChartCard({
   icon: Icon,
   title,
@@ -19,41 +31,63 @@ export function ChartCard({
   children: ReactNode;
   className?: string;
   bodyClassName?: string;
-  footer?: ReactNode;
+  footer?: string;
 }) {
+  const { cardRef, expanded, rect, toggle } = useExpandable();
+
   return (
+    <div className={cn("relative min-h-0 min-w-0", className)}>
     <section
+      ref={cardRef}
+      data-anim="card"
+      style={expanded ? rect : undefined}
       className={cn(
-        "flex flex-col rounded-2xl border border-slate-200/80 bg-white shadow-sm",
-        className,
+        "flex min-w-0 flex-col rounded-[28px] bg-white p-4",
+        expanded ? expandedCardClass : "h-full min-h-0",
       )}
     >
-      <div className="flex items-start justify-between gap-3 border-b border-slate-100 px-5 py-5 sm:px-6">
-        <div className="flex items-start gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
-            <Icon className="h-5 w-5" strokeWidth={2} />
+      <header className="flex shrink-0 items-start justify-between gap-3">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F3F0EA] text-[#16181D]">
+            <Icon className="h-[18px] w-[18px]" strokeWidth={2} />
           </span>
-          <div>
-            <h2 className="text-lg font-semibold leading-6 text-slate-900">
+          <div className="min-w-0">
+            <h2 className="truncate text-[15px] font-semibold leading-5 text-[#16181D]">
               {title}
             </h2>
             {description ? (
-              <p className="mt-1 text-sm leading-6 text-slate-500">
+              <p
+                title={description}
+                className="line-clamp-1 text-xs leading-4 text-slate-500"
+              >
                 {description}
               </p>
             ) : null}
           </div>
         </div>
-        {action ? <div className="shrink-0">{action}</div> : null}
-      </div>
-      <div className={cn("flex-1 px-4 py-5 sm:px-6", bodyClassName)}>
-        {children}
+        <div className="flex shrink-0 items-center gap-2">
+          {action}
+          <ExpandButton expanded={expanded} onClick={toggle} />
+        </div>
+      </header>
+      <div
+        className={cn(
+          "@container mt-3 min-h-0 flex-1",
+          expanded ? "overflow-auto" : "overflow-hidden",
+          bodyClassName,
+        )}
+      >
+        <ExpandedProvider value={expanded}>{children}</ExpandedProvider>
       </div>
       {footer ? (
-        <div className="border-t border-slate-100 px-5 py-4 text-sm leading-6 text-slate-500 sm:px-6">
+        <p
+          title={footer}
+          className="mt-2 line-clamp-2 shrink-0 text-[11px] leading-4 text-slate-500"
+        >
           {footer}
-        </div>
+        </p>
       ) : null}
     </section>
+    </div>
   );
 }

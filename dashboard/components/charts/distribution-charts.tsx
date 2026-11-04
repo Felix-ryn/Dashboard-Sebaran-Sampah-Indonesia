@@ -4,22 +4,21 @@ import { useMemo } from "react";
 import {
   Bar,
   BarChart,
-  CartesianGrid,
   Cell,
   LabelList,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import { ResponsiveContainer } from "@/components/charts/responsive";
 import { useDashboard } from "@/components/providers/dashboard-provider";
 import { EmptyState } from "@/components/ui/empty-state";
 import {
   axisTick,
-  cartesianGrid,
   tooltipContentStyle,
   tooltipItemStyle,
 } from "@/components/charts/chart-theme";
+import { useHover } from "@/components/charts/use-hover";
 import { formatNumber, formatPct } from "@/lib/format";
 import type { Region } from "@/lib/types";
 
@@ -51,25 +50,33 @@ function buildDistribution(
 
 function DistributionChart({
   data,
+  xTitle,
 }: {
   data: { label: string; count: number; share: number; color: string }[];
+  xTitle: string;
 }) {
+  const hover = useHover();
+
   if (data.every((item) => item.count === 0)) {
     return <EmptyState />;
   }
 
   return (
-    <div className="h-[320px] w-full">
+    <div className="flex h-full min-h-0 flex-col">
+      <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
+        Jumlah wilayah
+      </p>
+      <div className="min-h-0 w-full flex-1">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
           margin={{ top: 28, right: 8, left: 0, bottom: 4 }}
           barCategoryGap={18}
         >
-          <CartesianGrid vertical={false} {...cartesianGrid} />
           <XAxis
             dataKey="label"
-            tick={axisTick}
+            tickFormatter={(value) => String(value).replace("%", "")}
+            tick={{ ...axisTick, fontSize: 11 }}
             tickLine={false}
             axisLine={false}
             interval={0}
@@ -95,11 +102,17 @@ function DistributionChart({
                 "Jumlah wilayah",
               ];
             }}
-            cursor={{ fill: "rgba(37, 99, 235, 0.06)" }}
+            cursor={{ fill: "rgba(22, 24, 29, 0.05)" }}
           />
-          <Bar dataKey="count" radius={[7, 7, 0, 0]} barSize={44}>
-            {data.map((entry) => (
-              <Cell key={entry.label} fill={entry.color} />
+          <Bar
+            isAnimationActive={false}
+            {...hover.handlers}
+            dataKey="count"
+            radius={[7, 7, 0, 0]}
+            barSize={44}
+          >
+            {data.map((entry, index) => (
+              <Cell key={entry.label} fill={entry.color} fillOpacity={hover.dim(index)} />
             ))}
             <LabelList
               dataKey="count"
@@ -111,6 +124,8 @@ function DistributionChart({
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
+      <p className="mt-1 text-center text-xs text-slate-500">{xTitle}</p>
     </div>
   );
 }
@@ -123,17 +138,22 @@ export function ManagementDistribution() {
         filteredRegions,
         (region) => region.pctTerkelola,
         [
-          { label: "0-20%", min: 0, max: 20, color: "#E11D48" },
-          { label: "20-40%", min: 20, max: 40, color: "#F59E0B" },
-          { label: "40-60%", min: 40, max: 60, color: "#0EA5E9" },
-          { label: "60-80%", min: 60, max: 80, color: "#14B8A6" },
-          { label: "80-100%", min: 80, max: Infinity, color: "#2563EB" },
+          { label: "0-20%", min: 0, max: 20, color: "#BFD9EA" },
+          { label: "20-40%", min: 20, max: 40, color: "#8FBEDB" },
+          { label: "40-60%", min: 40, max: 60, color: "#5FA3CC" },
+          { label: "60-80%", min: 60, max: 80, color: "#2F88BD" },
+          { label: "80-100%", min: 80, max: Infinity, color: "#0072B2" },
         ],
       ),
     [filteredRegions],
   );
 
-  return <DistributionChart data={data} />;
+  return (
+    <DistributionChart
+      data={data}
+      xTitle="% sampah terkelola di tiap wilayah"
+    />
+  );
 }
 
 export function GapDistribution() {
@@ -144,15 +164,20 @@ export function GapDistribution() {
         filteredRegions,
         (region) => region.pctTidakTerkelola,
         [
-          { label: "0-20%", min: 0, max: 20, color: "#14B8A6" },
-          { label: "20-40%", min: 20, max: 40, color: "#0EA5E9" },
-          { label: "40-60%", min: 40, max: 60, color: "#F59E0B" },
-          { label: "60-80%", min: 60, max: 80, color: "#F97316" },
-          { label: "80-100%", min: 80, max: Infinity, color: "#E11D48" },
+          { label: "0-20%", min: 0, max: 20, color: "#FBD9BF" },
+          { label: "20-40%", min: 20, max: 40, color: "#F4B685" },
+          { label: "40-60%", min: 40, max: 60, color: "#EA9050" },
+          { label: "60-80%", min: 60, max: 80, color: "#DE7326" },
+          { label: "80-100%", min: 80, max: Infinity, color: "#D55E00" },
         ],
       ),
     [filteredRegions],
   );
 
-  return <DistributionChart data={data} />;
+  return (
+    <DistributionChart
+      data={data}
+      xTitle="% sampah tidak terkelola di tiap wilayah"
+    />
+  );
 }

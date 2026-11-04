@@ -11,110 +11,100 @@ import {
 import { PageHeader } from "@/components/ui/page-header";
 import { KpiCard } from "@/components/ui/kpi-card";
 import { ChartCard } from "@/components/ui/chart-card";
-import { InsightPanel } from "@/components/ui/insight-panel";
+import { TabCard } from "@/components/ui/tab-card";
 import { DataTable } from "@/components/ui/data-table";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { KpiRow, PageGrid, Panels } from "@/components/ui/page-grid";
 import {
   TopPerKapitaRegionsBar,
   TopTimbulanRegionsBar,
 } from "@/components/charts/ranking-charts";
 import { useDashboard } from "@/components/providers/dashboard-provider";
-import {
-  formatCompactTon,
-  formatNumber,
-  formatPct,
-} from "@/lib/format";
+import { formatCompactTon, formatNumber, formatPct } from "@/lib/format";
 
 export default function RankingPage() {
   const { filteredRegions, national, filters } = useDashboard();
+  const topRegion = [...filteredRegions].sort(
+    (a, b) => b.timbulanTahunan - a.timbulanTahunan,
+  )[0];
 
   return (
-    <div className="space-y-6">
+    <PageGrid>
       <PageHeader
+        className="lg:col-span-4"
         eyebrow="Peringkat dan tabel"
-        title="Telusuri wilayah satu per satu"
-        description="Tabel interaktif berisi seluruh kabupaten/kota pada dataset. Gunakan filter global untuk mempersempit wilayah, lalu urutkan kolom dan ekspor hasilnya."
+        title={
+          topRegion
+            ? `${topRegion.kabKota} menghasilkan sampah terbanyak (${formatCompactTon(topRegion.timbulanTahunan)})`
+            : "Telusuri wilayah satu per satu"
+        }
+        description="Seluruh kabupaten/kota dalam dataset. Gunakan filter di atas untuk mempersempit, urutkan kolom, lalu ekspor hasilnya."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+      <KpiRow>
         <KpiCard
+          dark
           icon={Table2}
           label="Wilayah terfilter"
           value={`${formatNumber(filteredRegions.length)} wilayah`}
-          helper="Data mengikuti filter aktif"
-          tone="blue"
+          helper="Mengikuti filter aktif"
         />
         <KpiCard
           icon={Trash2}
           label="Total timbulan"
           value={formatCompactTon(national.timbulan)}
           helper="Penjumlahan wilayah terfilter"
-          tone="navy"
         />
         <KpiCard
           icon={TriangleAlert}
           label="Tidak terkelola"
           value={formatCompactTon(national.tidakTerkelola)}
           helper={formatPct(national.pctTidakTerkelola)}
-          tone="amber"
+          tone="rose"
         />
         <KpiCard
           icon={Gauge}
           label="Rasio pengelolaan"
           value={formatPct(national.pctTerkelola)}
           helper="Terkelola dibagi timbulan"
-          tone="teal"
         />
-      </div>
+      </KpiRow>
 
-      <section>
-        <SectionHeading
+      <Panels>
+        <TabCard
+          className="lg:col-span-4"
           icon={BarChart3}
           title="Sorotan wilayah"
-          description="Dua sudut pandang untuk menemukan wilayah dengan beban timbulan dan intensitas per kapita tertinggi."
+          tabs={[
+            {
+              key: "timbulan",
+              label: "Timbulan terbesar",
+              description: "10 wilayah; klik batang untuk memfilter.",
+              footer: "Warna batang mengikuti klaster wilayah.",
+              content: <TopTimbulanRegionsBar />,
+            },
+            {
+              key: "kapita",
+              label: "Per kapita tertinggi",
+              description: "10 wilayah; garis putus-putus = rata-rata filter aktif.",
+              footer: "Per kapita = estimasi timbulan dibagi jumlah penduduk.",
+              content: <TopPerKapitaRegionsBar />,
+            },
+          ]}
         />
-        <div className="grid gap-5 lg:grid-cols-2">
-          <ChartCard
-            icon={Trash2}
-            title="10 wilayah dengan timbulan terbesar"
-            description="Klik batang untuk memfilter dashboard ke wilayah tersebut."
-            footer="Warna batang mengikuti klaster masing-masing wilayah."
-          >
-            <TopTimbulanRegionsBar />
-          </ChartCard>
-          <ChartCard
-            icon={Gauge}
-            title="10 wilayah dengan per kapita tertinggi"
-            description="Garis putus-putus menunjukkan rata-rata per kapita pada filter aktif."
-            footer="Per kapita dihitung dari estimasi timbulan dibagi jumlah penduduk."
-          >
-            <TopPerKapitaRegionsBar />
-          </ChartCard>
-        </div>
-      </section>
 
-      <div>
         <ChartCard
+          className="lg:col-span-8"
           icon={ListOrdered}
           title="Tabel peringkat kabupaten/kota"
-          description="Klik judul kolom untuk mengurutkan. Badge warna menunjukkan klaster wilayah."
-          footer="Angka tidak terkelola adalah estimasi berdasarkan indikator SIPSN, bukan bukti tujuan akhir sampah."
+          description="Klik judul kolom untuk mengurutkan. Badge warna = klaster."
+          footer="Angka tidak terkelola adalah estimasi dari indikator SIPSN, bukan bukti tujuan akhir sampah."
+          bodyClassName="overflow-hidden"
         >
           <DataTable
             key={`${filters.provinsi}-${filters.cluster}-${filters.search}`}
           />
         </ChartCard>
-      </div>
-
-      <div>
-        <InsightPanel title="Tips eksplorasi">
-          Urutkan kolom <strong>% Tidak terkelola</strong> menurun untuk
-          menemukan wilayah dengan proporsi kesenjangan tertinggi. Urutkan
-          kolom <strong>Timbulan/tahun</strong> untuk melihat wilayah dengan
-          beban volume terbesar. Gunakan tombol ekspor CSV untuk mengolah
-          hasil filter di spreadsheet.
-        </InsightPanel>
-      </div>
-    </div>
+      </Panels>
+    </PageGrid>
   );
 }

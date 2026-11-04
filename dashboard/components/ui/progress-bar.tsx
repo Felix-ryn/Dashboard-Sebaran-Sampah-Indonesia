@@ -1,8 +1,9 @@
 import { cn } from "@/lib/cn";
+import { CHART_COLORS } from "@/lib/constants";
 
 export function ProgressBar({
   value,
-  color = "#2563EB",
+  color = CHART_COLORS.primary,
   className,
 }: {
   value: number;

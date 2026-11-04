@@ -150,8 +150,8 @@ export function DataTable() {
   }
 
   return (
-    <div>
-      <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+    <div className="flex h-full min-h-0 flex-col">
+      <div className="mb-2 flex shrink-0 flex-wrap items-center justify-between gap-2">
           <p className="text-sm text-slate-500">
           Menampilkan{" "}
           <span className="font-semibold text-slate-800">
@@ -162,22 +162,22 @@ export function DataTable() {
         <button
           type="button"
           onClick={handleExport}
-          className="inline-flex items-center gap-2 rounded-lg border border-blue-200 bg-blue-50 px-4 py-2.5 text-sm font-semibold text-blue-700 transition hover:bg-blue-100"
+          className="inline-flex items-center gap-2 rounded-full bg-[#16181D] px-4 py-2 text-xs font-semibold text-white transition hover:bg-black"
         >
           <Download className="h-3.5 w-3.5" />
           Ekspor CSV
         </button>
       </div>
 
-      <div className="overflow-x-auto rounded-xl border border-slate-200">
-        <table className="min-w-[900px] w-full border-collapse text-left">
-          <thead className="bg-slate-50">
+      <div className="min-h-0 flex-1 overflow-auto rounded-2xl bg-[#F8F6F2]">
+        <table className="w-full min-w-[720px] border-collapse text-left">
+          <thead className="sticky top-0 z-10 bg-[#F3F0EA]">
             <tr>
               {COLUMNS.map((column) => (
                 <th
                   key={column.key}
                   className={cn(
-                    "whitespace-nowrap border-b border-slate-200 px-4 py-3 text-xs font-semibold uppercase tracking-wide text-slate-500",
+                    "whitespace-nowrap border-b border-slate-200 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-500",
                     column.align === "right" && "text-right",
                   )}
                 >
@@ -203,9 +203,9 @@ export function DataTable() {
             {rows.map((region) => (
               <tr
                 key={`${region.provinsi}-${region.kabKota}`}
-                className="border-b border-slate-100 last:border-0 hover:bg-blue-50/40"
+                className="border-b border-slate-100 last:border-0 hover:bg-white"
               >
-                <td className="px-3 py-2.5">
+                <td className="min-w-[200px] px-3 py-2">
                   <p className="text-sm font-semibold text-slate-900">
                     {region.kabKota}
                   </p>
@@ -213,16 +213,16 @@ export function DataTable() {
                     {region.provinsi}
                   </p>
                 </td>
-                <td className="px-3 py-2.5">
+                <td className="px-3 py-2">
                   <ClusterBadge cluster={region.cluster} compact />
                 </td>
-                <td className="px-4 py-3 text-right text-sm text-slate-600">
+                <td className="px-3 py-2 text-right text-sm text-slate-600">
                   {formatNumber(region.penduduk)}
                 </td>
-                <td className="px-4 py-3 text-right text-sm font-medium text-slate-800">
+                <td className="px-3 py-2 text-right text-sm font-medium text-slate-800">
                   {formatCompactTon(region.timbulanTahunan)}
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-3 py-2">
                   <div className="ml-auto w-[92px]">
                     <div className="mb-1 text-right text-xs font-semibold text-slate-800">
                       {formatPct(region.pctTerkelola)}
@@ -233,10 +233,10 @@ export function DataTable() {
                     />
                   </div>
                 </td>
-                <td className="px-4 py-3 text-right text-sm font-medium text-slate-700">
+                <td className="px-3 py-2 text-right text-sm font-medium text-slate-700">
                   {formatPct(region.pctTidakTerkelola)}
                 </td>
-                <td className="px-4 py-3 text-right text-sm text-slate-600">
+                <td className="px-3 py-2 text-right text-sm text-slate-600">
                   {formatDecimal(region.perKapita, 2)}
                 </td>
               </tr>
@@ -245,7 +245,7 @@ export function DataTable() {
         </table>
       </div>
 
-      <div className="mt-3 flex flex-col items-center justify-between gap-3 sm:flex-row">
+      <div className="mt-2 flex shrink-0 flex-col items-center justify-between gap-2 sm:flex-row">
         <div className="flex items-center gap-2 text-sm text-slate-500">
           <span>Baris per halaman</span>
           <select
@@ -254,7 +254,7 @@ export function DataTable() {
               setPageSize(Number(event.target.value));
               setPage(1);
             }}
-            className="rounded-lg border border-slate-200 bg-white px-2.5 py-2 text-sm text-slate-700 outline-none focus:border-blue-400"
+            className="rounded-full bg-[#F3F0EA] px-3 py-1.5 text-sm text-slate-700 outline-none focus:ring-2 focus:ring-[#F6C21B]/60"
           >
             {[10, 25, 50, 100].map((size) => (
               <option key={size} value={size}>
@@ -272,7 +272,7 @@ export function DataTable() {
             type="button"
             onClick={() => setPage((current) => Math.max(1, current - 1))}
             disabled={safePage <= 1}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F3F0EA] text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
             aria-label="Halaman sebelumnya"
           >
             <ChevronLeft className="h-4 w-4" />
@@ -286,7 +286,7 @@ export function DataTable() {
               setPage((current) => Math.min(totalPages, current + 1))
             }
             disabled={safePage >= totalPages}
-            className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#F3F0EA] text-slate-600 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:text-slate-300"
             aria-label="Halaman berikutnya"
           >
             <ChevronRight className="h-4 w-4" />

@@ -1,26 +1,15 @@
 "use client";
 
+import { useState } from "react";
 import {
-  Bar,
-  BarChart,
   CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  PolarAngleAxis,
-  PolarGrid,
-  PolarRadiusAxis,
-  Radar,
-  RadarChart,
-  ReferenceLine,
-  ResponsiveContainer,
   Scatter,
   ScatterChart,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import { ResponsiveContainer } from "@/components/charts/responsive";
 import {
   CHART_COLORS,
   CLUSTER_BY_ID,
@@ -33,19 +22,68 @@ import {
 } from "@/lib/format";
 import { useDashboard } from "@/components/providers/dashboard-provider";
 import { EmptyState } from "@/components/ui/empty-state";
+import { BarList, ChartKey } from "@/components/charts/bar-list";
+import { HeatTable } from "@/components/charts/heat-table";
 import { RegionTooltip } from "@/components/charts/region-tooltip";
 import {
   axisTick,
   cartesianGrid,
-  legendStyle,
-  tooltipContentStyle,
-  tooltipItemStyle,
-  tooltipLabelStyle,
 } from "@/components/charts/chart-theme";
 import type { ClusterId, Region } from "@/lib/types";
 
-export function PcaScatter() {
+function median(values: number[]) {
+  if (values.length === 0) return 0;
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+}
+
+interface Center {
+  id: ClusterId;
+  label: string;
+  color: string;
+  pctPenanganan: number;
+  perKapita: number;
+  /** Label di bawah lingkaran agar tidak menabrak klaster tetangga */
+  below?: boolean;
+}
+
+function CenterMark(props: unknown) {
+  const { cx, cy, payload } = props as {
+    cx: number;
+    cy: number;
+    payload: Center;
+  };
+  const right = payload.pctPenanganan <= 70;
+  const below = payload.below === true;
+  return (
+    <g pointerEvents="none">
+      <circle cx={cx} cy={cy} r={9} fill="#FFFFFF" stroke={payload.color} strokeWidth={3.5} />
+      <text
+        x={below ? cx - 6 : cx + (right ? 15 : -15)}
+        y={below ? cy + 28 : cy + 4}
+        textAnchor={below || right ? "start" : "end"}
+        fontSize={12}
+        fontWeight={700}
+        fill="#16181D"
+        stroke="#FFFFFF"
+        strokeWidth={4}
+        paintOrder="stroke"
+      >
+        {payload.label}
+      </text>
+    </g>
+  );
+}
+
+/**
+ * Setiap titik = satu kabupaten/kota. Lingkaran putih bernama = titik tengah
+ * (median) tiap klaster, jadi pembaca cukup melihat empat lokasi untuk
+ * memahami empat segmen. Arah baca ditulis di sumbu.
+ */
+export function ClusterScatter() {
   const { filteredRegions, setCluster } = useDashboard();
+  const [focus, setFocus] = useState<ClusterId | null>(null);
 
   if (filteredRegions.length === 0) {
     return <EmptyState />;
@@ -56,302 +94,233 @@ export function PcaScatter() {
     data: filteredRegions.filter((region) => region.cluster === meta.id),
   })).filter((item) => item.data.length > 0);
 
+  const centers: Center[] = series
+    .map((item) => ({
+      id: item.id,
+      label: item.short,
+      color: item.color,
+      pctPenanganan: median(item.data.map((region) => region.pctPenanganan)),
+      perKapita: median(item.data.map((region) => region.perKapita)),
+    }))
+    .sort((a, b) => a.pctPenanganan - b.pctPenanganan)
+    .map((center, index) => ({ ...center, below: index === 0 }));
+
   return (
-    <div className="h-[420px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <ScatterChart margin={{ top: 8, right: 20, left: 4, bottom: 8 }}>
-          <CartesianGrid {...cartesianGrid} />
-          <XAxis
-            type="number"
-            dataKey="pca1"
-            name="PCA 1"
-            tick={axisTick}
-            tickLine={false}
-            axisLine={false}
-            tickFormatter={(value) => formatDecimal(Number(value), 1)}
-          />
-          <YAxis
-            type="number"
-            dataKey="pca2"
-            name="PCA 2"
-            tick={axisTick}
-            tickLine={false}
-            axisLine={false}
-            width={46}
-            tickFormatter={(value) => formatDecimal(Number(value), 1)}
-          />
-          <ReferenceLine x={0} stroke="#CBD5E1" strokeDasharray="4 4" />
-          <ReferenceLine y={0} stroke="#CBD5E1" strokeDasharray="4 4" />
-          <Tooltip
-            content={<RegionTooltip />}
-            cursor={{ strokeDasharray: "4 4", stroke: "#94A3B8" }}
-          />
-          <Legend
-            iconType="circle"
-            wrapperStyle={legendStyle}
-            formatter={(value) => (
-              <span className="text-xs text-slate-600">{value}</span>
-            )}
-          />
-          {series.map((item) => (
-            <Scatter
-              key={item.id}
-              name={item.label}
-              data={item.data}
-              fill={item.color}
-              fillOpacity={0.66}
-              stroke={item.color}
-              strokeWidth={0.5}
-              onClick={(point) => {
-                const region = (point as { payload?: Region }).payload;
-                if (region) setCluster(region.cluster);
+    <div className="flex h-full min-h-0 flex-col">
+      <ChartKey
+        items={series.map((item) => ({ id: item.id, label: item.short, color: item.color }))}
+        focus={focus}
+        onFocus={setFocus}
+        onPick={setCluster}
+      />
+      <div className="min-h-0 w-full flex-1">
+        <ResponsiveContainer width="100%" height="100%">
+          <ScatterChart margin={{ top: 8, right: 24, left: 0, bottom: 32 }}>
+            <CartesianGrid vertical={false} {...cartesianGrid} />
+            <XAxis
+              type="number"
+              dataKey="pctPenanganan"
+              name="% ditangani"
+              domain={[0, 100]}
+              ticks={[0, 25, 50, 75, 100]}
+              tick={axisTick}
+              tickLine={false}
+              axisLine={{ stroke: CHART_COLORS.muted }}
+              tickFormatter={(value) => `${value}%`}
+              label={{
+                value: "Sampah yang ditangani (%)  \u2192 makin banyak",
+                position: "insideBottom",
+                offset: -22,
+                fill: "#64748B",
+                fontSize: 12,
               }}
             />
-          ))}
-        </ScatterChart>
-      </ResponsiveContainer>
+            <YAxis
+              type="number"
+              dataKey="perKapita"
+              name="Per kapita"
+              tick={axisTick}
+              tickLine={false}
+              axisLine={false}
+              width={48}
+              tickFormatter={(value) => formatDecimal(Number(value), 1)}
+              label={{
+                value: "\u2191 Sampah per orang (kg/hari)",
+                angle: -90,
+                position: "insideLeft",
+                offset: 2,
+                fill: "#64748B",
+                fontSize: 12,
+                style: { textAnchor: "middle" },
+              }}
+            />
+            <Tooltip
+              content={<RegionTooltip />}
+              cursor={{ strokeDasharray: "4 4", stroke: "#94A3B8" }}
+            />
+            {series.map((item) => (
+              <Scatter
+                isAnimationActive={false}
+                key={item.id}
+                name={item.label}
+                data={item.data}
+                fill={item.color}
+                fillOpacity={focus === null || focus === item.id ? 0.7 : 0.1}
+                stroke={item.color}
+                strokeOpacity={focus === null || focus === item.id ? 1 : 0.15}
+                strokeWidth={0.75}
+                onClick={(point) => {
+                  const region = (point as { payload?: Region }).payload;
+                  if (region) setCluster(region.cluster);
+                }}
+              />
+            ))}
+            <Scatter
+              isAnimationActive={false}
+              tooltipType="none"
+              data={centers}
+              shape={CenterMark}
+            />
+          </ScatterChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
 
+const MANAGEMENT_COLORS = {
+  pengurangan: "#004B73",
+  penanganan: "#56A5D4",
+  tidak: CHART_COLORS.muted,
+};
+
 export function ClusterProfileBar() {
   const { filteredRegions, setCluster, filters } = useDashboard();
-  const data = CLUSTER_META.map((meta) => {
+
+  const rows = CLUSTER_META.map((meta) => {
     const group = filteredRegions.filter((region) => region.cluster === meta.id);
-    const pengurangan = group.reduce(
-      (sum, region) => sum + region.penguranganTon,
-      0,
-    );
-    const penanganan = group.reduce(
-      (sum, region) => sum + region.penangananTon,
-      0,
-    );
-    const tidakTerkelola = group.reduce(
-      (sum, region) => sum + region.tidakTerkelolaTon,
-      0,
-    );
-    const total = pengurangan + penanganan + tidakTerkelola;
-
+    const sum = (pick: (region: Region) => number) =>
+      group.reduce((total, region) => total + pick(region), 0);
+    const pengurangan = sum((region) => region.penguranganTon);
+    const penanganan = sum((region) => region.penangananTon);
+    const tidak = sum((region) => region.tidakTerkelolaTon);
+    const total = pengurangan + penanganan + tidak;
+    const pct = (value: number) => (total > 0 ? (value / total) * 100 : 0);
     return {
-      cluster: meta.id,
-      name: meta.short,
-      jumlahWilayah: group.length,
-      pengurangan: total > 0 ? (pengurangan / total) * 100 : 0,
-      penanganan: total > 0 ? (penanganan / total) * 100 : 0,
-      tidakTerkelola: total > 0 ? (tidakTerkelola / total) * 100 : 0,
+      meta,
+      count: group.length,
+      pengurangan: pct(pengurangan),
+      penanganan: pct(penanganan),
+      tidak: pct(tidak),
     };
-  }).filter((profile) => profile.jumlahWilayah > 0);
+  }).filter((row) => row.count > 0);
 
-  if (data.length === 0) {
+  if (rows.length === 0) {
     return <EmptyState />;
   }
 
+  const segments = [
+    { key: "pengurangan", label: "Pengurangan", dark: true },
+    { key: "penanganan", label: "Penanganan", dark: false },
+    { key: "tidak", label: "Tidak terkelola", dark: false },
+  ] as const;
+
   return (
-    <div className="h-[340px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          margin={{ top: 8, right: 12, left: 0, bottom: 4 }}
-          barCategoryGap={24}
-        >
-          <CartesianGrid vertical={false} {...cartesianGrid} />
-          <XAxis
-            dataKey="name"
-            tick={axisTick}
-            tickLine={false}
-            axisLine={false}
-            interval={0}
-          />
-          <YAxis
-            domain={[0, 100]}
-            tickFormatter={(value) => `${value}%`}
-            tick={axisTick}
-            tickLine={false}
-            axisLine={false}
-            width={42}
-          />
-          <Tooltip
-            contentStyle={tooltipContentStyle}
-            itemStyle={tooltipItemStyle}
-            labelStyle={tooltipLabelStyle}
-            formatter={(value, name) => [
-              formatPct(Number(value)),
-              String(name),
-            ]}
-            cursor={{ fill: "rgba(37, 99, 235, 0.06)" }}
-          />
-          <Legend
-            iconType="circle"
-            wrapperStyle={legendStyle}
-            formatter={(value) => (
-              <span className="text-xs text-slate-600">{value}</span>
-            )}
-          />
-          <Bar
-            dataKey="pengurangan"
-            name="Pengurangan"
-            fill={CHART_COLORS.teal}
-            stackId="management"
-            barSize={28}
-            onClick={(entry) => {
-              const payload = (
-                entry as { payload?: { cluster?: ClusterId } }
-              ).payload;
-              if (payload?.cluster !== undefined) {
-                setCluster(
-                  filters.cluster === payload.cluster
-                    ? "all"
-                    : payload.cluster,
-                );
-              }
-            }}
-            className="cursor-pointer"
-          />
-          <Bar
-            dataKey="penanganan"
-            name="Penanganan"
-            fill={CHART_COLORS.primary}
-            stackId="management"
-            barSize={28}
-            onClick={(entry) => {
-              const payload = (
-                entry as { payload?: { cluster?: ClusterId } }
-              ).payload;
-              if (payload?.cluster !== undefined) {
-                setCluster(
-                  filters.cluster === payload.cluster
-                    ? "all"
-                    : payload.cluster,
-                );
-              }
-            }}
-            className="cursor-pointer"
-          />
-          <Bar
-            dataKey="tidakTerkelola"
-            name="Tidak terkelola"
-            fill="#CBD5E1"
-            stackId="management"
-            barSize={28}
-            radius={[5, 5, 0, 0]}
-            onClick={(entry) => {
-              const payload = (
-                entry as { payload?: { cluster?: ClusterId } }
-              ).payload;
-              if (payload?.cluster !== undefined) {
-                setCluster(
-                  filters.cluster === payload.cluster
-                    ? "all"
-                    : payload.cluster,
-                );
-              }
-            }}
-            className="cursor-pointer"
-          />
-        </BarChart>
-      </ResponsiveContainer>
+    <div className="max-h-full overflow-y-auto">
+      <ChartKey
+        items={segments.map((segment) => ({
+          label: segment.label,
+          color: MANAGEMENT_COLORS[segment.key],
+        }))}
+      />
+      <ul className="space-y-2">
+        {rows.map((row) => {
+          const dimmed =
+            filters.cluster !== "all" && filters.cluster !== row.meta.id;
+          return (
+            <li
+              key={row.meta.id}
+              className={dimmed ? "opacity-45 transition-opacity" : "transition-opacity"}
+            >
+              <button
+                type="button"
+                onClick={() =>
+                  setCluster(filters.cluster === row.meta.id ? "all" : row.meta.id)
+                }
+                className="flex w-full items-center gap-3 rounded-md px-1 py-1 text-left hover:bg-slate-50"
+              >
+                <span className="flex w-36 shrink-0 items-center gap-2 text-sm text-slate-700 sm:w-44">
+                  <span
+                    className="h-2.5 w-2.5 shrink-0 rounded-sm"
+                    style={{ backgroundColor: row.meta.color }}
+                  />
+                  {row.meta.short}
+                </span>
+                <span className="flex h-8 min-w-0 flex-1 overflow-hidden rounded-sm">
+                  {segments.map((segment) => {
+                    const value = row[segment.key];
+                    return (
+                      <span
+                        key={segment.key}
+                        className="flex items-center justify-center text-xs font-semibold"
+                        style={{
+                          width: `${value}%`,
+                          backgroundColor: MANAGEMENT_COLORS[segment.key],
+                          color: segment.dark ? "#FFFFFF" : "#0F172A",
+                        }}
+                      >
+                        {value >= 9 ? formatPct(value, 0) : ""}
+                      </span>
+                    );
+                  })}
+                </span>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
     </div>
   );
 }
 
 export function ClusterPerKapitaBar() {
   const { profiles, setCluster, filters, national } = useDashboard();
-  const data = profiles
+  const items = profiles
     .filter((profile) => profile.jumlahWilayah > 0)
+    .sort((a, b) => b.medianPerKapita - a.medianPerKapita)
     .map((profile) => ({
-      ...profile,
-      name: CLUSTER_BY_ID[profile.cluster].short,
+      key: profile.cluster,
+      label: CLUSTER_BY_ID[profile.cluster].short,
+      value: profile.medianPerKapita,
+      valueLabel: `${formatDecimal(profile.medianPerKapita, 2)} kg`,
       color: CLUSTER_BY_ID[profile.cluster].color,
     }));
 
-  if (data.length === 0) {
+  if (items.length === 0) {
     return <EmptyState />;
   }
 
   return (
-    <div className="h-[300px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <BarChart
-          data={data}
-          layout="vertical"
-          margin={{ top: 4, right: 24, left: 4, bottom: 4 }}
-          barCategoryGap={12}
-        >
-          <CartesianGrid horizontal={false} {...cartesianGrid} />
-          <XAxis
-            type="number"
-            tickFormatter={(value) => formatDecimal(Number(value), 2)}
-            tick={axisTick}
-            tickLine={false}
-            axisLine={false}
-          />
-          <ReferenceLine
-            x={national.perKapita}
-            stroke="#64748B"
-            strokeDasharray="5 4"
-            label={{
-              value: "Rata-rata terfilter",
-              position: "insideTopRight",
-              fill: "#64748B",
-              fontSize: 12,
-            }}
-          />
-          <YAxis
-            type="category"
-            dataKey="name"
-            width={128}
-            tick={axisTick}
-            tickLine={false}
-            axisLine={false}
-          />
-          <Tooltip
-            contentStyle={tooltipContentStyle}
-            itemStyle={tooltipItemStyle}
-            labelStyle={tooltipLabelStyle}
-            formatter={(value) => [
-              `${formatDecimal(Number(value), 2)} kg/orang/hari`,
-              "Median per kapita",
-            ]}
-            cursor={{ fill: "rgba(37, 99, 235, 0.06)" }}
-          />
-          <Bar
-            dataKey="medianPerKapita"
-            radius={[0, 6, 6, 0]}
-            barSize={16}
-            onClick={(entry) => {
-              const payload = (
-                entry as { payload?: { cluster?: ClusterId } }
-              ).payload;
-              if (payload?.cluster !== undefined) {
-                setCluster(
-                  filters.cluster === payload.cluster
-                    ? "all"
-                    : payload.cluster,
-                );
-              }
-            }}
-            className="cursor-pointer"
-          >
-            {data.map((profile) => (
-              <Cell
-                key={profile.cluster}
-                fill={profile.color}
-                fillOpacity={
-                  filters.cluster === "all" ||
-                  filters.cluster === profile.cluster
-                    ? 1
-                    : 0.45
-                }
-              />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+    <div className="max-h-full overflow-y-auto">
+      <BarList
+        ariaLabel="Median timbulan per kapita per klaster"
+        items={items}
+        activeKey={filters.cluster}
+        onSelect={(key) =>
+          setCluster(filters.cluster === key ? "all" : (key as ClusterId))
+        }
+      />
+      <p className="mt-4 text-xs text-slate-500">
+        Rata-rata seluruh wilayah terfilter:{" "}
+        <span className="font-semibold text-slate-700">
+          {formatDecimal(national.perKapita, 2)} kg/orang/hari
+        </span>
+      </p>
     </div>
   );
 }
 
-export function ClusterDonut() {
+export function ClusterCountBars() {
   const { clusterSummary, setCluster, filters } = useDashboard();
   const total = clusterSummary.reduce((sum, item) => sum + item.count, 0);
 
@@ -359,183 +328,61 @@ export function ClusterDonut() {
     return <EmptyState />;
   }
 
+  const items = [...clusterSummary]
+    .sort((a, b) => b.count - a.count)
+    .map((entry) => ({
+      key: entry.cluster,
+      label: CLUSTER_BY_ID[entry.cluster].short,
+      value: entry.count,
+      valueLabel: `${formatNumber(entry.count)} \u00B7 ${formatPct((entry.count / total) * 100, 0)}`,
+      color: entry.color,
+    }));
+
   return (
-    <div className="grid items-center gap-4 sm:grid-cols-[minmax(0,1fr)_200px]">
-      <div className="relative h-[250px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={clusterSummary}
-              dataKey="count"
-              nameKey="label"
-              innerRadius="60%"
-              outerRadius="84%"
-              paddingAngle={2}
-              stroke="#FFFFFF"
-              strokeWidth={2}
-              onClick={(entry) => {
-                const payload = (
-                  entry as { payload?: { cluster?: ClusterId } }
-                ).payload;
-                if (payload?.cluster !== undefined) {
-                  setCluster(
-                    filters.cluster === payload.cluster
-                      ? "all"
-                      : payload.cluster,
-                  );
-                }
-              }}
-              className="cursor-pointer"
-            >
-              {clusterSummary.map((entry) => (
-                <Cell key={entry.cluster} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={tooltipContentStyle}
-              itemStyle={tooltipItemStyle}
-              formatter={(value, name) => [
-                `${formatNumber(Number(value))} wilayah`,
-                String(name),
-              ]}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-2xl font-semibold text-slate-950">
-            {formatNumber(total)}
-          </span>
-          <span className="text-xs uppercase tracking-wide text-slate-500">
-            Wilayah
-          </span>
-        </div>
-      </div>
-      <div className="space-y-2">
-        {clusterSummary.map((entry) => (
-          <button
-            key={entry.cluster}
-            type="button"
-            disabled={entry.count === 0}
-            onClick={() =>
-              setCluster(
-                filters.cluster === entry.cluster ? "all" : entry.cluster,
-              )
-            }
-            className={`flex w-full items-center justify-between gap-2 rounded-lg border px-2.5 py-2 text-left transition disabled:cursor-not-allowed disabled:opacity-50 ${
-              filters.cluster === entry.cluster
-                ? "border-blue-200 bg-blue-50"
-                : "border-slate-100 bg-slate-50/60 hover:bg-slate-100"
-            }`}
-          >
-            <span className="flex items-center gap-2 text-sm font-medium text-slate-600">
-              <span
-                className="h-2 w-2 rounded-full"
-                style={{ backgroundColor: entry.color }}
-              />
-              {CLUSTER_BY_ID[entry.cluster].short}
-            </span>
-            <span className="text-sm font-semibold text-slate-900">
-              {formatNumber(entry.count)}
-            </span>
-          </button>
-        ))}
-      </div>
-    </div>
+    <BarList
+      ariaLabel="Jumlah wilayah per klaster"
+      items={items}
+      activeKey={filters.cluster}
+      onSelect={(key) =>
+        setCluster(filters.cluster === key ? "all" : (key as ClusterId))
+      }
+    />
   );
 }
 
-export function ClusterRadar() {
-  const { profiles } = useDashboard();
-  const activeProfiles = profiles.filter(
-    (profile) => profile.jumlahWilayah > 0,
-  );
+export function ClusterProfileTable() {
+  const { profiles, setCluster, filters } = useDashboard();
+  const active = profiles.filter((profile) => profile.jumlahWilayah > 0);
 
-  if (activeProfiles.length === 0) {
+  if (active.length === 0) {
     return <EmptyState />;
   }
 
-  const metrics = [
-    {
-      key: "medianPengurangan" as const,
-      label: "Pengurangan",
-    },
-    {
-      key: "medianPenanganan" as const,
-      label: "Penanganan",
-    },
-    {
-      key: "medianPerKapita" as const,
-      label: "Per kapita",
-    },
-    {
-      key: "medianTidakTerkelola" as const,
-      label: "Tidak terkelola",
-    },
-  ];
-
-  const maxima = Object.fromEntries(
-    metrics.map((metric) => [
-      metric.key,
-      Math.max(...activeProfiles.map((profile) => profile[metric.key]), 1),
-    ]),
-  ) as Record<(typeof metrics)[number]["key"], number>;
-
-  const radarData = metrics.map((metric) => {
-    const row: Record<string, string | number> = { metric: metric.label };
-    for (const profile of activeProfiles) {
-      row[`c${profile.cluster}`] =
-        (profile[metric.key] / maxima[metric.key]) * 100;
-    }
-    return row;
-  });
-
   return (
-    <div className="h-[360px] w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart data={radarData} outerRadius="64%">
-          <PolarGrid stroke="#E2E8F0" />
-          <PolarAngleAxis
-            dataKey="metric"
-            tick={{ fill: "#64748B", fontSize: 12 }}
-          />
-          <PolarRadiusAxis
-            angle={90}
-            domain={[0, 100]}
-            tick={false}
-            axisLine={false}
-          />
-          {activeProfiles.map((profile) => {
-            const meta = CLUSTER_BY_ID[profile.cluster];
-            return (
-              <Radar
-                key={profile.cluster}
-                name={meta.short}
-                dataKey={`c${profile.cluster}`}
-                stroke={meta.color}
-                fill={meta.color}
-                fillOpacity={0.1}
-                strokeWidth={2}
-              />
-            );
-          })}
-          <Tooltip
-            contentStyle={tooltipContentStyle}
-            itemStyle={tooltipItemStyle}
-            labelStyle={tooltipLabelStyle}
-            formatter={(value, name) => [
-              `${formatNumber(Number(value), 0)} / 100`,
-              String(name),
-            ]}
-          />
-          <Legend
-            iconType="circle"
-            wrapperStyle={legendStyle}
-            formatter={(value) => (
-              <span className="text-xs text-slate-600">{value}</span>
-            )}
-          />
-        </RadarChart>
-      </ResponsiveContainer>
-    </div>
+    <HeatTable
+      rowHeader="Klaster"
+      activeKey={filters.cluster}
+      onSelect={(key) =>
+        setCluster(filters.cluster === key ? "all" : (key as ClusterId))
+      }
+      columns={[
+        { key: "tangani", label: "Ditangani", format: (v) => formatPct(v, 0) },
+        { key: "kurang", label: "Dikurangi", format: (v) => formatPct(v, 1) },
+        { key: "tidak", label: "Tidak terkelola", format: (v) => formatPct(v, 0) },
+        { key: "kapita", label: "Kg per orang/hari", format: (v) => formatDecimal(v, 2) },
+      ]}
+      rows={active.map((profile) => ({
+        key: profile.cluster,
+        label: CLUSTER_BY_ID[profile.cluster].short,
+        swatch: CLUSTER_BY_ID[profile.cluster].color,
+        values: [
+          profile.medianPenanganan,
+          profile.medianPengurangan,
+          profile.medianTidakTerkelola,
+          profile.medianPerKapita,
+        ],
+      }))}
+    />
   );
 }
+

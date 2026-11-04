@@ -10,7 +10,7 @@ export function ClusterExamples() {
   const { filteredRegions, setCluster, setSearch } = useDashboard();
 
   return (
-    <div className="grid gap-3 sm:grid-cols-2">
+    <div className="grid max-h-full gap-2 overflow-y-auto @sm:grid-cols-2">
       {CLUSTER_META.map((meta) => {
         const regions = filteredRegions
           .filter((region) => region.cluster === meta.id)
@@ -22,7 +22,7 @@ export function ClusterExamples() {
         return (
           <div
             key={meta.id}
-            className="rounded-xl border border-slate-200/80 bg-white p-4"
+            className="rounded-2xl bg-[#F8F6F2] p-3"
           >
             <div className="flex items-center justify-between gap-2">
               <ClusterBadge cluster={meta.id} compact />
@@ -44,7 +44,7 @@ export function ClusterExamples() {
                     setCluster(meta.id);
                     setSearch(region.kabKota);
                   }}
-                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-left transition hover:bg-slate-50"
+                  className="flex w-full items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-left transition hover:bg-white"
                 >
                   <span className="flex min-w-0 items-center gap-1.5">
                     <MapPin className="h-3 w-3 shrink-0 text-slate-400" />

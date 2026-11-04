@@ -6,21 +6,22 @@ import {
   Gauge,
   Network,
   PieChart,
-  Radar,
   ShieldCheck,
+  Table2,
 } from "lucide-react";
 import { PageHeader } from "@/components/ui/page-header";
 import { KpiCard } from "@/components/ui/kpi-card";
 import { ChartCard } from "@/components/ui/chart-card";
-import { InsightPanel } from "@/components/ui/insight-panel";
+import { TabCard } from "@/components/ui/tab-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ClusterExamples } from "@/components/ui/cluster-examples";
+import { KpiRow, PageGrid, Panels } from "@/components/ui/page-grid";
 import {
-  ClusterDonut,
+  ClusterCountBars,
   ClusterPerKapitaBar,
   ClusterProfileBar,
-  ClusterRadar,
-  PcaScatter,
+  ClusterProfileTable,
+  ClusterScatter,
 } from "@/components/charts/cluster-charts";
 import { useDashboard } from "@/components/providers/dashboard-provider";
 import { formatNumber, formatPct } from "@/lib/format";
@@ -31,124 +32,128 @@ export default function ClusterPage() {
   const largestCluster = [...clusterSummary].sort(
     (a, b) => b.count - a.count,
   )[0];
+  const largestShare =
+    filteredRegions.length > 0
+      ? ((largestCluster?.count ?? 0) / filteredRegions.length) * 100
+      : 0;
   const bestProfile = [...profiles].sort(
     (a, b) => b.medianPenanganan - a.medianPenanganan,
   )[0];
 
+  if (filteredRegions.length === 0) {
+    return (
+      <PageGrid>
+        <PageHeader
+          eyebrow="Klaster wilayah"
+          title="Empat segmen capaian pengelolaan sampah"
+          description="Tidak ada wilayah yang cocok dengan filter saat ini."
+          className="lg:col-span-12"
+        />
+        <div className="lg:col-span-12">
+          <EmptyState description="Reset filter untuk melihat seluruh klaster." />
+        </div>
+      </PageGrid>
+    );
+  }
+
   return (
-    <div className="space-y-6">
+    <PageGrid>
       <PageHeader
+        className="lg:col-span-4"
         eyebrow="Klaster wilayah"
-        title="Empat segmen capaian pengelolaan sampah"
-        description="K-Means dengan k=4 mengelompokkan kabupaten/kota berdasarkan pengurangan, penanganan, dan timbulan per kapita. Klaster bersifat deskriptif, bukan hubungan sebab-akibat."
+        title={
+          largestShare >= 50
+            ? `${formatPct(largestShare, 0)} wilayah masih berada di segmen “${largestCluster.label}”`
+            : `Segmen terbesar: “${largestCluster.label}” (${formatPct(largestShare, 0)} wilayah)`
+        }
+        description="K-Means (k=4) mengelompokkan kabupaten/kota berdasarkan pengurangan, penanganan, dan timbulan per kapita. Klaster bersifat deskriptif, bukan sebab-akibat."
       />
 
-      {filteredRegions.length === 0 ? (
-        <EmptyState description="Tidak ada wilayah yang cocok dengan filter. Reset filter untuk melihat seluruh klaster." />
-      ) : (
-        <>
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-            <KpiCard
-              icon={Boxes}
-              label="Wilayah dianalisis"
-              value={`${formatNumber(filteredRegions.length)} wilayah`}
-              helper="Data terfilter saat ini"
-              tone="blue"
-            />
-            <KpiCard
-              icon={Network}
-              label="Klaster terbesar"
-              value={largestCluster?.label ?? "-"}
-              helper={`${formatNumber(
-                largestCluster?.count ?? 0,
-              )} wilayah dalam segmen ini`}
-              tone="navy"
-            />
-            <KpiCard
-              icon={Gauge}
-              label="Median penanganan tertinggi"
-              value={formatPct(bestProfile?.medianPenanganan ?? 0)}
-              helper={bestProfile?.label ?? "-"}
-              tone="teal"
-            />
-            <KpiCard
-              icon={ShieldCheck}
-              label="Stabilitas klaster"
-              value="0,93"
-              helper="ARI rata-rata dari 100 bootstrap"
-              tone="sky"
-            />
-          </div>
+      <KpiRow>
+        <KpiCard
+          dark
+          icon={Boxes}
+          label="Wilayah dianalisis"
+          value={`${formatNumber(filteredRegions.length)} wilayah`}
+          helper="Data terfilter saat ini"
+        />
+        <KpiCard
+          icon={Network}
+          label="Klaster terbesar"
+          value={largestCluster?.label ?? "-"}
+          helper={`${formatNumber(largestCluster?.count ?? 0)} wilayah`}
+        />
+        <KpiCard
+          icon={Gauge}
+          label="Penanganan tertinggi"
+          value={formatPct(bestProfile?.medianPenanganan ?? 0)}
+          helper={`Median, ${bestProfile?.label ?? "-"}`}
+        />
+        <KpiCard
+          icon={ShieldCheck}
+          label="Stabilitas klaster"
+          value="0,93"
+          helper="ARI rata-rata, 100 bootstrap"
+        />
+      </KpiRow>
 
-          <div className="grid gap-5 lg:grid-cols-3">
-            <ChartCard
-              icon={Network}
-              title="Sebaran wilayah pada ruang PCA"
-              description="Dua komponen utama menjelaskan 70,3% variasi data. Warna menunjukkan klaster."
-              className="lg:col-span-2"
-              footer="Kedekatan titik menggambarkan kemiripan kombinasi fitur, bukan kedekatan geografis."
-            >
-              <PcaScatter />
-            </ChartCard>
-            <ChartCard
-              icon={PieChart}
-              title="Jumlah wilayah per klaster"
-              description="Klik irisan atau label untuk memfilter dashboard."
-              footer="Klaster 0 mendominasi dataset, sehingga agregat nasional banyak dipengaruhi segmen ini."
-            >
-              <ClusterDonut />
-            </ChartCard>
-          </div>
+      <Panels>
+        <ChartCard
+          className="lg:col-span-5"
+          icon={Network}
+          title="Peta empat segmen wilayah"
+          description="Satu titik = satu kabupaten/kota. Lingkaran putih = titik tengah klaster."
+          footer="Cara membaca: kanan = lebih banyak sampah ditangani, atas = lebih banyak sampah per orang. Arahkan kursor ke legenda untuk menyorot satu klaster."
+        >
+          <ClusterScatter />
+        </ChartCard>
 
-          <div className="grid gap-5 lg:grid-cols-2">
-            <ChartCard
-              icon={BarChart3}
-              title="Komposisi pengelolaan per klaster"
-              description="Pembagian total tonase menjadi pengurangan, penanganan, dan tidak terkelola."
-              footer="Angka dihitung dari agregasi tonase wilayah dalam setiap klaster. Klik batang untuk memfilter klaster."
-            >
-              <ClusterProfileBar />
-            </ChartCard>
-            <ChartCard
-              icon={BarChart3}
-              title="Median timbulan per kapita"
-              description="Intensitas timbulan per orang per hari pada setiap klaster."
-              footer="Nilai per kapita berasal dari estimasi timbulan dibagi jumlah penduduk."
-            >
-              <ClusterPerKapitaBar />
-            </ChartCard>
-          </div>
+        <div className="grid min-h-0 grid-rows-2 gap-3 lg:col-span-3">
+          <ChartCard
+            icon={PieChart}
+            title="Jumlah wilayah per klaster"
+            description="Klik batang untuk memfilter."
+          >
+            <ClusterCountBars />
+          </ChartCard>
+          <ChartCard
+            icon={BarChart3}
+            title="Median timbulan per kapita"
+            description="kg/orang/hari per klaster."
+          >
+            <ClusterPerKapitaBar />
+          </ChartCard>
+        </div>
 
-          <div className="grid gap-5 lg:grid-cols-2">
-            <ChartCard
-              icon={Radar}
-              title="Profil relatif klaster"
-              description="Skor dinormalisasi terhadap nilai tertinggi pada setiap metrik."
-              footer="Radar membantu melihat bentuk profil, bukan nilai absolut."
-            >
-              <ClusterRadar />
-            </ChartCard>
-            <ChartCard
-              icon={Boxes}
-              title="Contoh wilayah per klaster"
-              description="Tiga wilayah dengan timbulan terbesar di masing-masing segmen."
-              footer="Klik wilayah untuk memfilter dashboard ke kabupaten/kota tersebut."
-            >
-              <ClusterExamples />
-            </ChartCard>
-          </div>
-
-          <div className="mt-5">
-            <InsightPanel title="Catatan interpretasi">
-              Silhouette 0,488 tergolong sedang: klaster cukup stabil tetapi
-              tidak terpisah tegas. Klaster 1 dibentuk oleh timbulan per kapita
-              tinggi, bukan oleh kinerja pengelolaan. Klaster 3 memiliki
-              penanganan tinggi, sedangkan klaster 0 dan 2 perlu dibaca bersama
-              konteks kebijakan dan anggaran daerah.
-            </InsightPanel>
-          </div>
-        </>
-      )}
-    </div>
+        <TabCard
+          className="lg:col-span-4"
+          icon={Table2}
+          title="Profil klaster"
+          tabs={[
+            {
+              key: "profil",
+              label: "Profil",
+              description: "Median tiap klaster; warna menandai kolom tertinggi.",
+              footer: "Median dipakai agar tidak terpengaruh nilai ekstrem satu-dua wilayah.",
+              content: <ClusterProfileTable />,
+            },
+            {
+              key: "komposisi",
+              label: "Komposisi",
+              description: "Pembagian tonase: pengurangan, penanganan, tidak terkelola.",
+              footer: "Dihitung dari agregasi tonase wilayah dalam tiap klaster. Klik baris untuk memfilter.",
+              content: <ClusterProfileBar />,
+            },
+            {
+              key: "contoh",
+              label: "Contoh wilayah",
+              description: "Tiga wilayah dengan timbulan terbesar di tiap segmen.",
+              footer: "Klik wilayah untuk memfilter dashboard ke kabupaten/kota tersebut.",
+              content: <ClusterExamples />,
+            },
+          ]}
+        />
+      </Panels>
+    </PageGrid>
   );
 }

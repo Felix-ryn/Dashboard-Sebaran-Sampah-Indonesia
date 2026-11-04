@@ -6,7 +6,7 @@ import type {
 
 export const YEAR = 2025;
 
-export const APP_NAME = "Beyond the Trash";
+export const APP_NAME = "Jejak Sampah";
 export const APP_SUBTITLE = "Dashboard Pengelolaan Sampah Indonesia";
 
 export interface ClusterMeta {
@@ -23,17 +23,17 @@ export const CLUSTER_META: ClusterMeta[] = [
     id: 0,
     label: "Belum terkelola",
     short: "Belum terkelola",
-    color: "#1E3A8A",
-    soft: "#E8EEF9",
+    color: "#D55E00",
+    soft: "#FBE6D8",
     description:
       "Penanganan dan pengurangan sampah sangat rendah. Kelompok terbesar dalam dataset.",
   },
   {
     id: 1,
     label: "Timbulan per kapita tinggi",
-    short: "Per kapita tinggi",
-    color: "#0EA5E9",
-    soft: "#E0F2FE",
+    short: "Timbulan tinggi",
+    color: "#CC79A7",
+    soft: "#F5E3EC",
     description:
       "Timbulan per kapita menonjol, terutama di wilayah perkotaan dan kawasan padat penduduk.",
   },
@@ -41,8 +41,8 @@ export const CLUSTER_META: ClusterMeta[] = [
     id: 2,
     label: "Pengurangan menonjol",
     short: "Pengurangan menonjol",
-    color: "#14B8A6",
-    soft: "#CCFBF1",
+    color: "#009E73",
+    soft: "#D2EFE6",
     description:
       "Upaya pengurangan sampah relatif tinggi dibanding kelompok lain.",
   },
@@ -50,8 +50,8 @@ export const CLUSTER_META: ClusterMeta[] = [
     id: 3,
     label: "Penanganan tinggi",
     short: "Penanganan tinggi",
-    color: "#4F46E5",
-    soft: "#E0E7FF",
+    color: "#0072B2",
+    soft: "#D9EAF4",
     description:
       "Proporsi sampah yang ditangani tinggi, dengan capaian pengelolaan terbaik.",
   },
@@ -111,8 +111,7 @@ export type NavIcon =
   | "cluster"
   | "composition"
   | "source"
-  | "ranking"
-  | "method";
+  | "ranking";
 
 export interface NavItem {
   href: string;
@@ -158,23 +157,20 @@ export const NAV_ITEMS: NavItem[] = [
     icon: "ranking",
     description: "Tabel dan peringkat kabupaten/kota yang dapat difilter.",
   },
-  {
-    href: "/metodologi",
-    label: "Metodologi",
-    icon: "method",
-    description: "Metode clustering, kualitas data, dan keterbatasan analisis.",
-  },
 ];
 
 export const CHART_COLORS = {
-  primary: "#2563EB",
-  primarySoft: "#DBEAFE",
+  primary: "#0072B2",
+  primarySoft: "#D9EAF4",
+  muted: "#CBD5E1",
   navy: "#1E3A8A",
   sky: "#0EA5E9",
   cyan: "#06B6D4",
   teal: "#14B8A6",
   indigo: "#4F46E5",
   slate: "#94A3B8",
+  amber: "#F59E0B",
+  orange: "#F97316",
   warning: "#D97706",
   danger: "#E11D48",
   grid: "#E2E8F0",

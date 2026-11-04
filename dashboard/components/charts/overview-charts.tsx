@@ -1,15 +1,12 @@
 "use client";
 
 import type { TooltipContentProps } from "recharts";
+import { ResponsiveContainer } from "@/components/charts/responsive";
 import {
   Bar,
   BarChart,
   CartesianGrid,
   Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -24,13 +21,13 @@ import {
 } from "@/lib/format";
 import { useDashboard } from "@/components/providers/dashboard-provider";
 import { EmptyState } from "@/components/ui/empty-state";
+import { ChartKey } from "@/components/charts/bar-list";
 import {
   axisTick,
   cartesianGrid,
-  legendStyle,
-  tooltipContentStyle,
-  tooltipItemStyle,
 } from "@/components/charts/chart-theme";
+import { useExpanded } from "@/components/ui/expandable";
+import { useHover } from "@/components/charts/use-hover";
 import type { ProvinceAggregate } from "@/lib/types";
 
 function ProvinceTooltip({
@@ -93,14 +90,17 @@ function ProvinceTooltip({
 
 export function ProvinceTimbulanBar() {
   const { provinces, setProvinsi, filters } = useDashboard();
-  const data = provinces.slice(0, 10);
+  const expanded = useExpanded();
+  const data = provinces.slice(0, expanded ? provinces.length : 10);
+  const hover = useHover();
 
   if (data.length === 0) {
     return <EmptyState />;
   }
 
-  const opacity = (provinsi: string) =>
-    filters.provinsi === "all" || filters.provinsi === provinsi ? 1 : 0.45;
+  const opacity = (provinsi: string, index: number) =>
+    (filters.provinsi === "all" || filters.provinsi === provinsi ? 1 : 0.45) *
+    hover.dim(index);
 
   const handleClick = (entry: unknown) => {
     const payload = (entry as { payload?: ProvinceAggregate }).payload;
@@ -112,7 +112,17 @@ export function ProvinceTimbulanBar() {
   };
 
   return (
-    <div className="h-[400px] w-full">
+    <div className="flex h-full min-h-0 flex-col">
+      <ChartKey
+        items={[
+          { label: "Terkelola", color: CHART_COLORS.primary },
+          { label: "Tidak terkelola", color: CHART_COLORS.muted },
+        ]}
+      />
+      <div
+        className="min-h-0 w-full flex-1"
+        style={{ minHeight: expanded ? data.length * 30 : undefined }}
+      >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -138,16 +148,10 @@ export function ProvinceTimbulanBar() {
           />
           <Tooltip
             content={<ProvinceTooltip />}
-            cursor={{ fill: "rgba(37, 99, 235, 0.06)" }}
+            cursor={{ fill: "rgba(22, 24, 29, 0.05)" }}
           />
-          <Legend
-            iconType="circle"
-            wrapperStyle={legendStyle}
-            formatter={(value) => (
-              <span className="text-xs text-slate-600">{value}</span>
-            )}
-          />
-          <Bar
+          <Bar isAnimationActive={false}
+            {...hover.handlers}
             dataKey="terkelola"
             name="Terkelola"
             stackId="timbulan"
@@ -155,15 +159,16 @@ export function ProvinceTimbulanBar() {
             onClick={handleClick}
             className="cursor-pointer"
           >
-            {data.map((entry) => (
+            {data.map((entry, index) => (
               <Cell
                 key={`terkelola-${entry.provinsi}`}
                 fill={CHART_COLORS.primary}
-                fillOpacity={opacity(entry.provinsi)}
+                fillOpacity={opacity(entry.provinsi, index)}
               />
             ))}
           </Bar>
-          <Bar
+          <Bar isAnimationActive={false}
+            {...hover.handlers}
             dataKey="tidakTerkelola"
             name="Tidak terkelola"
             stackId="timbulan"
@@ -172,105 +177,71 @@ export function ProvinceTimbulanBar() {
             onClick={handleClick}
             className="cursor-pointer"
           >
-            {data.map((entry) => (
+            {data.map((entry, index) => (
               <Cell
                 key={`tidak-${entry.provinsi}`}
-                fill="#CBD5E1"
-                fillOpacity={opacity(entry.provinsi)}
+                fill={CHART_COLORS.muted}
+                fillOpacity={opacity(entry.provinsi, index)}
               />
             ))}
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      </div>
     </div>
   );
 }
 
-export function ManagementDonut() {
+export function ManagementShare() {
   const { national } = useDashboard();
 
   if (national.timbulan <= 0) {
     return <EmptyState />;
   }
 
-  const data = [
-    {
-      name: "Terkelola",
-      value: national.terkelola,
-      color: CHART_COLORS.primary,
-    },
-    {
-      name: "Tidak terkelola",
-      value: national.tidakTerkelola,
-      color: "#CBD5E1",
-    },
-  ];
+  const terkelola = national.pctTerkelola;
+  const tidak = national.pctTidakTerkelola;
 
   return (
-    <div className="grid items-center gap-5 sm:grid-cols-[minmax(0,1fr)_210px]">
-      <div className="relative h-[300px]">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="value"
-              nameKey="name"
-              innerRadius="62%"
-              outerRadius="84%"
-              paddingAngle={2}
-              stroke="#FFFFFF"
-              strokeWidth={2}
-              animationDuration={700}
-            >
-              {data.map((entry) => (
-                <Cell key={entry.name} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip
-              contentStyle={tooltipContentStyle}
-              itemStyle={tooltipItemStyle}
-              formatter={(value, name) => [
-                formatCompactTon(Number(value)),
-                String(name),
-              ]}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-        <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center">
-          <span className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            Terkelola
-          </span>
-          <span className="mt-1 text-3xl font-semibold tracking-tight text-slate-950">
-            {formatPct(national.pctTerkelola)}
-          </span>
-          <span className="mt-1 text-sm text-slate-500">
-            {formatCompactTon(national.terkelola)}
-          </span>
-        </div>
+    <div className="flex h-full flex-col justify-center">
+      <p className="text-4xl font-semibold tracking-tight text-slate-950">
+        {formatPct(terkelola)}
+        <span className="mt-1 block text-sm font-medium text-slate-500">
+          timbulan tercatat terkelola
+        </span>
+      </p>
+      <div
+        className="mt-6 flex h-8 w-full overflow-hidden rounded-sm"
+        role="img"
+        aria-label={`Terkelola ${formatPct(terkelola)}, tidak terkelola ${formatPct(tidak)}`}
+      >
+        <div
+          style={{
+            width: `${terkelola}%`,
+            backgroundColor: CHART_COLORS.primary,
+          }}
+        />
+        <div
+          style={{ width: `${tidak}%`, backgroundColor: CHART_COLORS.muted }}
+        />
       </div>
-      <div className="space-y-3">
-        {data.map((entry) => (
-          <div
-            key={entry.name}
-            className="rounded-xl border border-slate-100 bg-slate-50/60 p-4"
-          >
-            <div className="flex items-center gap-2 text-sm font-medium text-slate-600">
-              <span
-                className="h-2.5 w-2.5 rounded-full"
-                style={{ backgroundColor: entry.color }}
-              />
-              {entry.name}
-            </div>
-            <p className="mt-2 text-lg font-semibold text-slate-900">
-              {formatCompactTon(entry.value)}
-            </p>
-            <p className="mt-0.5 text-sm text-slate-500">
-              {formatNumber((entry.value / national.timbulan) * 100, 1)}% dari
-              timbulan
-            </p>
-          </div>
-        ))}
+      <div className="mt-3 grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <p className="font-semibold" style={{ color: CHART_COLORS.primary }}>
+            Terkelola
+          </p>
+          <p className="text-lg font-semibold text-slate-900">
+            {formatCompactTon(national.terkelola)}
+          </p>
+        </div>
+        <div>
+          <p className="font-semibold text-slate-500">Tidak terkelola</p>
+          <p className="text-lg font-semibold text-slate-900">
+            {formatCompactTon(national.tidakTerkelola)}
+          </p>
+        </div>
       </div>
     </div>
   );
 }
+

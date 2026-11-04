@@ -7,11 +7,11 @@ import {
   Cell,
   LabelList,
   ReferenceLine,
-  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
 } from "recharts";
+import { ResponsiveContainer } from "@/components/charts/responsive";
 import { CLUSTER_BY_ID } from "@/lib/constants";
 import { formatCompactNumber, formatDecimal } from "@/lib/format";
 import { useDashboard } from "@/components/providers/dashboard-provider";
@@ -21,6 +21,8 @@ import {
   axisTick,
   cartesianGrid,
 } from "@/components/charts/chart-theme";
+import { useExpanded } from "@/components/ui/expandable";
+import { useHover } from "@/components/charts/use-hover";
 import type { Region } from "@/lib/types";
 
 function RegionRankingBar({
@@ -33,11 +35,16 @@ function RegionRankingBar({
   average?: number;
 }) {
   const { setSearch, filters } = useDashboard();
+  const hover = useHover();
+  const expanded = useExpanded();
 
   if (data.length === 0) return <EmptyState />;
 
   return (
-    <div className="h-[390px] w-full">
+    <div
+      className="h-full w-full"
+      style={{ minHeight: expanded ? data.length * 30 : undefined }}
+    >
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -70,16 +77,14 @@ function RegionRankingBar({
               x={average}
               stroke="#64748B"
               strokeDasharray="5 4"
-              label={{
-                value: "Rata-rata",
-                position: "insideTopRight",
-                fill: "#64748B",
-                fontSize: 12,
-              }}
             />
           ) : null}
-          <Tooltip content={<RegionTooltip />} />
-          <Bar
+          <Tooltip
+            content={<RegionTooltip />}
+            cursor={{ fill: "rgba(22, 24, 29, 0.05)" }}
+          />
+          <Bar isAnimationActive={false}
+            {...hover.handlers}
             dataKey={metric}
             radius={[0, 7, 7, 0]}
             barSize={20}
@@ -93,10 +98,11 @@ function RegionRankingBar({
             }}
             className="cursor-pointer"
           >
-            {data.map((region) => (
+            {data.map((region, index) => (
               <Cell
                 key={`${region.provinsi}-${region.kabKota}`}
                 fill={CLUSTER_BY_ID[region.cluster].color}
+                fillOpacity={hover.dim(index)}
               />
             ))}
             <LabelList
@@ -119,18 +125,20 @@ function RegionRankingBar({
 
 export function TopTimbulanRegionsBar() {
   const { filteredRegions } = useDashboard();
+  const limit = useExpanded() ? 30 : 10;
   const data = [...filteredRegions]
     .sort((a, b) => b.timbulanTahunan - a.timbulanTahunan)
-    .slice(0, 10);
+    .slice(0, limit);
 
   return <RegionRankingBar data={data} metric="timbulanTahunan" />;
 }
 
 export function TopPerKapitaRegionsBar() {
   const { filteredRegions, national } = useDashboard();
+  const limit = useExpanded() ? 30 : 10;
   const data = [...filteredRegions]
     .sort((a, b) => b.perKapita - a.perKapita)
-    .slice(0, 10);
+    .slice(0, limit);
 
   return (
     <RegionRankingBar

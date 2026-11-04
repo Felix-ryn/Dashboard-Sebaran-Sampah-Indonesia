@@ -2,60 +2,81 @@ import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 const TONES = {
-  blue: "bg-blue-50 text-blue-600",
-  navy: "bg-indigo-50 text-indigo-700",
-  sky: "bg-sky-50 text-sky-600",
-  teal: "bg-teal-50 text-teal-600",
-  amber: "bg-amber-50 text-amber-600",
-  rose: "bg-rose-50 text-rose-600",
+  blue: "bg-[#F3F0EA] text-[#16181D]",
+  navy: "bg-[#F3F0EA] text-[#16181D]",
+  sky: "bg-[#F3F0EA] text-[#16181D]",
+  teal: "bg-[#F3F0EA] text-[#16181D]",
+  amber: "bg-[#FBEFD0] text-[#8A5A00]",
+  rose: "bg-[#FBE6D8] text-[#B04A00]",
 } as const;
 
 export type KpiTone = keyof typeof TONES;
 
+/** Kartu angka ringkas. `dark` = kartu hitam sebagai angka utama halaman. */
 export function KpiCard({
   icon: Icon,
   label,
   value,
   helper,
   tone = "blue",
-  footer,
+  dark = false,
+  className,
 }: {
   icon: LucideIcon;
   label: string;
   value: string;
   helper?: string;
   tone?: KpiTone;
+  dark?: boolean;
+  className?: string;
   footer?: string;
 }) {
   return (
-    <div className="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md">
-      <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-blue-600 via-sky-400 to-cyan-400 opacity-0 transition group-hover:opacity-100" />
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">
-            {label}
-          </p>
-          <p className="mt-3 break-words text-2xl font-semibold leading-tight tracking-tight text-slate-950">
-            {value}
-          </p>
-        </div>
-        <span
+    <div
+      data-anim="card"
+      className={cn(
+        "flex min-w-0 flex-col justify-between rounded-[28px] p-4 transition-transform duration-300 hover:-translate-y-0.5",
+        dark ? "bg-[#16181D] text-white" : "bg-white text-[#16181D]",
+        className,
+      )}
+    >
+      <div className="flex items-start justify-between gap-2">
+        <p
           className={cn(
-            "flex h-12 w-12 shrink-0 items-center justify-center rounded-xl",
-            TONES[tone],
+            "text-[11px] font-semibold uppercase leading-4 tracking-wide",
+            dark ? "text-slate-400" : "text-slate-500",
           )}
         >
-          <Icon className="h-5 w-5" strokeWidth={2} />
+          {label}
+        </p>
+        <span
+          className={cn(
+            "flex h-8 w-8 shrink-0 items-center justify-center rounded-full",
+            dark ? "bg-[#F6C21B] text-[#16181D]" : TONES[tone],
+          )}
+        >
+          <Icon className="h-4 w-4" strokeWidth={2} />
         </span>
       </div>
-      {helper ? (
-        <p className="mt-3 text-sm leading-6 text-slate-500">{helper}</p>
-      ) : null}
-      {footer ? (
-        <p className="mt-3 border-t border-slate-100 pt-3 text-sm font-medium text-slate-600">
-          {footer}
+      <div className="min-w-0">
+        <p
+          title={value}
+          className="mt-1 truncate text-xl font-semibold leading-7 tracking-tight"
+        >
+          {value}
         </p>
-      ) : null}
+        {helper ? (
+          <p
+            title={helper}
+            className={cn(
+              "line-clamp-1 text-xs leading-4",
+              dark ? "text-slate-400" : "text-slate-500",
+            )}
+          >
+            {helper}
+          </p>
+        ) : null}
+      </div>
     </div>
   );
 }

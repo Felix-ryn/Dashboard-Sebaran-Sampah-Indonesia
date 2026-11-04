@@ -12,8 +12,8 @@ const jakarta = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   title: {
-    default: "Beyond the Trash | Dashboard Sampah 2025",
-    template: "%s | Beyond the Trash",
+    default: "Jejak Sampah | Dashboard Sampah 2025",
+    template: "%s | Jejak Sampah",
   },
   description:
     "Dashboard analitik pengelolaan sampah Indonesia berdasarkan data SIPSN KLHK 2025.",
@@ -28,7 +28,7 @@ export default function RootLayout({
 
   return (
     <html lang="id" className={`${jakarta.variable} h-full`}>
-      <body className="min-h-full bg-[#F4F7FB] font-sans text-slate-900 antialiased">
+      <body className="h-full bg-canvas font-sans text-ink antialiased">
         <AppShell data={data}>{children}</AppShell>
       </body>
     </html>

@@ -2,7 +2,10 @@
 
 @theme inline {
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
-  --color-surface: #f4f7fb;
+  --color-surface: #e9e6e0;
+  --color-canvas: #e9e6e0;
+  --color-ink: #16181d;
+  --color-accent: #f6c21b;
   --color-navy: #0b1b33;
   --color-brand: #2563eb;
 }
@@ -27,12 +30,8 @@
 }
 
 :root {
-  --background: #f4f7fb;
+  --background: #e9e6e0;
   --foreground: #0f172a;
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
@@ -81,4 +80,69 @@ body {
 
 .recharts-tooltip-wrapper {
   outline: none;
+}
+
+/* Keadaan awal logo pada intro (digambar & dianimasikan GSAP) */
+.intro-start .logo-outline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.intro-start .logo-bar {
+  opacity: 0;
+}
+
+/* Satu layar penuh: tidak ada scroll halaman */
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+.tab-fade {
+  animation: tabfade 0.35s ease both;
+}
+
+@keyframes tabfade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+
+/* Tooltip HTML muncul halus */
+@keyframes tip-pop {
+  from { opacity: 0; scale: 0.96; }
+  to { opacity: 1; scale: 1; }
+}
+.tip-pop { animation: tip-pop 0.12s ease-out both; }
+
+/* Batang tumbuh dari kiri saat grafik muncul */
+@keyframes bar-grow {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+.bar-grow { transform-origin: left center; animation: bar-grow 0.55s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bar-grow, .tip-pop { animation: none; }
+}
+
+/* Latar berpetak halus agar kanvas tidak polos */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(22, 24, 29, 0.055) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(22, 24, 29, 0.055) 1px, transparent 1px);
+  background-size: 32px 32px;
 }
