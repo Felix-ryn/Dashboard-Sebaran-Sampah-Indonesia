@@ -167,110 +167,180 @@ body {
 
 /* ───────────────────────── Mode gelap ─────────────────────────
    Diaktifkan lewat class "dark" di <html> (tombol tema di bilah atas).
-   Variabel dipakai juga oleh JS (softBg/softText) dan transisi halaman. */
+   Palet: skala slate gelap Radix Colors. Variabel dipakai juga oleh JS
+   (softBg/softText) dan transisi halaman. */
 :root {
   --card-bg: #ffffff;
   --ink-text: #16181d;
   --sheet-bg: #eaecf0;
 }
 .dark {
-  --card-bg: #1b212b;
-  --ink-text: #ffffff;
-  --sheet-bg: #141922;
+  --card-bg: #1f2023;
+  --ink-text: #edeef0;
+  --sheet-bg: #17181a;
   color-scheme: dark;
 }
 
-/* Permukaan */
+/* Permukaan: tiap tingkat sedikit lebih terang dari yang di bawahnya */
 .dark .bg-canvas,
-.dark .bg-\[\#F4F5F7\] { background-color: #0e1116; }
+.dark .bg-\[\#F4F5F7\] { background-color: #111113; }
 .dark .bg-\[\#EAECF0\] { background-color: var(--sheet-bg); }
 .dark .bg-white { background-color: var(--card-bg); }
-.dark .bg-white\/60 { background-color: rgb(27 33 43 / 0.6); }
+.dark .bg-white\/60 { background-color: rgb(31 32 35 / 0.6); }
 .dark .bg-\[\#F1F3F6\],
-.dark .bg-slate-100 { background-color: #262d3a; }
-.dark .bg-\[\#F7F8FA\] { background-color: #202734; }
-.dark .bg-slate-300 { background-color: #3a4252; }
+.dark .bg-slate-100 { background-color: #2a2c30; }
+.dark .bg-\[\#F7F8FA\] { background-color: #1a1b1e; }
+.dark .bg-slate-300 { background-color: #3b3e44; }
 .dark .bg-\[\#FDF3CF\],
-.dark .bg-\[\#FBEFD0\] { background-color: rgb(246 194 27 / 0.16); }
-.dark .bg-\[\#FBE6D8\] { background-color: rgb(213 94 0 / 0.2); }
+.dark .bg-\[\#FBEFD0\] { background-color: rgb(237 188 31 / 0.14); }
+.dark .bg-\[\#FBE6D8\] { background-color: rgb(219 128 82 / 0.16); }
 .dark .bg-blue-50,
-.dark .bg-blue-50\/60 { background-color: rgb(37 99 235 / 0.12); }
-.dark .bg-blue-100 { background-color: rgb(37 99 235 / 0.2); }
-.dark .bg-amber-50\/70 { background-color: rgb(245 158 11 / 0.1); }
-.dark .bg-amber-100 { background-color: rgb(245 158 11 / 0.18); }
+.dark .bg-blue-50\/60 { background-color: rgb(90 157 200 / 0.1); }
+.dark .bg-blue-100 { background-color: rgb(90 157 200 / 0.18); }
+.dark .bg-amber-50\/70 { background-color: rgb(237 188 31 / 0.08); }
+.dark .bg-amber-100 { background-color: rgb(237 188 31 / 0.16); }
+/* "Kapsul gelap" (menu aktif, kartu KPI utama, gelembung chat, tooltip): di mode gelap
+   dibuat lebih TERANG dari kartu, bukan hitam pekat, supaya terasa menonjol dan nyaman */
 .dark .bg-\[\#16181D\] {
-  background-color: #07090c;
-  outline: 1px solid rgb(255 255 255 / 0.08);
+  background-color: #2e3135;
+  outline: 1px solid rgb(255 255 255 / 0.06);
   outline-offset: -1px;
 }
 
 /* Hover */
 .dark .hover\:bg-\[\#E5E8ED\]:hover,
 .dark .hover\:bg-\[\#F1F3F6\]:hover,
-.dark .hover\:bg-slate-100:hover { background-color: #2f3745; }
+.dark .hover\:bg-slate-100:hover { background-color: #33363b; }
 .dark .hover\:bg-white:hover,
 .dark .hover\:bg-slate-50:hover,
-.dark .hover\:bg-\[\#F7F8FA\]:hover { background-color: #222936; }
-.dark .group:hover .group-hover\:bg-\[\#EEF0F4\] { background-color: #262d3a; }
-.dark .hover\:border-\[\#16181D\]:hover { border-color: rgb(255 255 255 / 0.35); }
-.dark .hover\:ring-\[\#16181D\]:hover { --tw-ring-color: rgb(255 255 255 / 0.35); }
+.dark .hover\:bg-\[\#F7F8FA\]:hover { background-color: #26272b; }
+.dark .group:hover .group-hover\:bg-\[\#EEF0F4\] { background-color: #2a2c30; }
+.dark .hover\:border-\[\#16181D\]:hover { border-color: rgb(255 255 255 / 0.3); }
+.dark .hover\:ring-\[\#16181D\]:hover { --tw-ring-color: rgb(255 255 255 / 0.3); }
 .dark .group:hover .group-hover\:text-slate-900,
-.dark .group\/search:hover .group-hover\/search\:text-slate-900 { color: #ffffff; }
-.dark .disabled\:text-slate-300:disabled { color: #4a5568; }
+.dark .group\/search:hover .group-hover\/search\:text-slate-900 { color: #edeef0; }
+.dark .disabled\:text-slate-300:disabled { color: #4a4d54; }
 
-/* Teks */
+/* Teks: tidak putih murni (kontras tinggi menyilaukan di latar gelap) */
 .dark .text-\[\#16181D\],
 .dark .text-ink,
 .dark .text-slate-900,
-.dark .text-slate-950 { color: #eef1f6; }
-.dark .text-slate-800 { color: #dde2ea; }
-.dark .text-slate-700 { color: #c6cdd9; }
-.dark .text-slate-600 { color: #aab3c2; }
-.dark .text-slate-500 { color: #98a2b3; }
-.dark .text-slate-400 { color: #7a869a; }
+.dark .text-slate-950,
+.dark .text-white { color: #edeef0; }
+.dark .text-slate-800 { color: #dcdde0; }
+.dark .text-slate-700 { color: #c7c9ce; }
+.dark .text-slate-600 { color: #b0b4ba; }
+.dark .text-slate-500 { color: #9a9ea6; }
+.dark .text-slate-400 { color: #7d818a; }
 .dark .text-blue-600,
 .dark .text-blue-700,
-.dark .text-blue-800 { color: #8cc2f0; }
+.dark .text-blue-800 { color: #8fbbdc; }
 .dark .text-amber-700,
 .dark .text-amber-800,
 .dark .text-amber-900,
-.dark .text-\[\#8A5A00\] { color: #f0c36b; }
-.dark .text-\[\#B04A00\] { color: #ff9a55; }
-.dark .placeholder\:text-slate-400::placeholder { color: #6b7689; }
+.dark .text-\[\#8A5A00\] { color: #dcb668; }
+.dark .text-\[\#B04A00\] { color: #e49a6f; }
+.dark .placeholder\:text-slate-400::placeholder { color: #70747c; }
 
-/* Elemen kuning aksen: teks tetap gelap */
-.dark .bg-\[\#F6C21B\] { color: #16181d; }
+/* Elemen kuning aksen: teks tetap gelap, kuning sedikit diredam */
+.dark .bg-\[\#F6C21B\] { background-color: #e8b923; color: #16181d; }
 .dark .bg-\[\#F6C21B\].text-\[\#16181D\],
 .dark .bg-\[\#F6C21B\] .text-\[\#16181D\],
 .dark .group:hover .group-hover\:bg-\[\#F6C21B\] ~ .text-\[\#16181D\] { color: #16181d; }
+.dark .text-\[\#F6C21B\] { color: #e8b923; }
 
 /* Garis tepi */
 .dark .border-black\/\[0\.05\],
-.dark .border-slate-100 { border-color: rgb(255 255 255 / 0.07); }
-.dark .border-slate-200 { border-color: rgb(255 255 255 / 0.1); }
-.dark .border-blue-200\/70 { border-color: rgb(37 99 235 / 0.3); }
-.dark .border-amber-200 { border-color: rgb(245 158 11 / 0.3); }
-.dark .ring-black\/\[0\.05\] { --tw-ring-color: rgb(255 255 255 / 0.07); }
-.dark .ring-slate-200 { --tw-ring-color: rgb(255 255 255 / 0.12); }
+.dark .border-slate-100 { border-color: rgb(255 255 255 / 0.06); }
+.dark .border-slate-200 { border-color: rgb(255 255 255 / 0.09); }
+.dark .border-blue-200\/70 { border-color: rgb(90 157 200 / 0.25); }
+.dark .border-amber-200 { border-color: rgb(237 188 31 / 0.25); }
+.dark .ring-black\/\[0\.05\] { --tw-ring-color: rgb(255 255 255 / 0.06); }
+.dark .ring-slate-200 { --tw-ring-color: rgb(255 255 255 / 0.1); }
 
 /* Grafik (Recharts) */
 .dark .recharts-text,
-.dark .recharts-cartesian-axis-tick-value { fill: #98a2b3; }
-.dark .recharts-cartesian-grid line { stroke: rgb(255 255 255 / 0.08); }
-.dark .recharts-cartesian-axis-line { stroke: #3a4252; }
-.dark .recharts-tooltip-cursor { fill: rgb(255 255 255 / 0.06); }
+.dark .recharts-cartesian-axis-tick-value { fill: #9a9ea6; }
+.dark .recharts-cartesian-grid line { stroke: rgb(255 255 255 / 0.06); }
+.dark .recharts-cartesian-axis-line { stroke: #43464c; }
+.dark .recharts-tooltip-cursor { fill: rgb(255 255 255 / 0.05); }
 .dark .recharts-default-tooltip {
-  background-color: #1b212b !important;
+  background-color: #2e3135 !important;
   border-color: rgb(255 255 255 / 0.1) !important;
-  color: #e7eaf0 !important;
+  color: #edeef0 !important;
 }
-.dark .recharts-tooltip-label { color: #eef1f6 !important; }
-.dark .recharts-tooltip-item { color: #aab3c2 !important; }
-.dark [fill="#CBD5E1"] { fill: #3a4458; }
-.dark [style*="#CBD5E1" i],
-.dark [style*="rgb(203, 213, 225)"] { background-color: #3a4458 !important; }
-.dark circle[fill="#FFFFFF"] { fill: #1b212b; }
-.dark text[stroke="#FFFFFF"] { stroke: #1b212b; }
-.dark text[fill="#16181D"] { fill: #eef1f6; }
-.dark [stroke="#16181D"] { stroke: #eef1f6; }
-.dark [stroke="#CBD5E1"] { stroke: #3a4252; }
+.dark .recharts-tooltip-label { color: #edeef0 !important; }
+.dark .recharts-tooltip-item { color: #b0b4ba !important; }
+.dark .recharts-reference-area-rect { fill-opacity: 0.06; }
+.dark circle[fill="#FFFFFF"] { fill: #1f2023; }
+.dark text[stroke="#FFFFFF"] { stroke: #1f2023; }
+.dark text[fill="#16181D"] { fill: #edeef0; }
+.dark [stroke="#16181D"] { stroke: #edeef0; }
+.dark td[style*="rgba(0, 114, 178"] { filter: saturate(0.65) brightness(0.92); }
+
+/* Warna data: diredam di mode gelap (desaturasi) agar tidak menyilaukan.
+   Dibuat dari tabel pemetaan, berlaku untuk atribut SVG dan gaya inline HTML. */
+.dark [fill="#D55E00" i] { fill: #DB8052; }
+.dark [stroke="#D55E00" i] { stroke: #DB8052; }
+.dark [style*="background-color:#D55E00" i] { background-color: #DB8052 !important; }
+.dark [style*="color:#D55E00" i]:not([style*="background-color"]) { color: #DB8052 !important; }
+.dark [fill="#CC79A7" i] { fill: #CB90B4; }
+.dark [stroke="#CC79A7" i] { stroke: #CB90B4; }
+.dark [style*="background-color:#CC79A7" i] { background-color: #CB90B4 !important; }
+.dark [style*="color:#CC79A7" i]:not([style*="background-color"]) { color: #CB90B4 !important; }
+.dark [fill="#009E73" i] { fill: #4DAF92; }
+.dark [stroke="#009E73" i] { stroke: #4DAF92; }
+.dark [style*="background-color:#009E73" i] { background-color: #4DAF92 !important; }
+.dark [style*="color:#009E73" i]:not([style*="background-color"]) { color: #4DAF92 !important; }
+.dark [fill="#0072B2" i] { fill: #5A9DC8; }
+.dark [stroke="#0072B2" i] { stroke: #5A9DC8; }
+.dark [style*="background-color:#0072B2" i] { background-color: #5A9DC8 !important; }
+.dark [style*="color:#0072B2" i]:not([style*="background-color"]) { color: #5A9DC8 !important; }
+.dark [fill="#E69F00" i] { fill: #D6A850; }
+.dark [stroke="#E69F00" i] { stroke: #D6A850; }
+.dark [style*="background-color:#E69F00" i] { background-color: #D6A850 !important; }
+.dark [style*="color:#E69F00" i]:not([style*="background-color"]) { color: #D6A850 !important; }
+.dark [fill="#CBD5E1" i] { fill: #3b3e44; }
+.dark [stroke="#CBD5E1" i] { stroke: #3b3e44; }
+.dark [style*="background-color:#CBD5E1" i] { background-color: #3b3e44 !important; }
+.dark [style*="color:#CBD5E1" i]:not([style*="background-color"]) { color: #3b3e44 !important; }
+.dark [fill="#BFD9EA" i] { fill: #2f4659; }
+.dark [stroke="#BFD9EA" i] { stroke: #2f4659; }
+.dark [style*="background-color:#BFD9EA" i] { background-color: #2f4659 !important; }
+.dark [style*="color:#BFD9EA" i]:not([style*="background-color"]) { color: #2f4659 !important; }
+.dark [fill="#8FBEDB" i] { fill: #3c6280; }
+.dark [stroke="#8FBEDB" i] { stroke: #3c6280; }
+.dark [style*="background-color:#8FBEDB" i] { background-color: #3c6280 !important; }
+.dark [style*="color:#8FBEDB" i]:not([style*="background-color"]) { color: #3c6280 !important; }
+.dark [fill="#5FA3CC" i] { fill: #4a7da3; }
+.dark [stroke="#5FA3CC" i] { stroke: #4a7da3; }
+.dark [style*="background-color:#5FA3CC" i] { background-color: #4a7da3 !important; }
+.dark [style*="color:#5FA3CC" i]:not([style*="background-color"]) { color: #4a7da3 !important; }
+.dark [fill="#2F88BD" i] { fill: #5590b8; }
+.dark [stroke="#2F88BD" i] { stroke: #5590b8; }
+.dark [style*="background-color:#2F88BD" i] { background-color: #5590b8 !important; }
+.dark [style*="color:#2F88BD" i]:not([style*="background-color"]) { color: #5590b8 !important; }
+.dark [fill="#FBD9BF" i] { fill: #4a362b; }
+.dark [stroke="#FBD9BF" i] { stroke: #4a362b; }
+.dark [style*="background-color:#FBD9BF" i] { background-color: #4a362b !important; }
+.dark [style*="color:#FBD9BF" i]:not([style*="background-color"]) { color: #4a362b !important; }
+.dark [fill="#F4B685" i] { fill: #6a4a37; }
+.dark [stroke="#F4B685" i] { stroke: #6a4a37; }
+.dark [style*="background-color:#F4B685" i] { background-color: #6a4a37 !important; }
+.dark [style*="color:#F4B685" i]:not([style*="background-color"]) { color: #6a4a37 !important; }
+.dark [fill="#EA9050" i] { fill: #8c5f43; }
+.dark [stroke="#EA9050" i] { stroke: #8c5f43; }
+.dark [style*="background-color:#EA9050" i] { background-color: #8c5f43 !important; }
+.dark [style*="color:#EA9050" i]:not([style*="background-color"]) { color: #8c5f43 !important; }
+.dark [fill="#DE7326" i] { fill: #b27048; }
+.dark [stroke="#DE7326" i] { stroke: #b27048; }
+.dark [style*="background-color:#DE7326" i] { background-color: #b27048 !important; }
+.dark [style*="color:#DE7326" i]:not([style*="background-color"]) { color: #b27048 !important; }
+.dark [fill="#004B73" i] { fill: #3f7ca4; }
+.dark [stroke="#004B73" i] { stroke: #3f7ca4; }
+.dark [style*="background-color:#004B73" i] { background-color: #3f7ca4 !important; }
+.dark [style*="color:#004B73" i]:not([style*="background-color"]) { color: #3f7ca4 !important; }
+.dark [fill="#56A5D4" i] { fill: #86bbdc; }
+.dark [stroke="#56A5D4" i] { stroke: #86bbdc; }
+.dark [style*="background-color:#56A5D4" i] { background-color: #86bbdc !important; }
+.dark [style*="color:#56A5D4" i]:not([style*="background-color"]) { color: #86bbdc !important; }

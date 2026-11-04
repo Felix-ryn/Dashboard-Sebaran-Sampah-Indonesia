@@ -89,7 +89,8 @@ export function AppShell({
       //    selama rute berganti (tampilan tetap sama, tanpa kedipan)
       const clone = page.cloneNode(true) as HTMLElement;
       clone.style.transformOrigin = "center";
-      clone.style.transition = "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)";
+      clone.style.transition =
+        "transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease-out";
       ghost.replaceChildren(clone);
       gsap.set(ghost, { display: "block", x: 0, scale: 1, autoAlpha: 1 });
       gsap.set(page, { autoAlpha: 0 });
@@ -97,7 +98,10 @@ export function AppShell({
       // Umpan balik instan lewat CSS transition (dijalankan compositor, tidak ikut
       // membeku saat thread utama sibuk memasang halaman baru)
       void clone.offsetWidth;
-      clone.style.transform = `scale(0.97) translateX(${-3 * dir}%)`;
+      // Halaman lama hanya mengecil dan meredup di tempat (tanpa bergeser), sehingga
+      // tepi kotaknya tidak pernah terlihat memotong isi di sisi kiri/kanan
+      clone.style.transform = "scale(0.975)";
+      clone.style.opacity = "0.85";
 
       const arrived = new Promise<void>((resolve) => {
         waiter.current = { href, resolve };
@@ -129,10 +133,11 @@ export function AppShell({
             : `linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,${rimAlpha}))`,
       });
       const ease = "power3.inOut";
+      clone.style.opacity = "0.5";
       const tl = gsap.timeline();
       tl.fromTo(rim, { x: travel }, { x: 0, duration: 0.75, ease }, 0)
         .to(page, { x: 0, duration: 0.75, ease }, 0)
-        .to(ghost, { scale: 0.97, xPercent: -5 * dir, duration: 0.75, ease }, 0)
+        .to(ghost, { scale: 0.985, duration: 0.75, ease }, 0)
         .to(rim, { autoAlpha: 0, duration: 0.25, ease: "power1.in" }, 0.5);
       await finished(tl);
 
