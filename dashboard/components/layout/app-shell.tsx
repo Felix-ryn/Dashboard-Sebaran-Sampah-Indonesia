@@ -150,7 +150,7 @@ export function AppShell({
   return (
     <DashboardProvider data={data}>
       <SectionNavContext.Provider value={{ go }}>
-        <div className="flex h-dvh gap-3 overflow-hidden bg-canvas bg-grid p-3">
+        <div className="flex h-dvh gap-3 overflow-hidden bg-canvas p-3">
           <Rail chatOpen={chatOpen} onChat={() => setChatOpen((value) => !value)} />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
             <Topbar />
