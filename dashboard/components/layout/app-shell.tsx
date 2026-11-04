@@ -1,8 +1,9 @@
 "use client";
 
-import { useCallback, useEffect, useRef, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import gsap from "gsap";
+import { ChatPanel } from "@/components/chat/chat-panel";
 import { DashboardProvider } from "@/components/providers/dashboard-provider";
 import { Intro } from "@/components/layout/intro";
 import { Rail } from "@/components/layout/rail";
@@ -33,6 +34,9 @@ export function AppShell({
 }) {
   const router = useRouter();
   const pathname = usePathname();
+
+  const [chatOpen, setChatOpen] = useState(false);
+  const closeChat = useCallback(() => setChatOpen(false), []);
 
   const stage = useRef<HTMLElement>(null);
   const panel = useRef<HTMLDivElement>(null);
@@ -148,7 +152,7 @@ export function AppShell({
         <div className="flex h-dvh gap-3 overflow-hidden bg-canvas bg-grid p-3">
           <Rail />
           <div className="flex min-w-0 flex-1 flex-col gap-3">
-            <Topbar />
+            <Topbar chatOpen={chatOpen} onChat={() => setChatOpen((value) => !value)} />
             <div className="relative min-h-0 flex-1 overflow-hidden rounded-[28px]">
               <main
                 ref={stage}
@@ -156,6 +160,8 @@ export function AppShell({
               >
                 {children}
               </main>
+
+              <ChatPanel open={chatOpen} onClose={closeChat} />
 
               <div
                 ref={panel}

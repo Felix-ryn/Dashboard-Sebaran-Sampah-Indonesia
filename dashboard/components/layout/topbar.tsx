@@ -9,6 +9,7 @@ import {
   RotateCcw,
   Search,
   Boxes,
+  Sparkles,
 } from "lucide-react";
 import { CLUSTER_META, NAV_ITEMS, YEAR } from "@/lib/constants";
 import { cn } from "@/lib/cn";
@@ -18,7 +19,13 @@ import { NAV_ICONS } from "@/components/layout/rail";
 const pill =
   "h-11 appearance-none rounded-full bg-white text-sm text-slate-700 outline-none transition focus:ring-2 focus:ring-[#F6C21B]/60";
 
-export function Topbar() {
+export function Topbar({
+  chatOpen,
+  onChat,
+}: {
+  chatOpen: boolean;
+  onChat: () => void;
+}) {
   const pathname = usePathname();
   const {
     filters,
@@ -138,6 +145,18 @@ export function Topbar() {
       ) : null}
 
       <div className="ml-auto flex shrink-0 items-center gap-2.5">
+        <button
+          type="button"
+          onClick={onChat}
+          aria-pressed={chatOpen}
+          className={cn(
+            "inline-flex h-11 items-center gap-2 whitespace-nowrap rounded-full px-4 text-sm font-semibold text-[#16181D] transition hover:-translate-y-0.5 active:scale-95",
+            chatOpen ? "bg-[#16181D] text-white" : "bg-[#F6C21B] hover:brightness-95",
+          )}
+        >
+          <Sparkles className={cn("h-4 w-4", chatOpen && "text-[#F6C21B]")} strokeWidth={2.25} />
+          Tanya Data
+        </button>
         <span className="hidden h-11 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 text-sm font-medium text-slate-600 @[1500px]:inline-flex">
           <CalendarDays className="h-4 w-4 text-slate-400" />
           Data {YEAR}

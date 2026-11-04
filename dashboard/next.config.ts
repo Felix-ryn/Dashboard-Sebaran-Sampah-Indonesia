@@ -5,6 +5,8 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   devIndicators: false,
+  // Route chat membaca CSV di folder data/ saat runtime
+  outputFileTracingIncludes: { "/api/chat": ["./data/**/*"] },
   turbopack: {
     rules: {
       "*.css": {
